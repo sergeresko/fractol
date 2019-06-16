@@ -1,0 +1,25 @@
+usage: ./fractol [<global options>] <type>[<local options>] ...
+
+Fractal types:
+
+    julia         Julia set
+    mandelbrot    Mandelbrot set
+
+Note: Any subsequence of the name may be used as long as it uniquely identifies a fractal.
+
+Global options apply to all windows unless overriden by local options.
+
+	global    local      range      default      description
+
+    -w <N>    .w<N>    480...4000     800     width in pixels
+    -h <N>    .h<N>    360...2000     600     height in pixels
+    -i <N>    .i<N>      1...1000     100     number of iterations
+    -c <N>    .c<N>      1...5          2     color palette
+
+Examples:
+
+    ./fractol julia
+
+    ./fractol -w 1920 -h 1080 ju.i150
+
+After launching the program press H key to see available controls.
