@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 12:24:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:44:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,6 @@ typedef struct s_info		t_info;
 typedef struct s_window		t_window;
 typedef struct s_everything	t_everything;
 
-# define WIDTH_CHAR		'w'
-# define WIDTH_MIN		480
-# define WIDTH_MAX		4000
-# define WIDTH_DEFAULT	800
-
-# define HEIGHT_CHAR	'h'
-# define HEIGHT_MIN		320
-# define HEIGHT_MAX		2000
-# define HEIGHT_DEFAULT	600
-
-# define ITER_CHAR		'i'
-# define ITER_MIN		1
-# define ITER_MAX		1000
-# define ITER_DEFAULT	100
-
-# define COLOR_CHAR		'c'
-# define COLOR_MIN		1
-# define COLOR_MAX		5
-# define COLOR_DEFAULT	2
-
-# define OPTION_COUNT	4
-
 struct			s_opt
 {
 	char	character;
@@ -53,7 +31,7 @@ struct			s_opt
 	size_t	offset_local;
 };
 
-t_opt const		*opt_info(int index);
+t_opt const		*opt_info(size_t index);
 int				opt_get_global(t_everything const *everything, t_opt const *opt);
 void			opt_set_global(t_everything *everything, t_opt const *opt, int value);
 int				opt_get_local(t_window const *window, t_opt const *opt);

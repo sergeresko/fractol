@@ -6,27 +6,27 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 12:23:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:48:49 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>		// for offsetof
 #include "fractol.h"
 
-t_opt const		*opt_info(int index)
+t_opt const		*opt_info(size_t index)
 {
 	static t_opt const	opt_array[] = {
-		{WIDTH_CHAR, WIDTH_MIN, WIDTH_MAX, WIDTH_DEFAULT,
-			offsetof(t_everything, width), offsetof(t_window, width)},
-		{HEIGHT_CHAR, HEIGHT_MIN, HEIGHT_MAX, HEIGHT_DEFAULT,
-			offsetof(t_everything, height), offsetof(t_window, height)},
-		{ITER_CHAR, ITER_MIN, ITER_MAX, ITER_DEFAULT,
-			offsetof(t_everything, iterations), offsetof(t_window, iterations)},
-		{COLOR_CHAR, COLOR_MIN, COLOR_MAX, COLOR_DEFAULT,
-			offsetof(t_everything, color), offsetof(t_window, color)},
+		{'w', 480, 4000, 800, offsetof(t_everything, width), offsetof(t_window, width)},
+		{'h', 360, 2000, 600, offsetof(t_everything, height), offsetof(t_window, height)},
+		{'i', 1, 1000, 100, offsetof(t_everything, iterations), offsetof(t_window, iterations)},
+		{'c', 1, 5, 2, offsetof(t_everything, color), offsetof(t_window, color)},
 	};
 
-	return (&(opt_array[index]));
+	if (index < sizeof(opt_array) / sizeof(*opt_array))
+	{
+		return (&(opt_array[index]));
+	}
+	return (NULL);
 }
 
 int				opt_get_global(t_everything const *everything, t_opt const *opt)
