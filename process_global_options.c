@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:26:26 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:38:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ char			**process_global_options(t_everything *everything, char **av)
 		if (!(arg[1]) || arg[2]
 				|| (opt_index = get_opt_index_by_character(arg[1])) < 0)
 		{
-			error3("invalid option \"", arg, "\"");
+			error3("invalid global option \"", arg, "\"");
 		}
-		set_global_option(everything, opt_index, *(++av));
+		set_option(everything->options, OPT_CHAR_GLOBAL, opt_index, *(++av));
 	}
 	finalize_global_options(everything);
 	return (--av);

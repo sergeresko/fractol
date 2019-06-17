@@ -6,67 +6,76 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:08:09 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:53:36 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "fractol.h"
 
-#define FRACTAL_TYPE_COUNT	2
-
-void		error(char const *message)
+t_type const	*type_info(int index)
 {
-	ft_putstr_fd(ERROR_START, STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putstr_fd(ERROR_END, STDERR_FILENO);
-	die();
-}
-
-t_info const	*get_info(int index)
-{
-	static t_info const		info_array[] = {
+	static t_type const		info[TYPE_COUNT] = {
 		{"julia", "Julia set"},
 		{"mandelbrot", "Mandelbrot set"},
 	};
 
-	return (&info_array[index]);
+	return (&(info[index]));
 }
 
-t_info const	*get_info_by_name(char const *name)
+/*
+**	for a given name, return the corresponding type index;
+**	terminate with error if the name is ambiguous;
+**	return -1 if the name is invalid
+*/
+
+int			get_type_index_by_name(char const *name)
 {
 	int			index;
 	int			i;
 
-	index = 0;
-	i = 0;
-	while (i < FRACTAL_TYPE_COUNT)
+	index = -1;
+	i = TYPE_COUNT;
+	while (i--)
 	{
-		if (is_subseq(get_info(i)->argument, name))
+		if (is_subseq(type_info(i)->argument, name))
 		{
-			if (index)
+			if (index >= 0)
 			{
 				error3("fractal name \"", name, "\" is ambiguous");
 			}
 			index = i;
 		}
-		++i;
 	}
-	return (index ? get_info(index) : NULL);
+	return (index);
 }
 
-void		parse_components(t_everything *everything, char **components)
+
+////////////////////////////////
+
+
+void		parse_components(t_window *window, char **components)
 {
-	t_info const	*info;
+	int const	type_index = get_type_index_by_name(*components);
+	char		*component;
+	int			opt_index;
 
-	info = get_info_by_name(components[0]);
-	if (!info)
+	if (type_index < 0)
 	{
-		error3("\"", components[0], "\" is not a valid fractal name");
+		error3("\"", *components, "\" is not a valid fractal name");
 	}
-	// ...
+	window->type = type_info(type_index);
+	while ((component = *(++components)))
+	{
+		if ((opt_index = get_opt_index_by_character(component[0])) < 0)
+		{
+			error3("invalid local option \".", component, "\"");
+		}
+		set_option(window->options, OPT_CHAR_LOCAL, opt_index, component + 1);
+	}
 }
 
-void			parse_argument(t_everything *everything, char const *arg)
+void			parse_argument(t_window *window, char const *arg)
 {
 	char		**components;
 
@@ -77,15 +86,37 @@ void			parse_argument(t_everything *everything, char const *arg)
 	components = ft_strsplit(arg, OPT_CHAR_LOCAL);
 	if (!components)
 	{
-		error("ft_strsplit failed");	// when can this happen ?
+		error1("ft_strsplit failed");	// when can this happen ?
 	}
-	parse_components(everything, components);
+	parse_components(window, components);
 	ft_strsplit_clear(components);
 }
 
 
 ////////////////////////////////
 
+
+static void		initialize_windows(t_everything *everything, char **av)
+{
+	int			count;
+
+	count = 0;
+	while (*(++av))
+	{
+		++count;
+	}
+	if (count == 0)
+	{
+		error1("no fractal types specified");
+	}
+	everything->windows = malloc(count * sizeof(t_window));
+	if (!(everything->windows))
+	{
+		error1("malloc failed");		//
+	}
+	everything->window_count = count;
+	everything->active_window_count = count;
+}
 
 /*
 **	set each local option of every window to zero
@@ -103,7 +134,7 @@ static void		initialize_local_options(t_everything *everything)
 		window_index = everything->window_count;
 		while (window_index--)
 		{
-			window = everything->windows[window_index];
+			window = &(everything->windows[window_index]);
 			window->options[opt_index] = 0;
 		}
 	}
@@ -126,7 +157,7 @@ static void		finalize_local_options(t_everything *everything)
 		window_index = everything->window_count;
 		while (window_index--)
 		{
-			window = everything->windows[window_index];
+			window = &(everything->windows[window_index]);
 			if (window->options[opt_index] == 0)
 			{
 				window->options[opt_index] = everything->options[opt_index];
@@ -135,37 +166,19 @@ static void		finalize_local_options(t_everything *everything)
 	}
 }
 
-static void		initialize_windows(t_everything *everything, char **av)
-{
-	int			count;
-
-	count = 0;
-	while (*(++av))
-	{
-		++count;
-	}
-	if (count == 0)
-	{
-		error("no fractal types specified");
-	}
-	everything->windows = malloc(count * sizeof(t_window));
-	if (!(everything->windows))
-	{
-		error("malloc failed");		//
-	}
-	everything->window_count = count;
-	everything->active_window_count = count;
-}
-
 void			process_arguments(t_everything *everything, char **av)
 {
 	char const	*arg;
+	int			window_index;
+	t_window	*window;
 
 	initialize_windows(everything, av);
 	initialize_local_options(everything);
+	window_index = 0;
 	while ((arg = *(++av)))
 	{
-		parse_argument(everything, arg);
+		window = &(everything->windows[window_index++]);
+		parse_argument(window, arg);
 	}
 	finalize_local_options(everything);
 }

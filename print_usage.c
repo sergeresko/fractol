@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:40:58 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:45:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void		print_usage_options(void)
 	ft_strcpy(str, "    ** <N>    **<N>    ***...****     ***     ");
 	str[4] = OPT_CHAR_GLOBAL;
 	str[14] = OPT_CHAR_LOCAL;
-	opt_index = OPT_COUNT;
-	while (opt_index--)
+	opt_index = 0;
+	while (opt_index < OPT_COUNT)
 	{
 		opt = opt_info(opt_index);
 		str[5] = opt->character;
@@ -35,6 +35,7 @@ static void		print_usage_options(void)
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putstr_fd(opt->description, STDERR_FILENO);
 		ft_putchar_fd('\n', STDERR_FILENO);
+		++opt_index;
 	}
 }
 
