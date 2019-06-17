@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:30:24 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:50:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@
 int				get_opt_index_by_character(char c)
 {
 	int			opt_index;
-	t_opt const	*opt;
 
 	opt_index = OPT_COUNT;
 	while (opt_index--)
 	{
-		opt = opt_info(opt_index);
-		if (opt->character == c)
+		if (opt_info(opt_index)->character == c)
 		{
 			break ;
 		}
