@@ -43,7 +43,7 @@ char	*pf_itoa(const t_fmt *f, uintmax_t num)
 char	*pf_wctomb(wchar_t wc)
 {
 	char	*s;
-	char	mask;
+	wchar_t	mask;
 
 	s = PF_BUF_END;
 	*s = '\0';

@@ -14,7 +14,7 @@ NAME		=	fractol
 LIBFT		=	libft/libft.a
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -Wpedantic
 
 # --------- Header files ------------------------------------------------------
 
