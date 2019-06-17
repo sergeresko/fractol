@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:39:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:46:27 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ t_opt const		*opt_info(int index)
 		{'c', "  1", "5   ", "  2", "color palette", OPT_INDEX_COLOR},
 	};
 
-	return (index < OPT_COUNT ? &(opt_array[index]) : NULL);
+	return (&(opt_array[index]));
 }
