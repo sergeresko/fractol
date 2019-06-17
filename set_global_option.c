@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 11:48:36 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:13:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			set_global_option(t_everything *everything,
 {
 	int			value;
 
-	if (*(opt->addr(everything)))
+	if (opt_get_global(everything, opt) != 0)
 	{
 		error_opt("multiple options", opt->character);
 	}
@@ -41,5 +41,5 @@ void			set_global_option(t_everything *everything,
 	{
 		error_opt("invalid value for option", opt->character);
 	}
-	*(opt->addr(everything)) = value;
+	opt_set_global(everything, opt, value);
 }

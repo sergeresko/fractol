@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 11:53:56 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:16:34 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		initialize_global_options(t_everything *everything)
 	i = 0;
 	while (i < OPTION_COUNT)
 	{
-		*(get_opt(i)->addr(everything)) = 0;
+		opt_set_global(everything, opt_info(i), 0);
 		++i;
 	}
 }
@@ -28,18 +28,15 @@ static void		finalize_global_options(t_everything *everything)
 {
 	int			i;
 	t_opt const	*opt;
-	int			*addr;
 
 	i = 0;
 	while (i < OPTION_COUNT)
 	{
-		opt = get_opt(i);
-		addr = opt->addr(everything);
-		if (!(*addr))
+		opt = opt_info(i++);
+		if (opt_get_global(everything, opt) == 0)
 		{
-			*addr = opt->default_value;
+			opt_set_global(everything, opt, opt->default_value);
 		}
-		++i;
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/17 11:44:16 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/17 12:16:50 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
 SRC		=	get.c \
-			get_opt.c \
+			opt.c \
 			process_global_options.c \
 			is_subseq.c \
 			str_to_positive_int.c \
