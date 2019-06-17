@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 11:51:06 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:08:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,89 @@ void			parse_argument(t_everything *everything, char const *arg)
 	ft_strsplit_clear(components);
 }
 
-void			process_arguments(t_everything *everything, char **argv)
+
+////////////////////////////////
+
+
+/*
+**	set each local option of every window to zero
+*/
+
+static void		initialize_local_options(t_everything *everything)
+{
+	int			opt_index;
+	int			window_index;
+	t_window	*window;
+
+	opt_index = OPT_COUNT;
+	while (opt_index--)
+	{
+		window_index = everything->window_count;
+		while (window_index--)
+		{
+			window = everything->windows[window_index];
+			window->options[opt_index] = 0;
+		}
+	}
+}
+
+/*
+**	for each local option of every window, if it is zero,
+**	set it to the value of the respective global option
+*/
+
+static void		finalize_local_options(t_everything *everything)
+{
+	int			opt_index;
+	int			window_index;
+	t_window	*window;
+
+	opt_index = OPT_COUNT;
+	while (opt_index--)
+	{
+		window_index = everything->window_count;
+		while (window_index--)
+		{
+			window = everything->windows[window_index];
+			if (window->options[opt_index] == 0)
+			{
+				window->options[opt_index] = everything->options[opt_index];
+			}
+		}
+	}
+}
+
+static void		initialize_windows(t_everything *everything, char **av)
+{
+	int			count;
+
+	count = 0;
+	while (*(++av))
+	{
+		++count;
+	}
+	if (count == 0)
+	{
+		error("no fractal types specified");
+	}
+	everything->windows = malloc(count * sizeof(t_window));
+	if (!(everything->windows))
+	{
+		error("malloc failed");		//
+	}
+	everything->window_count = count;
+	everything->active_window_count = count;
+}
+
+void			process_arguments(t_everything *everything, char **av)
 {
 	char const	*arg;
 
-	while ((arg = *(++argv)))
+	initialize_windows(everything, av);
+	initialize_local_options(everything);
+	while ((arg = *(++av)))
 	{
 		parse_argument(everything, arg);
 	}
-	// error if the list remains empty
+	finalize_local_options(everything);
 }

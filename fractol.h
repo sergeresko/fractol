@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 14:32:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:39:13 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,23 @@ typedef struct s_everything	t_everything;
 # define OPT_INDEX_COLOR	3
 # define OPT_COUNT			4
 
-typedef int					t_options[OPT_COUNT];
-
-struct			s_opt
+struct			s_opt			// t_opt_info
 {
 	char		character;
 	char const	*min_value;
 	char const	*max_value;
 	char const	*default_value;
 	char const	*description;
-	size_t		index;
+	int			index;			// needed ?
 };
 
-t_opt const		*opt_info(size_t index);
-int				opt_get(int const *options, t_opt const *opt);
-void			opt_set(int *options, t_opt const *opt, int value);
+t_opt const		*opt_info(int index);
 
-t_opt const		*get_opt_by_character(char c);
+int				get_opt_index_by_character(char c);
+//void			set_global_option(t_everything *everything,
+//											t_opt const *opt, char const *arg);
 void			set_global_option(t_everything *everything,
-											t_opt const *opt, char const *arg);
+											int opt_index, char const *arg);
 char			**process_global_options(t_everything *everything, char **av);
 
 # define OPT_CHAR_GLOBAL	'-'
@@ -53,7 +51,7 @@ char			**process_global_options(t_everything *everything, char **av);
 
 //
 
-struct			s_info
+struct			s_info			// t_type_info
 {
 	char const	*argument;
 	char const	*title;
@@ -64,7 +62,8 @@ struct			s_window
 {
 	t_everything	*everything;	// back-reference
 	//
-	t_options	options;
+	int		options[OPT_COUNT];		// local options
+	//
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_data;
@@ -73,12 +72,13 @@ struct			s_window
 
 struct			s_everything
 {
-	t_options	options;
+	int			options[OPT_COUNT];	// global options
 	//
 	void		*mlx_ptr;
-	int			fractal_count;		// needed ?
+	//
 	t_window	*windows;
-	int			active_fractal_count;
+	int			window_count;
+	int			active_window_count;
 };
 
 int				is_subseq(char const *full, char const *sub);

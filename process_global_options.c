@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:41:47 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:26:26 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 static void		initialize_global_options(t_everything *everything)
 {
-	size_t		i;
-	t_opt const	*opt;
+	int			opt_index;
 
-	i = 0;
-	while ((opt = opt_info(i++)))
+	opt_index = OPT_COUNT;
+	while (opt_index--)
 	{
-		opt_set(everything->options, opt, 0);
+		everything->options[opt_index] = 0;
 	}
 }
 
 static void		finalize_global_options(t_everything *everything)
 {
-	size_t		i;
+	int			opt_index;
 	t_opt const	*opt;
 
-	i = 0;
-	while ((opt = opt_info(i++)))
+	opt_index = OPT_COUNT;
+	while (opt_index--)
 	{
-		if (opt_get(everything->options, opt) == 0)
+		if (everything->options[opt_index] == 0)
 		{
-			opt_set(everything->options, opt, atoi_space(opt->default_value));
+			opt = opt_info(opt_index);
+			everything->options[opt_index] = atoi_space(opt->default_value);
 		}
 	}
 }
@@ -42,16 +42,17 @@ static void		finalize_global_options(t_everything *everything)
 char			**process_global_options(t_everything *everything, char **av)
 {
 	char const	*arg;
-	t_opt const	*opt;
+	int			opt_index;
 
 	initialize_global_options(everything);
 	while ((arg = *(++av)) && arg[0] == OPT_CHAR_GLOBAL)
 	{
-		if (!(arg[1]) || arg[2] || !(opt = get_opt_by_character(arg[1])))
+		if (!(arg[1]) || arg[2]
+				|| (opt_index = get_opt_index_by_character(arg[1])) < 0)
 		{
 			error3("invalid option \"", arg, "\"");
 		}
-		set_global_option(everything, opt, *(++av));
+		set_global_option(everything, opt_index, *(++av));
 	}
 	finalize_global_options(everything);
 	return (--av);

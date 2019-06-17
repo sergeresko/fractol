@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 14:45:13 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:40:58 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		print_usage_options(void)
 {
 	char		str[80];
-	size_t		i;
+	int			opt_index;
 	t_opt const	*opt;
 
 	ft_putstr_fd("    global    local      range      default", STDERR_FILENO);
@@ -23,9 +23,10 @@ static void		print_usage_options(void)
 	ft_strcpy(str, "    ** <N>    **<N>    ***...****     ***     ");
 	str[4] = OPT_CHAR_GLOBAL;
 	str[14] = OPT_CHAR_LOCAL;
-	i = 0;
-	while ((opt = opt_info(i++)))
+	opt_index = OPT_COUNT;
+	while (opt_index--)
 	{
+		opt = opt_info(opt_index);
 		str[5] = opt->character;
 		str[15] = opt->character;
 		ft_strncpy(str + 23, opt->min_value, 3);

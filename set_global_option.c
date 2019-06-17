@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:37:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:32:59 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ static void		error_opt(char const *message, char opt_character)
 }
 
 void			set_global_option(t_everything *everything,
-											t_opt const *opt, char const *arg)
+											int opt_index, char const *arg)
 {
 	int			value;
+	t_opt const	*opt;
 
-	if (opt_get(everything->options, opt) != 0)
+	opt = opt_info(opt_index);
+	if (everything->options[opt_index] != 0)
 	{
 		error_opt("multiple options", opt->character);
 	}
@@ -41,5 +43,5 @@ void			set_global_option(t_everything *everything,
 	{
 		error_opt("invalid value for option", opt->character);
 	}
-	opt_set(everything->options, opt, value);
+	everything->options[opt_index] = value;
 }
