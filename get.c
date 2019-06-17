@@ -30,7 +30,7 @@ int		main(int ac, char **av)
 
 	if (ac < 2)
 	{
-		ft_putstr_fd("usage: ...\n", STDERR_FILENO);		// TODO:
+		print_usage();
 		return (EXIT_FAILURE);
 	}
 	av = process_global_options(&everything, av);

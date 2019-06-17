@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:44:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 14:32:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ int				atoi_space(char const *str);
 
 void			die(void);
 void			error3(char const *s1, char const *s2, char const *s3);
+
+void			print_usage(void);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/17 13:39:39 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/17 14:31:53 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC		=	get.c \
 			atoi.c \
 			get_opt_by_character.c \
 			set_global_option.c \
-			error.c
+			error.c \
+			print_usage.c
 
 FRAMEWORKS	=	-framework OpenGL -framework AppKit
 INCLUDES	=	-I. -I/Users/syeresko/projects/filler/rendu/libft
