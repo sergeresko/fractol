@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 /*
 **	tell whether string `sub` is a subsequence of string `full`
+**	(comparison is case insensitive)
 */
 
 int				is_subseq(char const *full, char const *sub)
@@ -19,9 +22,9 @@ int				is_subseq(char const *full, char const *sub)
 	char		s;
 	char		f;
 
-	while ((s = *(sub++)))
+	while ((s = ft_tolower(*(sub++))))
 	{
-		while ((f = *(full++)) != s)
+		while ((f = ft_tolower(*(full++))) != s)
 		{
 			if (!f)
 			{

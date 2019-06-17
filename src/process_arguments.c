@@ -16,8 +16,8 @@
 t_type const	*type_info(int index)
 {
 	static t_type const		info[TYPE_COUNT] = {
-		{"julia", "Julia set"},
-		{"mandelbrot", "Mandelbrot set"},
+		{"Julia set"},
+		{"Mandelbrot set"},
 	};
 
 	return (&(info[index]));
@@ -29,7 +29,7 @@ t_type const	*type_info(int index)
 **	return -1 if the name is invalid
 */
 
-int			get_type_index_by_name(char const *name)
+int			get_type_index_by_title(char const *title)
 {
 	int			index;
 	int			i;
@@ -38,11 +38,11 @@ int			get_type_index_by_name(char const *name)
 	i = TYPE_COUNT;
 	while (i--)
 	{
-		if (is_subseq(type_info(i)->argument, name))
+		if (is_subseq(type_info(i)->title, title))
 		{
 			if (index >= 0)
 			{
-				error3("fractal name \"", name, "\" is ambiguous");
+				error3("title \"", title, "\" is ambiguous");
 			}
 			index = i;
 		}
@@ -56,13 +56,13 @@ int			get_type_index_by_name(char const *name)
 
 void		parse_components(t_window *window, char **components)
 {
-	int const	type_index = get_type_index_by_name(*components);
+	int const	type_index = get_type_index_by_title(*components);
 	char		*component;
 	int			opt_index;
 
 	if (type_index < 0)
 	{
-		error3("\"", *components, "\" is not a valid fractal name");
+		error3("\"", *components, "\" is not a valid title");
 	}
 	window->type = type_info(type_index);
 	while ((component = *(++components)))
@@ -81,7 +81,7 @@ void			parse_argument(t_window *window, char const *arg)
 
 	if (!(arg[0]) || arg[0] == OPT_CHAR_LOCAL)
 	{
-		error3("empty fractal name in argument \"", arg, "\"");
+		error3("empty title in argument \"", arg, "\"");
 	}
 	components = ft_strsplit(arg, OPT_CHAR_LOCAL);
 	if (!components)
@@ -107,7 +107,7 @@ static void		initialize_windows(t_everything *everything, char **av)
 	}
 	if (count == 0)
 	{
-		error1("no fractal types specified");
+		error1("no titles");
 	}
 	everything->windows = malloc(count * sizeof(t_window));
 	if (!(everything->windows))

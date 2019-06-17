@@ -56,7 +56,6 @@ void			process_arguments(t_everything *everything, char **av);
 
 struct			s_type			// t_type_info
 {
-	char const	*argument;
 	char const	*title;
 	// ...
 };
