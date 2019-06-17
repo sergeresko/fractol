@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 12:18:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:23:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void			opt_set_global(t_everything *everything, t_opt const *opt, int value)
 	*(int *)((char *)everything + opt->offset_global) = value;
 }
 
-int				opt_get_local(t_everything const *everything, t_opt const *opt)
+int				opt_get_local(t_window const *window, t_opt const *opt)
 {
-	return (*(int const *)((char const *)everything + opt->offset_local));
+	return (*(int const *)((char const *)window + opt->offset_local));
 }
 
-void			opt_set_local(t_everything *everything, t_opt const *opt, int value)
+void			opt_set_local(t_window *window, t_opt const *opt, int value)
 {
-	*(int *)((char *)everything + opt->offset_local) = value;
+	*(int *)((char *)window + opt->offset_local) = value;
 }

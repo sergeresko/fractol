@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 12:20:25 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:24:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ struct			s_opt
 t_opt const		*opt_info(int index);
 int				opt_get_global(t_everything const *everything, t_opt const *opt);
 void			opt_set_global(t_everything *everything, t_opt const *opt, int value);
-int				opt_get_local(t_everything const *everything, t_opt const *opt);
-void			opt_set_local(t_everything *everything, t_opt const *opt, int value);
+int				opt_get_local(t_window const *window, t_opt const *opt);
+void			opt_set_local(t_window *window, t_opt const *opt, int value);
 
 t_opt const		*get_opt_by_character(char c);
 void			set_global_option(t_everything *everything,
