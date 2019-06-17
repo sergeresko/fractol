@@ -17,8 +17,10 @@ void	_test(t_everything const *everything, char **av)
 {
 	ft_printf("Global settings:\n");
 	ft_printf("%d x %d (%d iterations, palette %d)\n",
-			everything->width, everything->height,
-			everything->iterations, everything->color);
+			everything->options[OPT_INDEX_WIDTH],
+			everything->options[OPT_INDEX_HEIGHT],
+			everything->options[OPT_INDEX_ITER],
+			everything->options[OPT_INDEX_COLOR]);
 	ft_printf("The last processed argument is \"%s\".\n", *av);
 }
 
