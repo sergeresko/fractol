@@ -35,7 +35,7 @@ void			set_option(int *options, char opt_prefix,
 	{
 		error_opt("multiple options", opt_prefix, opt->character);
 	}
-	if (!arg)
+	if (!arg || !(*arg))
 	{
 		error_opt("no value for option", opt_prefix, opt->character);
 	}
