@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:13:34 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:41:47 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		finalize_global_options(t_everything *everything)
 	{
 		if (opt_get(everything->options, opt) == 0)
 		{
-			opt_set(everything->options, opt, opt->default_value);
+			opt_set(everything->options, opt, atoi_space(opt->default_value));
 		}
 	}
 }

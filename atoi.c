@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_to_positive_int.c                              :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:17:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 11:53:34 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:38:28 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 **	return this number; otherwise return 0
 */
 
-int				str_to_positive_int(char const *str)
+int				atoi_positive(char const *str)
 {
 	int			n;
 	char		c;
@@ -27,6 +27,28 @@ int				str_to_positive_int(char const *str)
 		{
 			return (0);
 		}
+	}
+	return (n);
+}
+
+/*
+**	return the positive number represented by a string (probably padded with
+**	spaces on either side); the result is undefined if the string is not valid
+*/
+
+int				atoi_space(char const *str)
+{
+	int			n;
+	char		c;
+
+	while (*str == ' ')
+	{
+		++str;
+	}
+	n = 0;
+	while ((c = *(str++)) && c != ' ')
+	{
+		n = n * 10 + (int)(c - '0');
 	}
 	return (n);
 }

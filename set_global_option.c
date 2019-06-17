@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:18:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:37:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void			set_global_option(t_everything *everything,
 	{
 		error_opt("no value for option", opt->character);
 	}
-	value = str_to_positive_int(arg);
-	if (value < opt->min_value || value > opt->max_value)
+	value = atoi_positive(arg);
+	if (value < atoi_space(opt->min_value) || value > atoi_space(opt->max_value))
 	{
 		error_opt("invalid value for option", opt->character);
 	}

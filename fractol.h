@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 13:18:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:44:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ typedef int					t_options[OPT_COUNT];
 
 struct			s_opt
 {
-	char	character;
-	int		min_value;
-	int		max_value;
-	int		default_value;
-	size_t	index;
+	char		character;
+	char const	*min_value;
+	char const	*max_value;
+	char const	*default_value;
+	char const	*description;
+	size_t		index;
 };
 
 t_opt const		*opt_info(size_t index);
@@ -81,7 +82,8 @@ struct			s_everything
 };
 
 int				is_subseq(char const *full, char const *sub);
-int				str_to_positive_int(char const *str);
+int				atoi_positive(char const *str);
+int				atoi_space(char const *str);
 
 # define ERROR_START	"error: "
 # define ERROR_END		"\n"
