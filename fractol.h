@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/16 19:44:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 11:50:31 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void			set_global_option(t_everything *everything,
 											t_opt const *opt, char const *arg);
 char			**process_global_options(t_everything *everything, char **av);
 
+# define OPT_CHAR_GLOBAL	'-'
+# define OPT_CHAR_LOCAL		'.'
+
 //
 
 struct			s_info
@@ -95,6 +98,11 @@ struct			s_everything
 
 int				is_subseq(char const *full, char const *sub);
 int				str_to_positive_int(char const *str);
+
+# define ERROR_START	"error: "
+# define ERROR_END		"\n"
+
 void			die(void);
+void			error3(char const *s1, char const *s2, char const *s3);
 
 #endif

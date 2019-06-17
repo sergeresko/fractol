@@ -9,7 +9,7 @@ Note: Any subsequence of the name may be used as long as it uniquely identifies 
 
 Global options apply to all windows unless overriden by local options.
 
-	global    local      range      default      description
+    global    local      range      default      description
 
     -w <N>    .w<N>    480...4000     800     width in pixels
     -h <N>    .h<N>    360...2000     600     height in pixels

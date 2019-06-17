@@ -6,19 +6,11 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/16 18:34:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/17 11:53:56 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static void		error_opt_invalid(char const *arg)
-{
-	ft_putstr_fd("ERROR: Invalid option \"", STDERR_FILENO);
-	ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd("\".\n", STDERR_FILENO);
-	die();
-}
 
 static void		initialize_global_options(t_everything *everything)
 {
@@ -57,14 +49,14 @@ char			**process_global_options(t_everything *everything, char **av)
 	t_opt const	*opt;
 
 	initialize_global_options(everything);
-	while ((arg = *(++av)) && arg[0] == '-')
+	while ((arg = *(++av)) && arg[0] == OPT_CHAR_GLOBAL)
 	{
 		if (!(arg[1]) || arg[2] || !(opt = get_opt_by_character(arg[1])))
 		{
-			error_opt_invalid(arg);
+			error3("invalid option \"", arg, "\"");
 		}
 		set_global_option(everything, opt, *(++av));
 	}
 	finalize_global_options(everything);
-	return (av - 1);
+	return (--av);
 }
