@@ -34,7 +34,7 @@ static void		finalize_global_options(t_everything *everything)
 		if (everything->options[opt_index] == 0)
 		{
 			opt = opt_info(opt_index);
-			everything->options[opt_index] = atoi_space(opt->default_value);
+			everything->options[opt_index] = opt->default_value;
 		}
 	}
 }

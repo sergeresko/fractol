@@ -40,7 +40,7 @@ void			set_option(int *options, char opt_prefix,
 		error_opt("no value for option", opt_prefix, opt->character);
 	}
 	value = atoi_positive(arg);
-	if (value < atoi_space(opt->min_value) || value > atoi_space(opt->max_value))
+	if (value < opt->min_value || value > opt->max_value)
 	{
 		error_opt("invalid value for option", opt_prefix, opt->character);
 	}

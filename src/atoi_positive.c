@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   atoi_positive.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,43 +12,21 @@
 
 /*
 **	if the string represents a positive number in the range of `int`,
-**	return this number; otherwise return 0
+**	return this number; otherwise return zero
 */
 
 int				atoi_positive(char const *str)
 {
-	int			n;
+	int			value;
 	char		c;
 
-	n = 0;
+	value = 0;
 	while ((c = *(str++)))
 	{
-		if (c < '0' || c > '9' || (n = n * 10 + (int)(c - '0')) < 0)
+		if (c < '0' || c > '9' || (value = value * 10 + (int)(c - '0')) < 0)
 		{
 			return (0);
 		}
 	}
-	return (n);
-}
-
-/*
-**	return the positive number represented by a string (probably padded with
-**	spaces on either side); the result is undefined if the string is not valid
-*/
-
-int				atoi_space(char const *str)
-{
-	int			n;
-	char		c;
-
-	while (*str == ' ')
-	{
-		++str;
-	}
-	n = 0;
-	while ((c = *(str++)) && c != ' ')
-	{
-		n = n * 10 + (int)(c - '0');
-	}
-	return (n);
+	return (value);
 }

@@ -16,6 +16,28 @@
 # include <unistd.h>
 # include "libft.h"
 
+# define WIDTH_CHAR			'w'
+# define WIDTH_MIN			480
+# define WIDTH_MAX			4000
+# define WIDTH_DEFAULT		800
+# define WIDTH_DESCR		"width in pixels"
+
+# define HEIGHT_CHAR		'h'
+# define HEIGHT_MIN			360
+# define HEIGHT_MAX			2000
+# define HEIGHT_DEFAULT		600
+# define HEIGHT_DESCR		"height in pixels"
+
+# define ITER_CHAR			'i'
+# define ITER_MAX			1000
+# define ITER_DEFAULT		100
+# define ITER_DESCR			"number of iterations"
+
+# define COLOR_CHAR			'c'
+# define COLOR_MAX			5
+# define COLOR_DEFAULT		2
+# define COLOR_DESCR		"color palette"
+
 typedef struct s_opt		t_opt;
 typedef struct s_type		t_type;
 typedef struct s_window		t_window;
@@ -30,11 +52,10 @@ typedef struct s_everything	t_everything;
 struct			s_opt			// t_opt_info
 {
 	char		character;
-	char const	*min_value;
-	char const	*max_value;
-	char const	*default_value;
+	int			min_value;
+	int			max_value;
+	int			default_value;
 	char const	*description;
-	int			index;			// needed ?
 };
 
 t_opt const		*opt_info(int index);
@@ -87,7 +108,6 @@ struct			s_everything
 
 int				is_subseq(char const *full, char const *sub);
 int				atoi_positive(char const *str);
-int				atoi_space(char const *str);
 
 # define ERROR_START	"error: "
 # define ERROR_END		"\n"
@@ -96,6 +116,8 @@ void			die(void);
 void			error1(char const *message);
 void			error3(char const *s1, char const *s2, char const *s3);
 
+void			sprintf_int_left(int value, char *field, int width);
+void			sprintf_int_right(int value, char *field, int width);
 void			print_usage(void);
 
 #endif

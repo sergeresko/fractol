@@ -29,9 +29,12 @@ static void		print_usage_options(void)
 		opt = opt_info(opt_index);
 		str[5] = opt->character;
 		str[15] = opt->character;
-		ft_strncpy(str + 23, opt->min_value, 3);
-		ft_strncpy(str + 29, opt->max_value, 4);
-		ft_strncpy(str + 38, opt->default_value, 3);
+		sprintf_int_right(opt->min_value, str + 23, 3);
+		sprintf_int_left(opt->max_value, str + 29, 4);
+		sprintf_int_right(opt->default_value, str + 38, 3);
+//		ft_strncpy(str + 23, opt->min_value, 3);
+//		ft_strncpy(str + 29, opt->max_value, 4);
+//		ft_strncpy(str + 38, opt->default_value, 3);
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putstr_fd(opt->description, STDERR_FILENO);
 		ft_putchar_fd('\n', STDERR_FILENO);

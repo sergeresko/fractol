@@ -30,10 +30,11 @@ SRC			=	$(addprefix src/,					\
 					process_global_options.c		\
 					process_arguments.c				\
 					is_subseq.c						\
-					atoi.c							\
+					atoi_positive.c					\
 					get_opt_by_character.c			\
 					set_option.c					\
 					error.c							\
+					sprintf_int.c					\
 					print_usage.c					\
 				)
 

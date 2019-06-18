@@ -15,10 +15,10 @@
 t_opt const		*opt_info(int index)
 {
 	static t_opt const	info[OPT_COUNT] = {
-		{'w', "480", "4000", "800", "width in pixels", OPT_INDEX_WIDTH},
-		{'h', "360", "2000", "600", "height in pixels", OPT_INDEX_HEIGHT},
-		{'i', "  1", "1000", "100", "number of iterations", OPT_INDEX_ITER},
-		{'c', "  1", "5   ", "  2", "color palette", OPT_INDEX_COLOR},
+		{WIDTH_CHAR, WIDTH_MIN, WIDTH_MAX, WIDTH_DEFAULT, WIDTH_DESCR},
+		{HEIGHT_CHAR, HEIGHT_MIN, HEIGHT_MAX, HEIGHT_DEFAULT, HEIGHT_DESCR},
+		{ITER_CHAR, 1, ITER_MAX, ITER_DEFAULT, ITER_DESCR},
+		{COLOR_CHAR, 1, COLOR_MAX, COLOR_DEFAULT, COLOR_DESCR},
 	};
 
 	return (&(info[index]));
