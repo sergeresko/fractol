@@ -124,18 +124,18 @@ static void		initialize_windows(t_prog *program, char **av)
 
 static void		initialize_local_options(t_prog *program)
 {
-	int			opt_index;
 	int			window_index;
-	t_win		*window;
+	int			*local_options;
+	int			opt_index;
 
-	opt_index = OPT_COUNT;
-	while (opt_index--)
+	window_index = program->window_count;
+	while (window_index--)
 	{
-		window_index = program->window_count;
-		while (window_index--)
+		local_options = program->windows[window_index].options;
+		opt_index = OPT_COUNT;
+		while (opt_index--)
 		{
-			window = &(program->windows[window_index]);
-			window->options[opt_index] = 0;
+			local_options[opt_index] = 0;
 		}
 	}
 }
@@ -147,20 +147,21 @@ static void		initialize_local_options(t_prog *program)
 
 static void		finalize_local_options(t_prog *program)
 {
-	int			opt_index;
 	int			window_index;
-	t_win		*window;
+	int			*local_options;
+	int			opt_index;
+	int *const	global_options = program->options;
 
-	opt_index = OPT_COUNT;
-	while (opt_index--)
+	window_index = program->window_count;
+	while (window_index--)
 	{
-		window_index = program->window_count;
-		while (window_index--)
+		local_options = program->windows[window_index].options;
+		opt_index = OPT_COUNT;
+		while (opt_index--)
 		{
-			window = &(program->windows[window_index]);
-			if (window->options[opt_index] == 0)
+			if (local_options[opt_index] == 0)
 			{
-				window->options[opt_index] = program->options[opt_index];
+				local_options[opt_index] = global_options[opt_index];
 			}
 		}
 	}
