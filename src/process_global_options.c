@@ -12,18 +12,20 @@
 
 #include "fractol.h"
 
-static void		initialize_global_options(t_everything *everything)
+// might take `program->options`
+static void		initialize_global_options(t_prog *program)
 {
 	int			opt_index;
 
 	opt_index = OPT_COUNT;
 	while (opt_index--)
 	{
-		everything->options[opt_index] = 0;
+		program->options[opt_index] = 0;
 	}
 }
 
-static void		finalize_global_options(t_everything *everything)
+// might take `program->options`
+static void		finalize_global_options(t_prog *program)
 {
 	int			opt_index;
 	t_opt const	*opt;
@@ -31,20 +33,20 @@ static void		finalize_global_options(t_everything *everything)
 	opt_index = OPT_COUNT;
 	while (opt_index--)
 	{
-		if (everything->options[opt_index] == 0)
+		if (program->options[opt_index] == 0)
 		{
 			opt = opt_info(opt_index);
-			everything->options[opt_index] = opt->default_value;
+			program->options[opt_index] = opt->default_value;
 		}
 	}
 }
 
-char			**process_global_options(t_everything *everything, char **av)
+char			**process_global_options(t_prog *program, char **av)
 {
 	char const	*arg;
 	int			opt_index;
 
-	initialize_global_options(everything);
+	initialize_global_options(program);
 	while ((arg = *(++av)) && arg[0] == OPT_CHAR_GLOBAL)
 	{
 		if (!(arg[1]) || arg[2]
@@ -52,8 +54,8 @@ char			**process_global_options(t_everything *everything, char **av)
 		{
 			error3("invalid global option \"", arg, "\"");
 		}
-		set_option(everything->options, OPT_CHAR_GLOBAL, opt_index, *(++av));
+		set_option(program->options, OPT_CHAR_GLOBAL, opt_index, *(++av));
 	}
-	finalize_global_options(everything);
+	finalize_global_options(program);
 	return (--av);
 }

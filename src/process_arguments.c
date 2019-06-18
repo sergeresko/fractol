@@ -54,7 +54,7 @@ int			get_type_index_by_title(char const *title)
 ////////////////////////////////
 
 
-void		parse_components(t_window *window, char **components)
+void		parse_components(t_win *window, char **components)
 {
 	int const	type_index = get_type_index_by_title(*components);
 	char		*component;
@@ -75,7 +75,7 @@ void		parse_components(t_window *window, char **components)
 	}
 }
 
-void			parse_argument(t_window *window, char const *arg)
+void			parse_argument(t_win *window, char const *arg)
 {
 	char		**components;
 
@@ -96,7 +96,7 @@ void			parse_argument(t_window *window, char const *arg)
 ////////////////////////////////
 
 
-static void		initialize_windows(t_everything *everything, char **av)
+static void		initialize_windows(t_prog *program, char **av)
 {
 	int			count;
 
@@ -109,32 +109,32 @@ static void		initialize_windows(t_everything *everything, char **av)
 	{
 		error1("no titles");
 	}
-	everything->windows = malloc(count * sizeof(t_window));
-	if (!(everything->windows))
+	program->windows = malloc(count * sizeof(t_win));
+	if (!(program->windows))
 	{
 		error1("malloc failed");		//
 	}
-	everything->window_count = count;
-	everything->active_window_count = count;
+	program->window_count = count;
+	program->active_window_count = count;
 }
 
 /*
 **	set each local option of every window to zero
 */
 
-static void		initialize_local_options(t_everything *everything)
+static void		initialize_local_options(t_prog *program)
 {
 	int			opt_index;
 	int			window_index;
-	t_window	*window;
+	t_win		*window;
 
 	opt_index = OPT_COUNT;
 	while (opt_index--)
 	{
-		window_index = everything->window_count;
+		window_index = program->window_count;
 		while (window_index--)
 		{
-			window = &(everything->windows[window_index]);
+			window = &(program->windows[window_index]);
 			window->options[opt_index] = 0;
 		}
 	}
@@ -145,40 +145,40 @@ static void		initialize_local_options(t_everything *everything)
 **	set it to the value of the respective global option
 */
 
-static void		finalize_local_options(t_everything *everything)
+static void		finalize_local_options(t_prog *program)
 {
 	int			opt_index;
 	int			window_index;
-	t_window	*window;
+	t_win		*window;
 
 	opt_index = OPT_COUNT;
 	while (opt_index--)
 	{
-		window_index = everything->window_count;
+		window_index = program->window_count;
 		while (window_index--)
 		{
-			window = &(everything->windows[window_index]);
+			window = &(program->windows[window_index]);
 			if (window->options[opt_index] == 0)
 			{
-				window->options[opt_index] = everything->options[opt_index];
+				window->options[opt_index] = program->options[opt_index];
 			}
 		}
 	}
 }
 
-void			process_arguments(t_everything *everything, char **av)
+void			process_arguments(t_prog *program, char **av)
 {
 	char const	*arg;
 	int			window_index;
-	t_window	*window;
+	t_win		*window;
 
-	initialize_windows(everything, av);
-	initialize_local_options(everything);
+	initialize_windows(program, av);
+	initialize_local_options(program);
 	window_index = 0;
 	while ((arg = *(++av)))
 	{
-		window = &(everything->windows[window_index++]);
+		window = &(program->windows[window_index++]);
 		parse_argument(window, arg);
 	}
-	finalize_local_options(everything);
+	finalize_local_options(program);
 }

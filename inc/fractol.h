@@ -40,8 +40,8 @@
 
 typedef struct s_opt		t_opt;
 typedef struct s_type		t_type;
-typedef struct s_window		t_window;
-typedef struct s_everything	t_everything;
+typedef struct s_win		t_win;
+typedef struct s_prog		t_prog;
 
 # define OPT_INDEX_WIDTH	0
 # define OPT_INDEX_HEIGHT	1
@@ -65,8 +65,8 @@ int				get_opt_index_by_character(char c);
 //											t_opt const *opt, char const *arg);
 void			set_option(int *options, char opt_prefix,
 											int opt_index, char const *arg);
-char			**process_global_options(t_everything *everything, char **av);
-void			process_arguments(t_everything *everything, char **av);
+char			**process_global_options(t_prog *program, char **av);
+void			process_arguments(t_prog *program, char **av);
 
 # define OPT_CHAR_GLOBAL	'-'
 # define OPT_CHAR_LOCAL		'.'
@@ -81,9 +81,9 @@ struct			s_type			// t_type_info
 	// ...
 };
 
-struct			s_window
+struct			s_win
 {
-	t_everything	*everything;	// back-reference
+	t_prog	*program;	// back-reference
 	//
 	int		options[OPT_COUNT];		// local options
 	//
@@ -95,13 +95,13 @@ struct			s_window
 	// ...
 };
 
-struct			s_everything
+struct			s_prog
 {
 	int			options[OPT_COUNT];	// global options
 	//
 	void		*mlx_ptr;
 	//
-	t_window	*windows;
+	t_win		*windows;
 	int			window_count;
 	int			active_window_count;
 };
