@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 20:21:57 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/19 12:44:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ char			**process_global_options(t_prog *program, char **av);
 void			parse_argument(t_win *window, char const *arg);
 void			process_arguments(t_prog *program, char **av);
 
-# define OPT_CHAR_GLOBAL	'-'
-# define OPT_CHAR_LOCAL		'.'
+# define OPT_PREFIX_GLOBAL	'-'
+# define OPT_PREFIX_LOCAL	'.'
 
 //
 

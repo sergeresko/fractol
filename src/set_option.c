@@ -6,20 +6,20 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 19:42:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/19 12:44:13 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 // TODO: maybe use `t_opt const *opt` and `opt->character`
-static void		error_opt(char const *message, char opt_prefix, char opt_character)
+static void		error_opt(char const *message, char opt_prefix, char opt_char)
 {
 	ft_putstr_fd(ERROR_START, STDERR_FILENO);
 	ft_putstr_fd(message, STDERR_FILENO);
 	ft_putstr_fd(" \"", STDERR_FILENO);
 	ft_putchar_fd(opt_prefix, STDERR_FILENO);
-	ft_putchar_fd(opt_character, STDERR_FILENO);
+	ft_putchar_fd(opt_char, STDERR_FILENO);
 	ft_putstr_fd("\"" ERROR_END, STDERR_FILENO);
 	die();
 }

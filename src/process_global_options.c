@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:09:33 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 19:38:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/19 12:45:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char			**process_global_options(t_prog *program, char **av)
 	int			opt_index;
 
 	initialize_global_options(program);
-	while ((arg = *(++av)) && arg[0] == OPT_CHAR_GLOBAL)
+	while ((arg = *(++av)) && arg[0] == OPT_PREFIX_GLOBAL)
 	{
 		opt_index = OPT_COUNT;
 		while (opt_index-- && opt_info(opt_index)->character != arg[1])
@@ -56,7 +56,7 @@ char			**process_global_options(t_prog *program, char **av)
 		{
 			error3("invalid global option \"", arg, "\"");
 		}
-		set_option(program->options, OPT_CHAR_GLOBAL, opt_index, *(++av));
+		set_option(program->options, OPT_PREFIX_GLOBAL, opt_index, *(++av));
 	}
 	finalize_global_options(program);
 	return (--av);

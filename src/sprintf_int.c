@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprintf_int.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/19 12:39:50 by syeresko          #+#    #+#             */
+/*   Updated: 2019/06/19 12:41:04 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 **	IMPLEMENTATION NOTES:
 **
 **	The following functions have undefined behavior if `value` is not positive.
 **
-**	If `value` does not fit into the given width, the last digits are printed.
+**	If `value` does not fit into the given width, only least significat digits
+**	are printed.
 */
 
 static int		count_digits(int value)

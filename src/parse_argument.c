@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 17:50:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/19 12:49:30 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void		parse_components(t_win *window, char **components)
 		{
 			error3("invalid local option \".", component, "\"");
 		}
-		set_option(window->options, OPT_CHAR_LOCAL, opt_index, component + 1);
+		set_option(window->options, OPT_PREFIX_LOCAL, opt_index, component + 1);
 	}
 }
 
@@ -98,11 +98,11 @@ void			parse_argument(t_win *window, char const *arg)
 {
 	char		**components;
 
-	if (!(arg[0]) || arg[0] == OPT_CHAR_LOCAL)
+	if (!(arg[0]) || arg[0] == OPT_PREFIX_LOCAL)
 	{
 		error3("empty title in argument \"", arg, "\"");
 	}
-	components = ft_strsplit(arg, OPT_CHAR_LOCAL);
+	components = ft_strsplit(arg, OPT_PREFIX_LOCAL);
 	if (!components)
 	{
 		error1("ft_strsplit failed");	// when can this happen ?

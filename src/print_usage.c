@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 19:45:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/19 12:50:06 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void		print_usage_options(void)
 	ft_putstr_fd("    global    local      range      default", STDERR_FILENO);
 	ft_putstr_fd("      description\n\n", STDERR_FILENO);
 	ft_strcpy(str, "    ## <N>    ##<N>    ###...####     ###     ");
-	str[4] = OPT_CHAR_GLOBAL;
-	str[14] = OPT_CHAR_LOCAL;
+	str[4] = OPT_PREFIX_GLOBAL;
+	str[14] = OPT_PREFIX_LOCAL;
 	opt_index = 0;
 	while (opt_index < OPT_COUNT)
 	{
