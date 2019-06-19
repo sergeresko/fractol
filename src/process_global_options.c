@@ -49,8 +49,10 @@ char			**process_global_options(t_prog *program, char **av)
 	initialize_global_options(program);
 	while ((arg = *(++av)) && arg[0] == OPT_CHAR_GLOBAL)
 	{
-		if (!(arg[1]) || arg[2]
-				|| (opt_index = get_opt_index_by_character(arg[1])) < 0)
+		opt_index = OPT_COUNT;
+		while (opt_index-- && opt_info(opt_index)->character != arg[1])
+			;
+		if (opt_index < 0 || arg[2])
 		{
 			error3("invalid global option \"", arg, "\"");
 		}

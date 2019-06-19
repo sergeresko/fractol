@@ -59,13 +59,14 @@ struct			s_opt			// t_opt_info
 };
 
 t_opt const		*opt_info(int index);
+t_type const	*type_info(int index);
 
-int				get_opt_index_by_character(char c);
 //void			set_global_option(t_everything *everything,
 //											t_opt const *opt, char const *arg);
 void			set_option(int *options, char opt_prefix,
 											int opt_index, char const *arg);
 char			**process_global_options(t_prog *program, char **av);
+void			parse_argument(t_win *window, char const *arg);
 void			process_arguments(t_prog *program, char **av);
 
 # define OPT_CHAR_GLOBAL	'-'
@@ -105,9 +106,6 @@ struct			s_prog
 	int			window_count;
 	int			active_window_count;
 };
-
-int				is_subseq(char const *full, char const *sub);
-int				atoi_positive(char const *str);
 
 # define ERROR_START	"error: "
 # define ERROR_END		"\n"

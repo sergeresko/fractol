@@ -24,6 +24,31 @@ static void		error_opt(char const *message, char opt_prefix, char opt_character)
 	die();
 }
 
+/*
+**	if the string represents a positive number in the range of `int`,
+**	return this number; otherwise return zero
+*/
+
+static int		atoi_positive(char const *str)
+{
+	int			value;
+	char		c;
+
+	value = 0;
+	while ((c = *(str++)))
+	{
+		if (c < '0' || c > '9' || (value = value * 10 + (int)(c - '0')) < 0)
+		{
+			return (0);
+		}
+	}
+	return (value);
+}
+
+/*
+**	TODO: describe
+*/
+
 void			set_option(int *options, char opt_prefix,
 											int opt_index, char const *arg)
 {

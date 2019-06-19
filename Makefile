@@ -26,13 +26,11 @@ INC			=	$(addprefix inc/,					\
 
 SRC			=	$(addprefix src/,					\
 					get.c							\
-					opt.c							\
 					process_global_options.c		\
 					process_arguments.c				\
-					is_subseq.c						\
-					atoi_positive.c					\
-					get_opt_by_character.c			\
+					parse_argument.c				\
 					set_option.c					\
+					opt.c							\
 					error.c							\
 					sprintf_int.c					\
 					print_usage.c					\
