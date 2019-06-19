@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/17 19:58:23 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/19 12:29:17 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC			=	$(addprefix src/,					\
 					process_arguments.c				\
 					parse_argument.c				\
 					set_option.c					\
-					opt.c							\
+					info.c							\
 					error.c							\
 					sprintf_int.c					\
 					print_usage.c					\
