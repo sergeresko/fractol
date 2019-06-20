@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/19 12:29:17 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/20 17:20:33 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INC			=	$(addprefix inc/,					\
 # --------- Source files ------------------------------------------------------
 
 SRC			=	$(addprefix src/,					\
-					get.c							\
+					main.c							\
 					process_global_options.c		\
 					process_arguments.c				\
 					parse_argument.c				\
@@ -34,6 +34,7 @@ SRC			=	$(addprefix src/,					\
 					error.c							\
 					sprintf_int.c					\
 					print_usage.c					\
+					mlx.c							\
 				)
 
 # --------- Object files ------------------------------------------------------
@@ -59,10 +60,15 @@ re: fclean all
 
 # --------- Linking -----------------------------------------------------------
 
+# TODO:
+FRAMEWORKS	=	-framework OpenGL -framework AppKit
+LIBRARIES	+=	-lmlx
+LIBRARIES	+=	libft/libft.a
+
 $(NAME): $(LIBFT) $(OBJ)
 	@ mkdir -p obj/
 	@ printf "%-60s\n" "Linking $@"
-	@ $(CC) $(OBJ) $(LIBFT) -o $@
+	@ $(CC) $(OBJ) $(FRAMEWORKS) $(LIBRARIES) -o $@
 	@ echo "Done"
 
 $(LIBFT):
@@ -76,8 +82,3 @@ obj/%.o: src/%.c $(INC) libft/libft.h
 	@ mkdir -p $(dir $@)
 	@ printf "%-60s\r" "Compiling $<"
 	@ $(CC) $(CFLAGS) -c $< -Iinc/ -Ilibft/ -o $@
-
-# TODO:
-#FRAMEWORKS	=	-framework OpenGL -framework AppKit
-#LIBRARIES	+=	-lmlx
-LIBRARIES	+=	libft/libft.a

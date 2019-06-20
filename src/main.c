@@ -1,84 +1,72 @@
-#include <stdio.h>		// TODO: remove
-#include <string.h>		// TODO: remove
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/20 17:20:15 by syeresko          #+#    #+#             */
+/*   Updated: 2019/06/20 17:20:19 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
-#include <mlx.h>		// or do I have to use quotes?
+#include <mlx.h>
+#include "fractol.h"
 
-# define KEY_EQUALS			24
-# define KEY_MINUS			27
-# define KEY_ARROW_LEFT		123
-# define KEY_ARROW_RIGHT	124
-# define KEY_ARROW_DOWN		125
-# define KEY_ARROW_UP		126
-# define KEY_ESCAPE			53
 
-typedef struct	s_fractol
+////////////////////////////////
+
+
+/*
+void	get_args(t_everything *everything, char **av)
 {
-	//
-	int		cols;
-	int		rows;
-	//
-	double	a_x;
-	double	a_y;
-	double	z;		// zoom
-	// MLX:
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*addr;		// image data address
-}				t_fractol;
-
-void	init_general(t_fractol *fr)
-{
-	fr->cols = 1024;	// for example
-	fr->rows = 512;		// for example
+	av = process_global_options(everything, av);
+//	get_args_fractals(everything, av);
 }
+*/
 
-void	init_mlx(t_fractol *fr)
+#define TEST_FORMAT		"%-20s %4d x %-4d %4d %d\n"
+
+void	_test(t_prog const *program)
 {
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-
-	fr->mlx_ptr = mlx_init();
-	fr->win_ptr = mlx_new_window(fr->mlx_ptr, fr->cols, fr->rows, "fract'ol");
-	// TODO: window name
-	fr->img_ptr = mlx_new_image(fr->mlx_ptr, fr->cols, fr->rows);
-	fr->addr = mlx_get_data_addr(fr->img_ptr,
-			&bits_per_pixel, &size_line, &endian);
-}
-
-void	error_and_exit(char const *message)
-{
-	fprintf(stderr, "%s\n", message);	// TODO: use `ft_putstr_fd`
-	exit(EXIT_FAILURE);
-}
-
-void	get_options(t_fractol *fr, int argc, char **argv)
-{
-	(void)fr;	// TODO:
-	if (argc < 2 || argc > 3)
+	ft_printf(TEST_FORMAT,
+			"(global settings)",
+			program->options[OPT_INDEX_WIDTH],
+			program->options[OPT_INDEX_HEIGHT],
+			program->options[OPT_INDEX_ITER],
+			program->options[OPT_INDEX_COLOR]);
+	for (int index = 0; index < program->window_count; ++index)
 	{
-		error_and_exit("usage ...");	// TODO:
-	}
-	if (strcmp(argv[1], "mandelbrot") == 0)		// TODO: use `ft_strequ`
-	{
-		// TODO: ...
-	}
-	else
-	{
-		error_and_exit("usage ...");	// TODO:
+		t_win	*window = &(program->windows[index]);
+		ft_printf(TEST_FORMAT,
+				window->type->title,
+				window->options[OPT_INDEX_WIDTH],
+				window->options[OPT_INDEX_HEIGHT],
+				window->options[OPT_INDEX_ITER],
+				window->options[OPT_INDEX_COLOR]);
 	}
 }
 
-int		main(int argc, char **argv)
+int		main(int ac, char **av)
 {
-	t_fractol	fr;
+	t_prog		program;
 
-	get_options(&fr, argc, argv);
-	init_general(&fr);
-	init_mlx(&fr);
+	if (ac < 2)
+	{
+		print_usage();
+		return (EXIT_FAILURE);
+	}
+	av = process_global_options(&program, av);
+	process_arguments(&program, av);
+	
+	start_mlx(&program);
 
+	_test(&program);
+
+	mlx_loop(program.mlx_ptr);
+	// TODO:
 	system("leaks -q fractol >&2");
+	
 	return (EXIT_SUCCESS);
 }

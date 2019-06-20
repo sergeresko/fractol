@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:44:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:02:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,15 @@ struct			s_win
 	//
 	t_type const	*type;
 	//
+	int		is_alive;
+	//
+	int		width;
+	int		height;
+	int		iteration_count;
+	int		color;
+	int		*palette;
+	int		show_help;
+	//
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_data;
@@ -104,7 +113,9 @@ struct			s_prog
 	//
 	t_win		*windows;
 	int			window_count;
-	int			active_window_count;
+	int			active_window_count;	// needed?
+	//
+	int			global_mode;
 };
 
 # define ERROR_START	"error: "
@@ -117,5 +128,7 @@ void			error3(char const *s1, char const *s2, char const *s3);
 void			sprintf_int_left(int value, char *field, int width);
 void			sprintf_int_right(int value, char *field, int width);
 void			print_usage(void);
+
+void			start_mlx(t_prog *program);
 
 #endif
