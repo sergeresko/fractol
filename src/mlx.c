@@ -32,24 +32,22 @@
 
 int		win_close(void *parameters)
 {
-	t_win			*window = parameters;
+	t_win *const	window = parameters;
 	t_prog *const	program = window->program;
 	int				window_index;
 
-	if (program->global_mode)
+	if (!(program->global_mode))
 	{
-		system("leaks -q fractol >&2");		/////////////////////////
-		exit(EXIT_SUCCESS);
-	}
-	window->is_alive = 0;
-//	mlx_destroy_image(window->program->mlx_ptr, window->img_ptr);
-	mlx_destroy_window(window->program->mlx_ptr, window->win_ptr);
-	window_index = program->window_count;
-	while (window_index--)
-	{
-		if (program->windows[window_index].is_alive)
+		window->is_alive = 0;
+		mlx_destroy_image(window->program->mlx_ptr, window->img_ptr);
+		mlx_destroy_window(window->program->mlx_ptr, window->win_ptr);
+		window_index = program->window_count;
+		while (window_index--)
 		{
-			return (0);
+			if (program->windows[window_index].is_alive)
+			{
+				return (0);
+			}
 		}
 	}
 	system("leaks -q fractol >&2");		/////////////////////////
@@ -124,24 +122,32 @@ int		key_release(int keycode, void *parameters)
 
 #define MULTIPLICATION_SIGN	"\xd7"
 
-static char		*make_window_title(t_win const *window)
+static char		*make_window_title(int id, t_win const *window)
 {
-	char *const	width = ft_itoa(window->width);
-	char *const	height = ft_itoa(window->height);
+	char *const	id_str = ft_itoa(id);
+	char *const	width_str = ft_itoa(window->width);
+	char *const	height_str = ft_itoa(window->height);
 	char		*tmp[2];
 
-	tmp[0] = ft_strjoin(window->type->title, " (");
-	tmp[1] = ft_strjoin(tmp[0], width);
+	tmp[0] = ft_strjoin("[", id_str);
+	tmp[1] = ft_strjoin(tmp[0], "] ");
 	free(tmp[0]);
-	tmp[0] = ft_strjoin(tmp[1], MULTIPLICATION_SIGN);
+	tmp[0] = ft_strjoin(tmp[1], window->type->title);
 	free(tmp[1]);
-	tmp[1] = ft_strjoin(tmp[0], height);
+	tmp[1] = ft_strjoin(tmp[0], " (");
 	free(tmp[0]);
-	tmp[0] = ft_strjoin(tmp[1], ")");
+	tmp[0] = ft_strjoin(tmp[1], width_str);
 	free(tmp[1]);
-	free(width);
-	free(height);
-	return (tmp[0]);
+	tmp[1] = ft_strjoin(tmp[0], MULTIPLICATION_SIGN);
+	free(tmp[0]);
+	tmp[0] = ft_strjoin(tmp[1], height_str);
+	free(tmp[1]);
+	tmp[1] = ft_strjoin(tmp[0], ")");
+	free(tmp[0]);
+	free(id_str);
+	free(width_str);
+	free(height_str);
+	return (tmp[1]);
 }
 
 void			start_mlx(t_prog *program)
@@ -155,10 +161,10 @@ void			start_mlx(t_prog *program)
 	// < TODO: should do this elsewhere
 	program->global_mode = 0;
 	// >
-	window_index = 0;
-	while (window_index < program->window_count)
+	window_index = program->window_count;
+	while (window_index--)
 	{
-		window = &(program->windows[window_index++]);
+		window = &(program->windows[window_index]);
 		// < TODO: should do this elsewhere
 		window->program = program;
 		window->is_alive = 1;
@@ -168,7 +174,7 @@ void			start_mlx(t_prog *program)
 		window->iteration_count = window->options[OPT_INDEX_ITER];
 		window->color = window->options[OPT_INDEX_COLOR];
 		// >
-		window_title = make_window_title(window);
+		window_title = make_window_title(window_index + 1, window);
 		window->win_ptr = mlx_new_window(program->mlx_ptr,
 				window->width, window->height, window_title);
 		free(window_title);
