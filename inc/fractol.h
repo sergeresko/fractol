@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/20 16:02:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:44:20 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ struct			s_prog
 	int			active_window_count;	// needed?
 	//
 	int			global_mode;
+	int			drag_mode;
 };
 
 # define ERROR_START	"error: "

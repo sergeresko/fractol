@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/20 17:20:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:47:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int		main(int ac, char **av)
 	_test(&program);
 
 	mlx_loop(program.mlx_ptr);
-	// TODO:
-	system("leaks -q fractol >&2");
 	
 	return (EXIT_SUCCESS);
 }

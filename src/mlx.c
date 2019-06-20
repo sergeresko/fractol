@@ -160,6 +160,7 @@ void			start_mlx(t_prog *program)
 	program->mlx_ptr = mlx_init();
 	// < TODO: should do this elsewhere
 	program->global_mode = 0;
+	program->drag_mode = 0;
 	// >
 	window_index = program->window_count;
 	while (window_index--)
