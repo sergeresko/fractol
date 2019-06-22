@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:28:58 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 16:06:22 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_opt const		*opt_info(int index)
 t_type const	*type_info(int index)
 {
 	static t_type const		info[TYPE_COUNT] = {
-		{"Julia set"},
-		{"Mandelbrot set"},
+		{"Julia set", "julia_set"},
+		{"Mandelbrot set", "mandelbrot_set"},
 	};
 
 	return (&(info[index]));

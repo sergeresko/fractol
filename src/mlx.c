@@ -125,8 +125,8 @@ int		key_release(int keycode, void *parameters)
 static char		*make_window_title(int id, t_win const *window)
 {
 	char *const	id_str = ft_itoa(id);
-	char *const	width_str = ft_itoa(window->width);
-	char *const	height_str = ft_itoa(window->height);
+	char *const	width_str = ft_itoa(window->param.width);
+	char *const	height_str = ft_itoa(window->param.height);
 	char		*tmp[2];
 
 	tmp[0] = ft_strjoin("[", id_str);
@@ -167,20 +167,19 @@ void			start_mlx(t_prog *program)
 	{
 		window = &(program->windows[window_index]);
 		// < TODO: should do this elsewhere
-		window->program = program;
 		window->is_alive = 1;
 		window->show_help = 0;
-		window->width = window->options[OPT_INDEX_WIDTH];
-		window->height = window->options[OPT_INDEX_HEIGHT];
-		window->iteration_count = window->options[OPT_INDEX_ITER];
-		window->color = window->options[OPT_INDEX_COLOR];
+//		window->param.width = window->options[OPT_INDEX_WIDTH];
+//		window->param.height = window->options[OPT_INDEX_HEIGHT];
+//		window->param.iteration_max = window->options[OPT_INDEX_ITER];
+//		window->color = window->options[OPT_INDEX_COLOR];
 		// >
 		window_title = make_window_title(window_index + 1, window);
 		window->win_ptr = mlx_new_window(program->mlx_ptr,
-				window->width, window->height, window_title);
+				window->param.width, window->param.height, window_title);
 		free(window_title);
 		window->img_ptr = mlx_new_image(program->mlx_ptr,
-				window->width, window->height);
+				window->param.width, window->param.height);
 		window->img_data = mlx_get_data_addr(window->img_ptr, &tmp, &tmp, &tmp);
 		// write to window->img_data ...
 		mlx_hook(window->win_ptr, 2, 0, &key_press, window);

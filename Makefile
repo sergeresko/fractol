@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/20 17:20:33 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/22 20:14:32 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,9 @@ SRC			=	$(addprefix src/,					\
 					sprintf_int.c					\
 					print_usage.c					\
 					mlx.c							\
+					start_opencl.c					\
+					init_parameters.c				\
+					redraw_all.c					\
 				)
 
 # --------- Object files ------------------------------------------------------
@@ -61,7 +64,8 @@ re: fclean all
 # --------- Linking -----------------------------------------------------------
 
 # TODO:
-FRAMEWORKS	=	-framework OpenGL -framework AppKit
+FRAMEWORKS	+=	-framework OpenCL
+FRAMEWORKS	+=	-framework OpenGL -framework AppKit
 LIBRARIES	+=	-lmlx
 LIBRARIES	+=	libft/libft.a
 

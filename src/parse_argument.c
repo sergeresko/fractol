@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:49:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 19:32:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void		parse_components(t_win *window, char **components)
 	{
 		error3("\"", *components, "\" is not a valid title");
 	}
-	window->type = type_info(type_index);
+	window->type = type_info(type_index);	// `window->type` initialization
 	while ((component = *(++components)))
 	{
 		opt_index = OPT_COUNT;

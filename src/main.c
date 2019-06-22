@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/20 19:47:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 20:03:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ int		main(int ac, char **av)
 	}
 	av = process_global_options(&program, av);
 	process_arguments(&program, av);
+	init_parameters(&program);
 	
+	start_opencl(&program);
 	start_mlx(&program);
+
+	redraw_all(&program);
 
 	_test(&program);
 

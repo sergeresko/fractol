@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/20 19:44:20 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 20:14:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+
+# include <mlx.h>
+
+# ifdef __APPLE__
+#  include <OpenCL/opencl.h>
+# else
+#  include <CL/cl.h>
+# endif
 
 # include <unistd.h>
 # include "libft.h"
@@ -42,6 +50,7 @@ typedef struct s_opt		t_opt;
 typedef struct s_type		t_type;
 typedef struct s_win		t_win;
 typedef struct s_prog		t_prog;
+typedef struct s_param		t_param;
 
 # define OPT_INDEX_WIDTH	0
 # define OPT_INDEX_HEIGHT	1
@@ -79,44 +88,65 @@ void			process_arguments(t_prog *program, char **av);
 struct			s_type			// t_type_info
 {
 	char const	*title;
+	char const	*cl_kernel_name;
 	// ...
+};
+
+struct			s_param
+{
+	double		zoom;
+	double		origin_re;
+	double		origin_im;
+	double		julia_re0;
+	double		julia_im0;
+	int			width;
+	int			height;
+	int			iteration_max;
 };
 
 struct			s_win
 {
-	t_prog	*program;	// back-reference
+	t_prog			*program;	// back-reference
 	//
-	int		options[OPT_COUNT];		// local options
+	int				options[OPT_COUNT];		// local options
 	//
 	t_type const	*type;
 	//
-	int		is_alive;
+//	int		width;
+//	int		height;
+//	int		iteration_count;
+	int			color;
+	int			palette[ITER_MAX];
+	int			show_help;
 	//
-	int		width;
-	int		height;
-	int		iteration_count;
-	int		color;
-	int		*palette;
-	int		show_help;
-	//
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*img_data;
-	// ...
+	t_param		param;
+	// OpenCL:
+	size_t		cl_global_size;
+	cl_mem		cl_img;
+	cl_mem		cl_palette;
+	cl_mem		cl_param;
+	cl_kernel	cl_kernel;
+	// MiniLibX:
+	void		*win_ptr;
+	void		*img_ptr;
+	void		*img_data;
+	int			is_alive;
 };
 
 struct			s_prog
 {
-	int			options[OPT_COUNT];	// global options
-	//
-	void		*mlx_ptr;
-	//
-	t_win		*windows;
-	int			window_count;
-	int			active_window_count;	// needed?
-	//
-	int			global_mode;
-	int			drag_mode;
+	int					options[OPT_COUNT];		// global options
+	t_win				*windows;
+	int					window_count;
+//	int					active_window_count;	// needed?
+	// OpenCL:
+	cl_context			cl_context;
+	cl_command_queue	cl_commands;
+	cl_program			cl_program;
+	// MiniLibX:
+	void				*mlx_ptr;
+	int					global_mode;
+	int					drag_mode;
 };
 
 # define ERROR_START	"error: "
@@ -130,6 +160,11 @@ void			sprintf_int_left(int value, char *field, int width);
 void			sprintf_int_right(int value, char *field, int width);
 void			print_usage(void);
 
+void			init_parameters(t_prog *program);
+
 void			start_mlx(t_prog *program);
+void			start_opencl(t_prog *program);
+
+void			redraw_all(t_prog *program);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_arguments.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 19:53:36 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 19:33:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		initialize_windows(t_prog *program, char **av)
 		error1("malloc failed");		//
 	}
 	program->window_count = count;
-	program->active_window_count = count;
+//	program->active_window_count = count;
 }
 
 /*
@@ -46,17 +46,17 @@ static void		initialize_windows(t_prog *program, char **av)
 static void		initialize_local_options(t_prog *program)
 {
 	int			window_index;
-	int			*local_options;
+	t_win		*window;
 	int			opt_index;
 
 	window_index = program->window_count;
 	while (window_index--)
 	{
-		local_options = program->windows[window_index].options;
+		window = &(program->windows[window_index]);
 		opt_index = OPT_COUNT;
 		while (opt_index--)
 		{
-			local_options[opt_index] = 0;
+			window->options[opt_index] = 0;
 		}
 	}
 }
@@ -68,21 +68,22 @@ static void		initialize_local_options(t_prog *program)
 
 static void		finalize_local_options(t_prog *program)
 {
-	int			window_index;
-	int			*local_options;
-	int			opt_index;
 	int *const	global_options = program->options;
+	int			window_index;
+	t_win		*window;
+	int			opt_index;
 
 	window_index = program->window_count;
 	while (window_index--)
 	{
-		local_options = program->windows[window_index].options;
+		window = &(program->windows[window_index]);
+		window->program = program;		// `window->program` initialization
 		opt_index = OPT_COUNT;
 		while (opt_index--)
 		{
-			if (local_options[opt_index] == 0)
+			if (window->options[opt_index] == 0)
 			{
-				local_options[opt_index] = global_options[opt_index];
+				window->options[opt_index] = global_options[opt_index];
 			}
 		}
 	}
