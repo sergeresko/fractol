@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/22 20:14:09 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/22 20:42:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,30 +112,27 @@ struct			s_win
 	//
 	t_type const	*type;
 	//
-//	int		width;
-//	int		height;
-//	int		iteration_count;
-	int			color;
-	int			palette[ITER_MAX];
-	int			show_help;
-	//
-	t_param		param;
+	int				color;
+	int				palette[ITER_MAX];
+	t_param			param;
 	// OpenCL:
-	size_t		cl_global_size;
-	cl_mem		cl_img;
-	cl_mem		cl_palette;
-	cl_mem		cl_param;
-	cl_kernel	cl_kernel;
+	size_t			cl_global_size;		// .param.width * .param.height
+	cl_mem			cl_img;				// CL buffers for:	.img_data
+	cl_mem			cl_palette;			//					.palette
+	cl_mem			cl_param;			//					.param
+	cl_kernel		cl_kernel;
 	// MiniLibX:
-	void		*win_ptr;
-	void		*img_ptr;
-	void		*img_data;
-	int			is_alive;
+	void			*win_ptr;
+	void			*img_ptr;
+	void			*img_data;
+	//
+	int				is_alive;
+	int				show_help;
 };
 
 struct			s_prog
 {
-	int					options[OPT_COUNT];		// global options
+	int					options[OPT_COUNT];		// global options, TODO: remove
 	t_win				*windows;
 	int					window_count;
 //	int					active_window_count;	// needed?
