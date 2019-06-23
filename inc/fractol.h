@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/23 15:36:21 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 19:26:44 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,11 @@ struct			s_win
 	//
 	int				is_alive;
 	int				is_menu_shown;
+	//
+	int				drag_x;
+	int				drag_y;
+	double			drag_re;
+	double			drag_im;
 };
 
 struct			s_prog
