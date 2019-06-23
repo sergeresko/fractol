@@ -277,8 +277,6 @@ void			start_mlx(t_prog *program)
 		mlx_hook(window->win_ptr, 4, 0, &mouse_press, window);
 		mlx_hook(window->win_ptr, 5, 0, &mouse_release, window);
 		mlx_hook(window->win_ptr, 6, 0, &mouse_move, window);
-		// ...
 		mlx_hook(window->win_ptr, 17, 0, &win_close, window);
 	}
-	mlx_do_sync(program->mlx_ptr);
 }
