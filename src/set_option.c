@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:44:13 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:37:29 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 // TODO: maybe use `t_opt const *opt` and `opt->character`
 static void		error_opt(char const *message, char opt_prefix, char opt_char)
 {
-	ft_putstr_fd(ERROR_START, STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putstr_fd(" \"", STDERR_FILENO);
-	ft_putchar_fd(opt_prefix, STDERR_FILENO);
-	ft_putchar_fd(opt_char, STDERR_FILENO);
-	ft_putstr_fd("\"" ERROR_END, STDERR_FILENO);
-	die();
+	char		str[5];
+
+	ft_strcpy(str, "\"##\"");
+	str[1] = opt_prefix;
+	str[2] = opt_char;
+	error3(message, " ", str);
 }
 
 /*

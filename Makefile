@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/22 20:14:32 by syeresko         ###   ########.fr        #
+#    Updated: 2019/06/23 15:27:21 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ SRC			=	$(addprefix src/,					\
 					print_usage.c					\
 					mlx.c							\
 					start_opencl.c					\
-					init_parameters.c				\
-					redraw_all.c					\
+					fill_palette.c					\
+					window_reset.c					\
 				)
 
 # --------- Object files ------------------------------------------------------

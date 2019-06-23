@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/22 20:42:12 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:36:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ struct			s_win
 	//
 	t_type const	*type;
 	//
-	int				color;
-	int				palette[ITER_MAX];
 	t_param			param;
+	int				color_scheme;
+	int				palette[ITER_MAX];
 	// OpenCL:
 	size_t			cl_global_size;		// .param.width * .param.height
 	cl_mem			cl_img;				// CL buffers for:	.img_data
@@ -127,7 +127,7 @@ struct			s_win
 	void			*img_data;
 	//
 	int				is_alive;
-	int				show_help;
+	int				is_menu_shown;
 };
 
 struct			s_prog
@@ -149,7 +149,6 @@ struct			s_prog
 # define ERROR_START	"error: "
 # define ERROR_END		"\n"
 
-void			die(void);
 void			error1(char const *message);
 void			error3(char const *s1, char const *s2, char const *s3);
 
@@ -157,10 +156,15 @@ void			sprintf_int_left(int value, char *field, int width);
 void			sprintf_int_right(int value, char *field, int width);
 void			print_usage(void);
 
-void			init_parameters(t_prog *program);
+void			fill_palette(t_win *window);
+
+//void			init_parameters(t_prog *program);
 
 void			start_mlx(t_prog *program);
 void			start_opencl(t_prog *program);
+
+void			window_reset(t_win *window);
+void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
 

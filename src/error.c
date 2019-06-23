@@ -6,14 +6,14 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 11:31:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/17 19:40:18 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:36:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "fractol.h"
 
-void			die(void)
+static void		die(void)
 {
 	exit(EXIT_FAILURE);
 }

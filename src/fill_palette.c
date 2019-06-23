@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parameters.c                                  :+:      :+:    :+:   */
+/*   fill_palette.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:10:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/22 19:58:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:18:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,46 +42,14 @@ static void		palette_2(t_win *window)
 	}
 }
 
-static void		fill_palette(t_win *window)
+void		fill_palette(t_win *window)
 {
-	if (window->color == 1)
+	if (window->color_scheme == 1)
 	{
 		palette_monochrome(window);
 	}
-	if (window->color == 2)
+	if (window->color_scheme == 2)
 	{
 		palette_2(window);
-	}
-}
-
-////////////////////////////////
-
-static void		reset_window_parameters(t_win *window)
-{
-	t_param *const	param = &(window->param);
-
-	param->width = window->options[OPT_INDEX_WIDTH];
-	param->height = window->options[OPT_INDEX_HEIGHT];
-	param->iteration_max = window->options[OPT_INDEX_ITER];
-	param->zoom = 100.;		// TODO: compute according to size and type
-	param->origin_re = (param->width + 1) / 2 / param->zoom;
-	param->origin_im = (param->height + 1) / 2 / param->zoom;
-	param->julia_re0 = 0.356;		// for example
-	param->julia_im0 = 0.356;		// for example
-
-	window->color = window->options[OPT_INDEX_COLOR];
-	fill_palette(window);
-}
-
-void			init_parameters(t_prog *program)
-{
-	int			window_index;
-	t_win		*window;
-
-	window_index = program->window_count;
-	while (window_index--)
-	{
-		window = &(program->windows[window_index]);
-		reset_window_parameters(window);
 	}
 }
