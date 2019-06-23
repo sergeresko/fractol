@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/23 15:08:29 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:52:41 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int		main(int ac, char **av)
 	}
 	av = process_global_options(&program, av);
 	process_arguments(&program, av);
-//	init_parameters(&program);
 	
 	start_opencl(&program);
 	start_mlx(&program);

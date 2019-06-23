@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/23 13:01:25 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:46:42 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,10 @@ static void		allocate_windows(t_prog *program, char **av)
 	program->windows = ft_memalloc(count * sizeof(t_win));		// zeroed
 	if (!(program->windows))
 	{
-		error1("malloc failed");		//
+		error1("malloc failed");		// ?
 	}
 	program->window_count = count;
-//	program->active_window_count = count;
 }
-
-/*
-**	set each local option of every window to zero
-*/
-
-/*
-static void		initialize_local_options(t_prog *program)
-{
-	int			window_index;
-	t_win		*window;
-	int			opt_index;
-
-	window_index = program->window_count;
-	while (window_index--)
-	{
-		window = &(program->windows[window_index]);
-		opt_index = OPT_COUNT;
-		while (opt_index--)
-		{
-			window->options[opt_index] = 0;
-		}
-	}
-}
-*/
 
 /*
 **	for each local option of the window, if it is zero,
@@ -94,7 +69,6 @@ void			process_arguments(t_prog *program, char **av)
 	t_win		*window;
 
 	allocate_windows(program, av);
-//	initialize_local_options(program);
 	window_index = 0;
 	while ((arg = *(++av)))
 	{
@@ -106,5 +80,4 @@ void			process_arguments(t_prog *program, char **av)
 		window->is_alive = 1;
 		window->is_menu_shown = 0;
 	}
-//	finalize_local_options(program);
 }
