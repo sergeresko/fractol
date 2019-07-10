@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprintf_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 12:39:50 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:41:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/10 13:44:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 **
 **	The following functions have undefined behavior if `value` is not positive.
 **
-**	If `value` does not fit into the given width, only least significat digits
+**	If `value` does not fit into the given width, only least significant digits
 **	are printed.
 */
 
