@@ -31,8 +31,10 @@
 #define KEY_I				34
 
 #define MOUSE_BUTTON_LEFT	1
+#define MOUSE_SCROLL_UP		4
 #define MOUSE_SCROLL_DOWN	5
 #define STEP_ARROW_MOVE		32
+#define STEP_ZOOM			0.1
 
 int		win_close(void *parameters)
 {
@@ -43,8 +45,8 @@ int		win_close(void *parameters)
 	if (!(program->global_mode))
 	{
 		window->is_alive = 0;
-		mlx_destroy_image(window->program->mlx_ptr, window->img_ptr);
-		mlx_destroy_window(window->program->mlx_ptr, window->win_ptr);
+		mlx_destroy_image(program->mlx_ptr, window->img_ptr);
+		mlx_destroy_window(program->mlx_ptr, window->win_ptr);
 		window_index = program->window_count;
 		while (window_index--)
 		{
@@ -155,12 +157,12 @@ int		key_release(int keycode, void *parameters)
 	return (0);
 }
 
+////////////////
+
 int		mouse_press(int button, int x, int y, void *parameters)
 {
 	t_win *const	window = parameters;
 
-	(void)x;
-	(void)y;
 	if (button == MOUSE_BUTTON_LEFT)
 	{
 		if (!(window->program->drag_mode))
@@ -174,7 +176,17 @@ int		mouse_press(int button, int x, int y, void *parameters)
 	}
 	else if (button == MOUSE_SCROLL_DOWN)
 	{
-		// ...
+		window->param.origin_re += x / window->param.zoom * STEP_ZOOM;
+		window->param.origin_im += (window->param.height - y) / window->param.zoom * STEP_ZOOM;
+		window->param.zoom /= 1.0 + STEP_ZOOM;
+		window_redraw(window);
+	}
+	else if (button == MOUSE_SCROLL_UP)
+	{
+		window->param.zoom *= 1.0 + STEP_ZOOM;
+		window->param.origin_re -= x / window->param.zoom * STEP_ZOOM;
+		window->param.origin_im -= (window->param.height - y) / window->param.zoom * STEP_ZOOM;
+		window_redraw(window);
 	}
 	return (0);
 }
@@ -199,7 +211,7 @@ int		mouse_move(int x, int y, void *parameters)
 	if (x < 0 || x >= window->param.width
 			|| y < 0 || y >= window->param.height)
 	{
-		return (0);
+//		return (0);
 	}
 	//
 	int		id;
