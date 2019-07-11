@@ -36,6 +36,44 @@
 #define STEP_ARROW_MOVE		32
 #define STEP_ZOOM			0.1
 
+#define UNUSED				0
+
+typedef void	(*t_func)(t_win *, int, int);
+
+void		apply(t_func action, t_win *window, int a, int b)
+{
+	t_prog *const	program = window->program;
+	int				window_index;
+
+	if (program->global_mode)
+	{
+		window_index = program->window_count;
+		while (window_index--)
+		{
+			window = &(program->windows[window_index]);
+			if (window->is_alive)
+			{
+				action(window, a, b);
+			}
+		}
+	}
+	else
+	{
+		action(window, a, b);
+	}
+}
+
+void	action_move(t_win *window, int shift_x, int shift_y)
+{
+	t_param *const	param = &(window->param);		// maybe unneeded
+
+	param->origin_re += shift_x / param->zoom;
+	param->origin_im -= shift_y / param->zoom;
+	window_redraw(window);
+}
+
+////////////////////////////////
+
 int		win_close(void *parameters)
 {
 	t_win *const	window = parameters;
@@ -88,6 +126,34 @@ int		win_close(void *parameters)
 //	i:
 //
 
+int		key_press_arrow(int key, t_win *window)
+{
+//	int		shift_x;
+//	int		shift_y;
+
+	if (key == KEY_ARROW_UP)
+	{
+		apply(action_move, window, 0, -STEP_ARROW_MOVE);
+	}
+	else if (key == KEY_ARROW_DOWN)
+	{
+		apply(action_move, window, 0, +STEP_ARROW_MOVE);
+	}
+	else if (key == KEY_ARROW_LEFT)
+	{
+		apply(action_move, window, -STEP_ARROW_MOVE, 0);
+	}
+	else if (key == KEY_ARROW_RIGHT)
+	{
+		apply(action_move, window, +STEP_ARROW_MOVE, 0);
+	}
+	else
+	{
+		return 0;		// fail
+	}
+	return 1;			// success
+}
+/*
 int		key_press_1(int key, t_win *window)
 {
 	if (key == KEY_ARROW_UP)
@@ -106,6 +172,16 @@ int		key_press_1(int key, t_win *window)
 	{
 		window->param.origin_re -= STEP_ARROW_MOVE / window->param.zoom;
 	}
+	else if (key == KEY_ONE)
+	{
+		window->color_scheme = 1;
+		fill_palette(window);
+	}
+	else if (key == KEY_TWO)
+	{
+		window->color_scheme = 2;
+		fill_palette(window);
+	}
 	else if (key == KEY_SPACE)
 	{
 		window_reset(window);
@@ -116,27 +192,44 @@ int		key_press_1(int key, t_win *window)
 	}
 	window_redraw(window);
 	return (1);
-}
+}*/
 
-int		key_press(int keycode, void *parameters)
+int		key_press(int key, void *parameters)
 {
 	t_win *const	window = parameters;
 
-	if (keycode == KEY_ESCAPE)
+	if (key == KEY_ESCAPE)
 	{
 		win_close(parameters);
 	}
-	else if (keycode == KEY_SHIFT_LEFT)
+	else if (key == KEY_SHIFT_LEFT)
 	{
 		window->program->global_mode |= LEFT_SHIFT_PRESSED;
 	}
-	else if (keycode == KEY_SHIFT_RIGHT)
+	else if (key == KEY_SHIFT_RIGHT)
 	{
 		window->program->global_mode |= RIGHT_SHIFT_PRESSED;
 	}
+	else if (key == KEY_ONE)
+	{
+		window->color_scheme = 1;
+		fill_palette(window);
+		window_redraw(window);
+	}
+	else if (key == KEY_TWO)
+	{
+		window->color_scheme = 2;
+		fill_palette(window);
+		window_redraw(window);
+	}
+	else if (key == KEY_SPACE)
+	{
+		window_reset(window);
+		window_redraw(window);
+	}
 	else
 	{
-		key_press_1(keycode, window);
+		key_press_arrow(key, window);
 		// ...
 	}
 	return (0);
@@ -167,10 +260,8 @@ int		mouse_press(int button, int x, int y, void *parameters)
 	{
 		if (!(window->program->drag_mode))
 		{
-			window->drag_x = x;
-			window->drag_y = y;
-			window->drag_re = window->param.origin_re;
-			window->drag_im = window->param.origin_im;
+			window->program->drag_x = x;
+			window->program->drag_y = y;
 		}
 		window->program->drag_mode = 1;
 	}
@@ -213,18 +304,18 @@ int		mouse_move(int x, int y, void *parameters)
 	{
 //		return (0);
 	}
-	//
+	// <
 	int		id;
 	id = window->program->window_count;
 	while (window != &(window->program->windows[--id]))
 		;
 	ft_printf("mouse_move (window %d)    x: %4d    y: %4d\n", id + 1, x, y);
-	//
+	// >
 	if (window->program->drag_mode)
 	{
-		window->param.origin_re = window->drag_re + (x - window->drag_x) / window->param.zoom;
-		window->param.origin_im = window->drag_im - (y - window->drag_y) / window->param.zoom;
-		window_redraw(window);
+		apply(action_move, window, x - window->program->drag_x, y - window->program->drag_y);
+		window->program->drag_x = x;
+		window->program->drag_y = y;
 	}
 	return (0);
 }
