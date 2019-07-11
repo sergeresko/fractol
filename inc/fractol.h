@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/11 14:03:31 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/11 18:55:28 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,13 @@ void			window_reset(t_win *window);
 void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
+
+// TODO: rename `parameters` to something else
+int				key_press(int key, void *parameters);
+int				key_release(int key, void *parameters);
+int				mouse_press(int button, int x, int y, void *parameters);
+int				mouse_release(int button, int x, int y, void *parameters);
+int				mouse_move(int x, int y, void *parameters);
+int				win_close(void *parameters);
 
 #endif

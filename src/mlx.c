@@ -279,15 +279,15 @@ int		key_press(int key, void *parameters)
 	return (0);
 }
 
-int		key_release(int keycode, void *parameters)
+int		key_release(int key, void *parameters)
 {
 	t_win *const	window = parameters;
 
-	if (keycode == KEY_SHIFT_LEFT)
+	if (key == KEY_SHIFT_LEFT)
 	{
 		window->program->global_mode &= ~LEFT_SHIFT_PRESSED;
 	}
-	else if (keycode == KEY_SHIFT_RIGHT)
+	else if (key == KEY_SHIFT_RIGHT)
 	{
 		window->program->global_mode &= ~RIGHT_SHIFT_PRESSED;
 	}
@@ -359,7 +359,7 @@ int		mouse_move(int x, int y, void *parameters)
 }
 
 ////////////////////////////////
-
+/*
 #define MULTIPLICATION_SIGN	"\xd7"
 
 static char		*make_window_title(int id, t_win const *window)
@@ -420,4 +420,4 @@ void			start_mlx(t_prog *program)
 		mlx_hook(window->win_ptr, 6, 0, &mouse_move, window);
 		mlx_hook(window->win_ptr, 17, 0, &win_close, window);
 	}
-}
+}*/

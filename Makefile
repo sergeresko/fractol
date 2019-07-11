@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/06/23 15:27:21 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/11 18:51:15 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=	$(addprefix src/,					\
 					sprintf_int.c					\
 					print_usage.c					\
 					mlx.c							\
+					start_mlx.c						\
 					start_opencl.c					\
 					fill_palette.c					\
 					window_reset.c					\
