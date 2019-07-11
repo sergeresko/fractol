@@ -72,6 +72,56 @@ void	action_move(t_win *window, int shift_x, int shift_y)
 	window_redraw(window);
 }
 
+void	action_set_palette(t_win *window, int color_scheme, int unused)
+{
+	(void)unused;
+	if (window->color_scheme != color_scheme)
+	{
+		window->color_scheme = color_scheme;
+		fill_palette(window);
+		window_redraw(window);
+	}
+}
+
+void	action_close(t_win *window, int unused_1, int unused_2)
+{
+	(void)unused_1;
+	(void)unused_2;
+	window->is_alive = 0;
+	mlx_destroy_image(window->program->mlx_ptr, window->img_ptr);
+	mlx_destroy_window(window->program->mlx_ptr, window->win_ptr);
+}
+
+void	action_zoom_out(t_win *window, int x, int y)
+{
+	t_param *const	param = &(window->param);		// maybe unneeded
+
+	if (x < 0 || y < 0)
+	{
+		x = param->width / 2;
+		y = param->height / 2;
+	}
+	param->origin_re += x / param->zoom * STEP_ZOOM;
+	param->origin_im += (param->height - y) / param->zoom * STEP_ZOOM;
+	param->zoom /= 1.0 + STEP_ZOOM;
+	window_redraw(window);
+}
+
+void	action_zoom_in(t_win *window, int x, int y)
+{
+	t_param *const	param = &(window->param);		// maybe unneeded
+
+	if (x < 0 || y < 0)
+	{
+		x = param->width / 2;
+		y = param->height / 2;
+	}
+	param->zoom *= 1.0 + STEP_ZOOM;
+	param->origin_re -= x / param->zoom * STEP_ZOOM;
+	param->origin_im -= (param->height - y) / param->zoom * STEP_ZOOM;
+	window_redraw(window);
+}
+
 ////////////////////////////////
 
 int		win_close(void *parameters)
@@ -80,11 +130,13 @@ int		win_close(void *parameters)
 	t_prog *const	program = window->program;
 	int				window_index;
 
-	if (!(program->global_mode))
-	{
-		window->is_alive = 0;
-		mlx_destroy_image(program->mlx_ptr, window->img_ptr);
-		mlx_destroy_window(program->mlx_ptr, window->win_ptr);
+	apply(action_close, window, UNUSED, UNUSED);
+//	if (!(program->global_mode))
+//	{
+//		window->is_alive = 0;
+//		mlx_destroy_image(program->mlx_ptr, window->img_ptr);
+//		mlx_destroy_window(program->mlx_ptr, window->win_ptr);
+//	}
 		window_index = program->window_count;
 		while (window_index--)
 		{
@@ -93,7 +145,6 @@ int		win_close(void *parameters)
 				return (0);
 			}
 		}
-	}
 	system("leaks -q fractol >&2");		/////////////////////////
 	exit(EXIT_SUCCESS);
 	return (0);
@@ -153,46 +204,41 @@ int		key_press_arrow(int key, t_win *window)
 	}
 	return 1;			// success
 }
-/*
-int		key_press_1(int key, t_win *window)
+
+int		key_press_digit(int key, t_win *window)
 {
-	if (key == KEY_ARROW_UP)
+	if (key == KEY_ONE || key == KEY_ONE_NUMPAD)
 	{
-		window->param.origin_im -= STEP_ARROW_MOVE / window->param.zoom;
+		apply(action_set_palette, window, 1, UNUSED);
 	}
-	else if (key == KEY_ARROW_DOWN)
+	else if (key == KEY_TWO || key == KEY_TWO_NUMPAD)
 	{
-		window->param.origin_im += STEP_ARROW_MOVE / window->param.zoom;
+		apply(action_set_palette, window, 2, UNUSED);
 	}
-	else if (key == KEY_ARROW_LEFT)
+	// TODO:
+	else
 	{
-		window->param.origin_re += STEP_ARROW_MOVE / window->param.zoom;
+		return (0);		// fail
 	}
-	else if (key == KEY_ARROW_RIGHT)
+	return (1);			// success
+}
+
+int		key_press_zoom(int key, t_win *window)
+{
+	if (key == KEY_MINUS || key == KEY_MINUS_NUMPAD)
 	{
-		window->param.origin_re -= STEP_ARROW_MOVE / window->param.zoom;
+		apply(action_zoom_out, window, -1, -1);	// TODO: define
 	}
-	else if (key == KEY_ONE)
+	else if (key == KEY_EQUALS || key == KEY_PLUS_NUMPAD)
 	{
-		window->color_scheme = 1;
-		fill_palette(window);
-	}
-	else if (key == KEY_TWO)
-	{
-		window->color_scheme = 2;
-		fill_palette(window);
-	}
-	else if (key == KEY_SPACE)
-	{
-		window_reset(window);
+		apply(action_zoom_in, window, -1, -1);		// TODO: define
 	}
 	else
 	{
-		return (0);
+		return (0);		// fail
 	}
-	window_redraw(window);
-	return (1);
-}*/
+	return (1);			// success
+}
 
 int		key_press(int key, void *parameters)
 {
@@ -210,18 +256,6 @@ int		key_press(int key, void *parameters)
 	{
 		window->program->global_mode |= RIGHT_SHIFT_PRESSED;
 	}
-	else if (key == KEY_ONE)
-	{
-		window->color_scheme = 1;
-		fill_palette(window);
-		window_redraw(window);
-	}
-	else if (key == KEY_TWO)
-	{
-		window->color_scheme = 2;
-		fill_palette(window);
-		window_redraw(window);
-	}
 	else if (key == KEY_SPACE)
 	{
 		window_reset(window);
@@ -229,7 +263,7 @@ int		key_press(int key, void *parameters)
 	}
 	else
 	{
-		key_press_arrow(key, window);
+		key_press_arrow(key, window) || key_press_digit(key, window) || key_press_zoom(key, window);
 		// ...
 	}
 	return (0);
@@ -267,17 +301,11 @@ int		mouse_press(int button, int x, int y, void *parameters)
 	}
 	else if (button == MOUSE_SCROLL_DOWN)
 	{
-		window->param.origin_re += x / window->param.zoom * STEP_ZOOM;
-		window->param.origin_im += (window->param.height - y) / window->param.zoom * STEP_ZOOM;
-		window->param.zoom /= 1.0 + STEP_ZOOM;
-		window_redraw(window);
+		apply(action_zoom_out, window, x, y);
 	}
 	else if (button == MOUSE_SCROLL_UP)
 	{
-		window->param.zoom *= 1.0 + STEP_ZOOM;
-		window->param.origin_re -= x / window->param.zoom * STEP_ZOOM;
-		window->param.origin_im -= (window->param.height - y) / window->param.zoom * STEP_ZOOM;
-		window_redraw(window);
+		apply(action_zoom_in, window, x, y);
 	}
 	return (0);
 }
