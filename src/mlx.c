@@ -122,6 +122,14 @@ void	action_zoom_in(t_win *window, int x, int y)
 	window_redraw(window);
 }
 
+void	action_reset(t_win *window, int unused_1, int unused_2)
+{
+	(void)unused_1;
+	(void)unused_2;
+	window_reset(window);		// TODO: incorporate here
+	window_redraw(window);
+}
+
 ////////////////////////////////
 
 int		win_close(void *parameters)
@@ -131,20 +139,14 @@ int		win_close(void *parameters)
 	int				window_index;
 
 	apply(action_close, window, UNUSED, UNUSED);
-//	if (!(program->global_mode))
-//	{
-//		window->is_alive = 0;
-//		mlx_destroy_image(program->mlx_ptr, window->img_ptr);
-//		mlx_destroy_window(program->mlx_ptr, window->win_ptr);
-//	}
-		window_index = program->window_count;
-		while (window_index--)
+	window_index = program->window_count;
+	while (window_index--)
+	{
+		if (program->windows[window_index].is_alive)
 		{
-			if (program->windows[window_index].is_alive)
-			{
-				return (0);
-			}
+			return (0);
 		}
+	}
 	system("leaks -q fractol >&2");		/////////////////////////
 	exit(EXIT_SUCCESS);
 	return (0);
@@ -184,19 +186,19 @@ int		key_press_arrow(int key, t_win *window)
 
 	if (key == KEY_ARROW_UP)
 	{
-		apply(action_move, window, 0, -STEP_ARROW_MOVE);
+		apply(action_move, window, 0, +STEP_ARROW_MOVE);
 	}
 	else if (key == KEY_ARROW_DOWN)
 	{
-		apply(action_move, window, 0, +STEP_ARROW_MOVE);
+		apply(action_move, window, 0, -STEP_ARROW_MOVE);
 	}
 	else if (key == KEY_ARROW_LEFT)
 	{
-		apply(action_move, window, -STEP_ARROW_MOVE, 0);
+		apply(action_move, window, +STEP_ARROW_MOVE, 0);
 	}
 	else if (key == KEY_ARROW_RIGHT)
 	{
-		apply(action_move, window, +STEP_ARROW_MOVE, 0);
+		apply(action_move, window, -STEP_ARROW_MOVE, 0);
 	}
 	else
 	{
@@ -227,11 +229,24 @@ int		key_press_zoom(int key, t_win *window)
 {
 	if (key == KEY_MINUS || key == KEY_MINUS_NUMPAD)
 	{
-		apply(action_zoom_out, window, -1, -1);	// TODO: define
+		apply(action_zoom_out, window, -1, -1);		// TODO: define
 	}
 	else if (key == KEY_EQUALS || key == KEY_PLUS_NUMPAD)
 	{
 		apply(action_zoom_in, window, -1, -1);		// TODO: define
+	}
+	else
+	{
+		return (0);		// fail
+	}
+	return (1);			// success
+}
+
+int		key_press_space(int key, t_win *window)
+{
+	if (key == KEY_SPACE)
+	{
+		apply(action_reset, window, UNUSED, UNUSED);
 	}
 	else
 	{
@@ -256,14 +271,9 @@ int		key_press(int key, void *parameters)
 	{
 		window->program->global_mode |= RIGHT_SHIFT_PRESSED;
 	}
-	else if (key == KEY_SPACE)
-	{
-		window_reset(window);
-		window_redraw(window);
-	}
 	else
 	{
-		key_press_arrow(key, window) || key_press_digit(key, window) || key_press_zoom(key, window);
+		key_press_arrow(key, window) || key_press_digit(key, window) || key_press_zoom(key, window) || key_press_space(key, window);
 		// ...
 	}
 	return (0);
