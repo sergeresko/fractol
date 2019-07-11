@@ -68,12 +68,12 @@ re: fclean all
 FRAMEWORKS	+=	-framework OpenCL
 FRAMEWORKS	+=	-framework OpenGL -framework AppKit
 LIBRARIES	+=	-lmlx
-LIBRARIES	+=	libft/libft.a
+LIBRARIES	+=	$(LIBFT)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@ mkdir -p obj/
 	@ printf "%-60s\n" "Linking $@"
-	@ $(CC) $(OBJ) $(FRAMEWORKS) $(LIBRARIES) -o $@
+	@ $(CC) $(CFLAGS) $(OBJ) $(FRAMEWORKS) $(LIBRARIES) -o $@
 	@ echo "Done"
 
 $(LIBFT):
