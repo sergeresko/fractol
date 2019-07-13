@@ -66,6 +66,7 @@ void	action_close(t_win *window, int unused_1, int unused_2)
 	window->is_alive = 0;
 	mlx_destroy_image(window->program->mlx_ptr, window->img_ptr);
 	mlx_destroy_window(window->program->mlx_ptr, window->win_ptr);
+	// TODO: free what refers to this window of OpenCL
 }
 
 void	action_zoom_out(t_win *window, int x, int y)

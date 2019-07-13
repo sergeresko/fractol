@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:00:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 14:06:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ struct			s_type			// t_type_info
 {
 	char const	*title;
 	char const	*cl_kernel_name;
+	double		re_min;
+	double		re_max;
+	double		im_min;
+	double		im_max;
 	// ...
 };
 
