@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:25:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 17:31:49 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,24 @@ int		key_press_zoom(int key, t_win *window)
 	return (1);			// success
 }
 
-int		key_press_space(int key, t_win *window)
+int		key_press_reset(int key, t_win *window)
+{
+	if (key == KEY_ZERO || key == KEY_ZERO_NUMPAD)
+	{
+		apply(action_reset, window, UNUSED, UNUSED);
+	}
+	else
+	{
+		return (0);		// fail
+	}
+	return (1);			// success
+}
+
+int		key_press_fix(int key, t_win *window)
 {
 	if (key == KEY_SPACE)
 	{
-		apply(action_reset, window, UNUSED, UNUSED);
+		apply(window->is_fixed ? action_unfix : action_fix, window, UNUSED, UNUSED);
 	}
 	else
 	{
@@ -111,7 +124,8 @@ int		key_press(int key, void *window)
 	else
 	{
 		key_press_arrow(key, window) || key_press_digit(key, window)
-				|| key_press_zoom(key, window) || key_press_space(key, window);
+				|| key_press_zoom(key, window) || key_press_reset(key, window)
+				|| key_press_fix(key, window);
 		// ...
 	}
 	return (0);

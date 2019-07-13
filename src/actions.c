@@ -111,12 +111,26 @@ void	action_update_julia(t_win *window, int unused_1, int unused_2)
 {
 	(void)unused_1;
 	(void)unused_2;
-	if (window->type->is_variable)
+	if (window->type->is_variable && !(window->is_fixed))
 	{
 		window->param.julia_re0 = window->program->julia_re;
 		window->param.julia_im0 = window->program->julia_im;
 		window_redraw(window);
 	}
+}
+
+void	action_fix(t_win *window, int unused_1, int unused_2)
+{
+	(void)unused_1;
+	(void)unused_2;
+	window->is_fixed = 1;
+}
+
+void	action_unfix(t_win *window, int unused_1, int unused_2)
+{
+	(void)unused_1;
+	(void)unused_2;
+	window->is_fixed = 0;
 }
 
 //	key_press

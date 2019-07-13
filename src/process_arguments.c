@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_arguments.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/23 15:46:42 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 17:19:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void			process_arguments(t_prog *program, char **av)
 		window_reset(window);
 		window->is_alive = 1;
 		window->is_menu_shown = 0;
+		window->is_fixed = 0;
 	}
 }
