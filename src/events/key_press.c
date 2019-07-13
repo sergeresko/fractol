@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 17:31:49 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 17:51:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,23 @@ int		key_press_fix(int key, t_win *window)
 	return (1);			// success
 }
 
+int		key_press_iterations(int key, t_win *window)
+{
+	if (key == KEY_BRACKET_LEFT)
+	{
+		apply(action_change_iterations, window, -1, UNUSED);
+	}
+	else if (key == KEY_BRACKET_RIGHT)
+	{
+		apply(action_change_iterations, window, +1, UNUSED);
+	}
+	else
+	{
+		return (0);		// fail
+	}
+	return (1);			// success
+}
+
 int		key_press(int key, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;	// unneeded?
@@ -125,7 +142,7 @@ int		key_press(int key, void *window)
 	{
 		key_press_arrow(key, window) || key_press_digit(key, window)
 				|| key_press_zoom(key, window) || key_press_reset(key, window)
-				|| key_press_fix(key, window);
+				|| key_press_fix(key, window) || key_press_iterations(key, window);
 		// ...
 	}
 	return (0);
