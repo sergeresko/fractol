@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:17:18 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:43:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			window_display_menu(t_win *window)
 void			window_display_info(t_win *window)
 {
 	// TODO:
-	(void)window;	// remove
+	mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 60, 0xffffff, "Info");
 }
 
 /*
@@ -85,10 +85,10 @@ void			window_display(t_win *window)
 	{
 		window_display_menu(window);
 	}
-	/*if (window->is_info_shown)
+	if (window->is_info_shown)
 	{
 		window_display_info(window);
-	}*/
+	}
 }
 
 void			window_redraw(t_win *window)

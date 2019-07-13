@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:16:31 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:42:52 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ struct			s_win
 	//
 	int				is_alive;
 	int				is_menu_shown;
+	int				is_info_shown;
 	//
 	int				is_fixed;
 };

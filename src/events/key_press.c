@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:03:42 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:45:36 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ int		key_press_toggle(int key, t_win *window)
 	else if (key == KEY_H)
 	{
 		apply(action_toggle_menu, window, window->is_menu_shown, UNUSED);
+	}
+	else if (key == KEY_I)
+	{
+		apply(action_toggle_info, window, window->is_info_shown, UNUSED);
 	}
 	else
 	{

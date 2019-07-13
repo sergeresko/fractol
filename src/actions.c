@@ -152,6 +152,13 @@ void	action_toggle_menu(t_win *window, int is_menu_shown, int unused)
 	window_display(window);
 }
 
+void	action_toggle_info(t_win *window, int is_info_shown, int unused)
+{
+	(void)unused;
+	window->is_info_shown = !is_info_shown;
+	window_display(window);
+}
+
 //	key_press
 //	esc:
 //		destroy_window(window)

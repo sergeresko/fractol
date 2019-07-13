@@ -6,14 +6,16 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:11:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 18:24:31 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:36:30 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYCODES_H
 # define KEYCODES_H
 
-// TODO:
+/*
+**	keyboard
+*/
 
 # define KEY_MINUS			27
 # define KEY_EQUALS			24
@@ -44,6 +46,10 @@
 
 # define KEY_H				4
 # define KEY_I				34
+
+/*
+**	mouse
+*/
 
 # define MOUSE_BUTTON_LEFT	1
 # define MOUSE_SCROLL_UP		4
