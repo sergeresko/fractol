@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 17:51:09 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:03:42 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,15 @@ int		key_press_reset(int key, t_win *window)
 	return (1);			// success
 }
 
-int		key_press_fix(int key, t_win *window)
+int		key_press_toggle(int key, t_win *window)
 {
 	if (key == KEY_SPACE)
 	{
-		apply(window->is_fixed ? action_unfix : action_fix, window, UNUSED, UNUSED);
+		apply(action_toggle_fix, window, window->is_fixed, UNUSED);
+	}
+	else if (key == KEY_H)
+	{
+		apply(action_toggle_menu, window, window->is_menu_shown, UNUSED);
 	}
 	else
 	{
@@ -142,7 +146,7 @@ int		key_press(int key, void *window)
 	{
 		key_press_arrow(key, window) || key_press_digit(key, window)
 				|| key_press_zoom(key, window) || key_press_reset(key, window)
-				|| key_press_fix(key, window) || key_press_iterations(key, window);
+				|| key_press_toggle(key, window) || key_press_iterations(key, window);
 		// ...
 	}
 	return (0);

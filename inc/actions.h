@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:19:42 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 17:49:11 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 18:45:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	action_zoom_out(t_win *window, int x, int y);
 void	action_zoom_in(t_win *window, int x, int y);
 void	action_reset(t_win *window, int unused_1, int unused_2);
 void	action_update_julia(t_win *window, int unused_1, int unused_2);
-void	action_fix(t_win *window, int unused_1, int unused_2);
-void	action_unfix(t_win *window, int unused_1, int unused_2);
+void	action_toggle_fix(t_win *window, int is_fixed, int unused);
 void	action_change_iterations(t_win *window, int direction, int unused);
+void	action_toggle_menu(t_win *window, int is_menu_shown, int unused);
 
 #endif

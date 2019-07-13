@@ -1,17 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_reset.c                                     :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 14:58:55 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:17:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <math.h>			// fmin
+
+// OpenCL
+
+void			window_recompute_image(t_win *window)
+{
+	clEnqueueWriteBuffer(window->program->cl_commands, window->cl_palette,
+			CL_TRUE, 0, window->param.iteration_max * sizeof(int),
+			window->palette, 0, NULL, NULL);
+	clEnqueueWriteBuffer(window->program->cl_commands, window->cl_param,
+			CL_TRUE, 0, sizeof(t_param), &(window->param), 0, NULL, NULL);
+	clEnqueueNDRangeKernel(window->program->cl_commands, window->cl_kernel,
+			1, NULL, &(window->cl_global_size), NULL, 0, NULL, NULL);
+	clEnqueueReadBuffer(window->program->cl_commands, window->cl_img,
+			CL_TRUE, 0, window->cl_global_size * sizeof(int),
+			window->img_data, 0, NULL, NULL);
+	clFinish(window->program->cl_commands);
+}
+
+// MLX
+
+void			window_display_image(t_win *window)
+{
+	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
+			window->img_ptr, 0, 0);
+}
+
+void			window_display_menu(t_win *window)
+{
+	/* TODO:
+	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
+			window->img_ptr, 0, 0);
+	*/
+	mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 30, 0xffffff, "Menu");
+	// TODO:
+}
+
+void			window_display_info(t_win *window)
+{
+	// TODO:
+	(void)window;	// remove
+}
 
 /*
 **	set window parameters (color, palette, param) according to its options
@@ -35,28 +76,28 @@ void			window_reset(t_win *window)
 	fill_palette(window);
 }
 
-void			window_redraw(t_win *window)
+// public
+
+void			window_display(t_win *window)
 {
-	clEnqueueWriteBuffer(window->program->cl_commands, window->cl_palette,
-			CL_TRUE, 0, window->param.iteration_max * sizeof(int),
-			window->palette, 0, NULL, NULL);
-	clEnqueueWriteBuffer(window->program->cl_commands, window->cl_param,
-			CL_TRUE, 0, sizeof(t_param), &(window->param), 0, NULL, NULL);
-	clEnqueueNDRangeKernel(window->program->cl_commands, window->cl_kernel,
-			1, NULL, &(window->cl_global_size), NULL, 0, NULL, NULL);
-	clEnqueueReadBuffer(window->program->cl_commands, window->cl_img,
-			CL_TRUE, 0, window->cl_global_size * sizeof(int),
-			window->img_data, 0, NULL, NULL);
-	clFinish(window->program->cl_commands);
-	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
-			window->img_ptr, 0, 0);
+	window_display_image(window);
 	if (window->is_menu_shown)
 	{
-		// TODO:
+		window_display_menu(window);
 	}
+	/*if (window->is_info_shown)
+	{
+		window_display_info(window);
+	}*/
 }
 
-void			redraw_all(t_prog *program)
+void			window_redraw(t_win *window)
+{
+	window_recompute_image(window);
+	window_display(window);
+}
+
+void			redraw_all(t_prog *program)		// TODO: remove
 {
 	int			window_index;
 	t_win		*window;

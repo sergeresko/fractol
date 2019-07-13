@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 17:18:42 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:16:31 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ void			fill_palette(t_win *window);
 void			start_mlx(t_prog *program);
 void			start_opencl(t_prog *program);
 
-void			window_reset(t_win *window);
+void			window_reset(t_win *window);	// TODO: incorporate in action_reset
+void			window_display(t_win *window);
 void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);

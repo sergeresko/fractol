@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:10:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 18:12:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 18:51:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		palette_2(t_win *window)
 	index = iteration_max;
 	while (index--)
 	{
-		t = (double)index / (iteration_max - 1);
+		t = (double)index / iteration_max;		// TODO:
 		palette[index] = (unsigned)(9.0 * (1 - t) * t * t * t * 255) << 16
 				| (unsigned)(15.0 * (1 - t) * (1 - t) * t * t * 255) << 8
 				| (unsigned)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);

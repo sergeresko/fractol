@@ -119,18 +119,11 @@ void	action_update_julia(t_win *window, int unused_1, int unused_2)
 	}
 }
 
-void	action_fix(t_win *window, int unused_1, int unused_2)
+void	action_toggle_fix(t_win *window, int is_fixed, int unused)
 {
-	(void)unused_1;
-	(void)unused_2;
-	window->is_fixed = 1;
-}
-
-void	action_unfix(t_win *window, int unused_1, int unused_2)
-{
-	(void)unused_1;
-	(void)unused_2;
-	window->is_fixed = 0;
+	(void)unused;
+	window->is_fixed = !is_fixed;
+	window_display(window);
 }
 
 void	action_change_iterations(t_win *window, int direction, int unused)
@@ -139,18 +132,26 @@ void	action_change_iterations(t_win *window, int direction, int unused)
 	if (window->param.iteration_max > 1 && direction < 0)
 	{
 		window->param.iteration_max -= 1;
-		ft_printf("iteration_max: %d\n", window->param.iteration_max);
+		ft_printf("iteration_max: %d\n", window->param.iteration_max);	// TODO: remove
 		fill_palette(window);
 		window_redraw(window);
 	}
 	else if (window->param.iteration_max < ITER_MAX - 1 && direction > 0)
 	{
 		window->param.iteration_max += 1;
-		ft_printf("iteration_max: %d\n", window->param.iteration_max);
+		ft_printf("iteration_max: %d\n", window->param.iteration_max);	// TODO: remove
 		fill_palette(window);
 		window_redraw(window);
 	}
 }
+
+void	action_toggle_menu(t_win *window, int is_menu_shown, int unused)
+{
+	(void)unused;
+	window->is_menu_shown = !is_menu_shown;
+	window_display(window);
+}
+
 //	key_press
 //	esc:
 //		destroy_window(window)
