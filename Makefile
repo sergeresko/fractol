@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/11 18:51:15 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/13 13:33:45 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ CFLAGS		=	-Wall -Wextra -Werror -Wpedantic
 
 INC			=	$(addprefix inc/,					\
 					fractol.h						\
+					actions.h						\
+					keycodes.h						\
 				)
 
 # --------- Source files ------------------------------------------------------
@@ -34,11 +36,19 @@ SRC			=	$(addprefix src/,					\
 					error.c							\
 					sprintf_int.c					\
 					print_usage.c					\
-					mlx.c							\
+					actions.c						\
 					start_mlx.c						\
 					start_opencl.c					\
 					fill_palette.c					\
 					window_reset.c					\
+					$(addprefix events/,			\
+						key_press.c					\
+						key_release.c				\
+						mouse_move.c				\
+						mouse_press.c				\
+						mouse_release.c				\
+						win_close.c					\
+					)								\
 				)
 
 # --------- Object files ------------------------------------------------------
