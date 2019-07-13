@@ -6,12 +6,24 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:53 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:25:21 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 17:06:47 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "actions.h"
+#include <math.h>			// fmin
+
+static void		set_julia_parameter(int x, int y, t_win *window)
+{
+	t_param *const	p = &(window->param);
+
+	double const	zoom = fmin(p->width / (RE_MAX - RE_MIN),
+			p->height / (IM_MAX - IM_MIN));
+
+	window->program->julia_re = 0.5 * (RE_MIN + RE_MAX + (2 * x - p->width) / zoom);
+	window->program->julia_im = 0.5 * (IM_MIN + IM_MAX + (p->height - 2 * y) / zoom);	// NOTE: direction
+}
 
 int		mouse_move(int x, int y, void *window)
 {
@@ -35,6 +47,10 @@ int		mouse_move(int x, int y, void *window)
 		program->drag_x = x;
 		program->drag_y = y;
 	}
-	// TODO: else ...
+	else	// TODO:
+	{
+		set_julia_parameter(x, y, window);
+		apply(action_update_julia, window, UNUSED, UNUSED);
+	}
 	return (0);
 }

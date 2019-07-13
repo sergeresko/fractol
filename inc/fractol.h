@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 14:06:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:59:54 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,15 @@ struct			s_type			// t_type_info
 	double		re_max;
 	double		im_min;
 	double		im_max;
+	int			is_variable;
 	// ...
 };
+
+// for Mandelbrot set
+# define RE_MIN				(-2.5)
+# define RE_MAX				1.5
+# define IM_MIN				(-1.5)
+# define IM_MAX				1.5
 
 struct			s_param
 {
@@ -150,6 +157,9 @@ struct			s_prog
 	int					drag_mode;
 	int					drag_x;
 	int					drag_y;
+	//
+	double				julia_re;
+	double				julia_im;
 };
 
 # define ERROR_START	"error: "
