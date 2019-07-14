@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/14 13:21:34 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/14 17:37:26 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC			=	$(addprefix src/,					\
 					fill_palette.c					\
 					window.c						\
 					menu.c							\
+					background.c					\
 					$(addprefix events/,			\
 						key_press.c					\
 						key_release.c				\
