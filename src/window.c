@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:43:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:20:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void			window_display_menu(t_win *window)
 	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
 			window->img_ptr, 0, 0);
 	*/
-	mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 30, 0xffffff, "Menu");
+	menu_display(window, 0);
+	//mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 30, 0xffffff, "Menu");
 	// TODO:
 }
 

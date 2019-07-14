@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:42:52 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:21:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ void			window_display(t_win *window);
 void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
+
+void		menu_display(t_win *window, int offset);		// move elsewhere
 
 // events
 
