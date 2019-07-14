@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:45:36 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:06:03 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,47 @@
 #include "actions.h"
 
 // TODO: static
+
+/*
+static t_todo const	*find(int key, t_todo const *todo, int size)
+{
+	while (size--)
+	{
+		if (todo[size].key == key)
+		{
+			return (&(todo[size]));
+		}
+	}
+	return (NULL);
+}
+
+static t_todo const	*search(int key)
+{
+	static t_todo const	todo[] = {
+		{KEY_ARROW_UP, action_move, 0, +STEP_ARROW_MOVE},
+		{KEY_ARROW_DOWN, action_move, 0, -STEP_ARROW_MOVE},
+		{KEY_ARROW_LEFT, action_move, +STEP_ARROW_MOVE, 0},
+		{KEY_ARROW_RIGHT, action_move, -STEP_ARROW_MOVE, 0},
+		{KEY_MINUS, action_zoom_out, -1, -1},			// TODO: define
+		{KEY_MINUS_NUMPAD, action_zoom_out, -1, -1},	// TODO: define
+		{KEY_EQUALS, action_zoom_in, -1, -1},			// TODO: define
+		{KEY_PLUS_NUMPAD, action_zoom_in, -1, -1},		// TODO: define
+		{KEY_BRACKET_LEFT, action_change_iterations, -1, UNUSED},
+		{KEY_BRACKET_RIGHT, action_change_iterations, +1, UNUSED},
+		// ...
+		{KEY_ZERO, action_reset, UNUSED, UNUSED},
+		{KEY_ZERO_NUMPAD, action_reset, UNUSED, UNUSED},
+		//
+		{KEY_ONE, action_set_palette, 1, UNUSED},
+		{KEY_ONE_NUMPAD, action_set_palette, 1, UNUSED},
+		{KEY_TWO, action_set_palette, 2, UNUSED},
+		{KEY_TWO_NUMPAD, action_set_palette, 2, UNUSED},
+		// ...
+	};
+
+	return (find(key, todo, sizeof(todo) / sizeof(*todo)));
+}
+*/
 
 int		key_press_arrow(int key, t_win *window)
 {

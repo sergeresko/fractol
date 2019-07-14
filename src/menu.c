@@ -6,23 +6,25 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 13:08:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 17:46:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:49:57 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-#define MENU_WIDTH		190
-#define MENU_HEIGHT		440
-
-// #define COLOR_BACKGROUND	0x40808080
-// #define COLOR_BORDER		0x00ffffff
 
 #define COLOR_TITLE		0x000000
 #define COLOR_CONTROL	0xee5555
 #define COLOR_TEXT		0xffffff
 
 #define LINE_HEIGHT		20
+
+#define OFFSET_X			10
+#define OFFSET_Y_MOUSE		5
+#define OFFSET_Y_KEYBOARD	(OFFSET_Y_MOUSE + 7 * LINE_HEIGHT)
+#define OFFSET_Y_SHIFT		(OFFSET_Y_KEYBOARD + 11 * LINE_HEIGHT)
+
+#define MENU_WIDTH		190
+#define MENU_HEIGHT		(OFFSET_Y_SHIFT + 3 * LINE_HEIGHT + 8)
 
 static void		menu_display_lines(t_win *window, int x, int y, char **lines)
 {
@@ -39,7 +41,7 @@ static void		menu_display_lines(t_win *window, int x, int y, char **lines)
 	}
 }
 
-static void		menu_display_mouse_controls(t_win *window, int x)
+static void		menu_display_mouse_controls(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"", "Mouse controls",
@@ -51,10 +53,10 @@ static void		menu_display_mouse_controls(t_win *window, int x)
 		NULL,
 	};
 
-	menu_display_lines(window, x, 20, lines);
+	menu_display_lines(window, x + OFFSET_X, y + OFFSET_Y_MOUSE, lines);
 }
 
-static void		menu_display_keyboard_controls(t_win *window, int x)
+static void		menu_display_keyboard_controls(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"", "Keyboard controls",
@@ -70,10 +72,10 @@ static void		menu_display_keyboard_controls(t_win *window, int x)
 		NULL,
 	};
 
-	menu_display_lines(window, x, 160, lines);
+	menu_display_lines(window, x + OFFSET_X, y + OFFSET_Y_KEYBOARD, lines);
 }
 
-static void		menu_display_shift_control(t_win *window, int x)
+static void		menu_display_shift_control(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"SHIFT", "      + anything",
@@ -82,20 +84,20 @@ static void		menu_display_shift_control(t_win *window, int x)
 		NULL,
 	};
 
-	menu_display_lines(window, x, 380, lines);
+	menu_display_lines(window, x + OFFSET_X, y + OFFSET_Y_SHIFT, lines);
 }
 
-void			menu_display(t_win *window, int offset)
+void			menu_display(t_win *window, int x, int y)
 {
-	int const	x = 20 + offset;		// TODO:
 	static void	*background = NULL;
 
 	if (!background)
 	{
-		background = background_create(window->program->mlx_ptr, MENU_WIDTH, MENU_HEIGHT);
+		background = background_create(window->program->mlx_ptr,
+				MENU_WIDTH, MENU_HEIGHT);
 	}
-	background_display(window, background, 10, 10);		// TODO: offset
-	menu_display_mouse_controls(window, x);
-	menu_display_keyboard_controls(window, x);
-	menu_display_shift_control(window, x);
+	background_display(window, background, x, y);
+	menu_display_mouse_controls(window, x, y);
+	menu_display_keyboard_controls(window, x, y);
+	menu_display_shift_control(window, x, y);
 }

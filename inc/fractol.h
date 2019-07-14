@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 17:38:07 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 19:44:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,8 @@ void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
 
-void		menu_display(t_win *window, int offset);		// move elsewhere
+void		menu_display(t_win *window, int x, int y);		// move elsewhere
+void			status_display(t_win *window, int x, int y);
 void		*background_create(void *mlx_ptr, int width, int height);
 void		background_display(t_win *window, void *background, int x, int y);
 
