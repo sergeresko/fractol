@@ -159,6 +159,22 @@ void	action_toggle_info(t_win *window, int is_info_shown, int unused)
 	window_display(window);
 }
 
+void	action_show_menu(t_win *window, int shift_x, int shift_y)
+{
+	if (!(window->is_menu_shown))
+	{
+		window_display_with_shifted_menu(window, shift_x, shift_y);
+	}
+}
+
+void	action_hide_menu(t_win *window, int shift_x, int shift_y)
+{
+	if (window->is_menu_shown)
+	{
+		window_display_with_shifted_menu(window, shift_x, shift_y);
+	}
+}
+
 //	key_press
 //	esc:
 //		destroy_window(window)

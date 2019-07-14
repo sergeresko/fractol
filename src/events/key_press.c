@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 19:06:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:50:59 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,34 @@ int		key_press_reset(int key, t_win *window)
 	return (1);			// success
 }
 
+void	hide_menu(t_win *window)
+{
+	int		shift_x;
+
+	shift_x = 0;
+	while (shift_x >= -200)
+	{
+//		usleep(100);
+		mlx_do_sync(window->program->mlx_ptr);
+		apply(action_hide_menu, window, shift_x, 0);
+		shift_x -= 20;
+	}
+}
+
+void	show_menu(t_win *window)
+{
+	int		shift_x;
+
+	shift_x = -200;
+	while (shift_x <= 0)
+	{
+//		usleep(100);
+		mlx_do_sync(window->program->mlx_ptr);
+		apply(action_show_menu, window, shift_x, 0);
+		shift_x += 20;
+	}
+}
+
 int		key_press_toggle(int key, t_win *window)
 {
 	if (key == KEY_SPACE)
@@ -141,6 +169,14 @@ int		key_press_toggle(int key, t_win *window)
 	}
 	else if (key == KEY_H)
 	{
+		if (window->is_menu_shown)
+		{
+			hide_menu(window);
+		}
+		else
+		{
+			show_menu(window);
+		}
 		apply(action_toggle_menu, window, window->is_menu_shown, UNUSED);
 	}
 	else if (key == KEY_I)

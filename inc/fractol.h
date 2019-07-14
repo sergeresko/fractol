@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 19:44:12 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:32:15 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,8 @@ void			start_opencl(t_prog *program);
 
 void			window_reset(t_win *window);	// TODO: incorporate in action_reset
 void			window_display(t_win *window);
+void			window_display_with_shifted_menu(t_win *window, int shift_x, int shift_y);
+void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
 void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);

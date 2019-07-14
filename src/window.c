@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 19:54:46 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:31:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,6 @@ void			window_display_image(t_win *window)
 			window->img_ptr, 0, 0);
 }
 
-void			window_display_menu(t_win *window)
-{
-	/* TODO:
-	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
-			window->img_ptr, 0, 0);
-	*/
-	menu_display(window, 10, 10);
-	//mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 30, 0xffffff, "Menu");
-	// TODO:
-}
-
-void			window_display_info(t_win *window)
-{
-	// TODO:
-	//mlx_string_put(window->program->mlx_ptr, window->win_ptr, 10, 60, 0xffffff, "Info");
-	status_display(window, 10, window->param.height - 44);
-}
-
 /*
 **	set window parameters (color, palette, param) according to its options
 */
@@ -85,13 +67,35 @@ void			window_display(t_win *window)
 	window_display_image(window);
 	if (window->is_menu_shown)
 	{
-		window_display_menu(window);
+		menu_display(window, 10, 10);
 	}
 	if (window->is_info_shown)
 	{
-		window_display_info(window);
+		status_display(window, 10, window->param.height - 44);
 	}
 }
+
+void			window_display_with_shifted_menu(t_win *window, int shift_x, int shift_y)
+{
+	window_display_image(window);
+	menu_display(window, 10 + shift_x, 10 + shift_y);
+	if (window->is_info_shown)
+	{
+		status_display(window, 10, window->param.height - 44);
+	}
+}
+
+void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y)
+{
+	window_display_image(window);
+	if (window->is_menu_shown)
+	{
+		menu_display(window, 10, 10);
+	}
+	status_display(window, 10 + shift_x, window->param.height - 44 + shift_y);
+}
+
+//
 
 void			window_redraw(t_win *window)
 {
