@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/14 20:21:47 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/15 18:21:53 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ INC			=	$(addprefix inc/,					\
 					fractol.h						\
 					actions.h						\
 					keycodes.h						\
+					events.h						\
 				)
 
 # --------- Source files ------------------------------------------------------
@@ -48,6 +49,7 @@ SRC			=	$(addprefix src/,					\
 					)								\
 					$(addprefix events/,			\
 						key_press.c					\
+						key_press_toggle.c			\
 						key_release.c				\
 						mouse_move.c				\
 						mouse_press.c				\

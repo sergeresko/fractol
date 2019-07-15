@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:19:42 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 15:53:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:12:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # define LEFT_SHIFT_PRESSED		(1 << 0)
 # define RIGHT_SHIFT_PRESSED	(1 << 1)
 
-typedef void	(*t_func)(t_win *, int, int);
+typedef void	(*t_act)(t_win *, int, int);
 
-void		apply(t_func action, t_win *window, int a, int b);
+void		apply(t_act action, t_win *window, int a, int b);
 
 void	action_move(t_win *window, int shift_x, int shift_y);
 void	action_set_palette(t_win *window, int color_scheme, int unused);

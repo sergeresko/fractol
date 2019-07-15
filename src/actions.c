@@ -16,7 +16,7 @@
 typedef void	(*t_func)(t_win *, int, int);
 */
 
-void		apply(t_func action, t_win *window, int a, int b)
+void		apply(t_act action, t_win *window, int a, int b)
 {
 	t_prog *const	program = window->program;
 	int				window_index;
