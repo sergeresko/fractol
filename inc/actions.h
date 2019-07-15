@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:19:42 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:12:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:26:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	action_toggle_fix(t_win *window, int is_fixed, int unused);
 void	action_change_iterations(t_win *window, int direction, int unused);
 
 void	action_shift_help(t_win *window, int is_help_shown, int frame);
-void	action_toggle_help(t_win *window, int is_menu_shown, int unused);
+void	action_toggle_help(t_win *window, int is_help_shown, int unused);
 void	action_shift_status(t_win *window, int is_status_shown, int frame);
-void	action_toggle_status(t_win *window, int is_info_shown, int unused);
+void	action_toggle_status(t_win *window, int is_status_shown, int unused);
 
 #endif

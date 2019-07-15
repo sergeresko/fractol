@@ -119,13 +119,6 @@ void	action_update_julia(t_win *window, int unused_1, int unused_2)
 	}
 }
 
-void	action_toggle_fix(t_win *window, int is_fixed, int unused)
-{
-	(void)unused;
-	window->is_fixed = !is_fixed;
-	window_display(window);
-}
-
 void	action_change_iterations(t_win *window, int direction, int unused)
 {
 	(void)unused;
@@ -145,34 +138,41 @@ void	action_change_iterations(t_win *window, int direction, int unused)
 	}
 }
 
-//
+// action_toggle..., action_shift...
+
+void	action_toggle_fix(t_win *window, int is_fixed, int unused)
+{
+	(void)unused;
+	window->is_fixed = !is_fixed;
+	window_display(window);
+}
 
 void	action_shift_help(t_win *window, int is_help_shown, int frame)
 {
-	if (is_help_shown && window->is_menu_shown)
+	if (is_help_shown && window->is_help_shown)
 	{
-		window_display_with_shifted_menu(window, -25 * frame, 0);
+		window_display_with_shifted_help(window, -25 * frame, 0);
 	}
-	else if (!is_help_shown && !(window->is_menu_shown))
+	else if (!is_help_shown && !(window->is_help_shown))
 	{
-		window_display_with_shifted_menu(window, 25 * frame - 200, 0);
+		window_display_with_shifted_help(window, 25 * frame - 200, 0);
 	}
 }
 
-void	action_toggle_help(t_win *window, int is_menu_shown, int unused)
+void	action_toggle_help(t_win *window, int is_help_shown, int unused)
 {
 	(void)unused;
-	window->is_menu_shown = !is_menu_shown;
+	window->is_help_shown = !is_help_shown;
 	window_display(window);
 }
 
 void	action_shift_status(t_win *window, int is_status_shown, int frame)
 {
-	if (is_status_shown && window->is_info_shown)
+	if (is_status_shown && window->is_status_shown)
 	{
 		window_display_with_shifted_status(window, 0, 8 * frame);
 	}
-	else if (!is_status_shown && !(window->is_info_shown))
+	else if (!is_status_shown && !(window->is_status_shown))
 	{
 		window_display_with_shifted_status(window, 0, 40 - 8 * frame);
 	}
@@ -181,33 +181,6 @@ void	action_shift_status(t_win *window, int is_status_shown, int frame)
 void	action_toggle_status(t_win *window, int is_status_shown, int unused)
 {
 	(void)unused;
-	window->is_info_shown = !is_status_shown;
+	window->is_status_shown = !is_status_shown;
 	window_display(window);
 }
-
-//	key_press
-//	esc:
-//		destroy_window(window)
-//	shift (left):
-//		window->program->global_mode |= LEFT_SHIFT_PRESSED;
-//	shift (right):
-//		window->program->global_mode |= RIGHT_SHIFT_PRESSED;
-//	-, - (numpad):
-//		zoom_out(window)
-//	=, + (numpad):
-//		zoom_in(window)
-//	[:
-//
-//	]:
-//
-//	arrow_up:
-//	arrow_right:
-//	arrow_down:
-//	arrow_left:
-//
-//	space:
-//		reset(window)
-//	h:
-//	
-//	i:
-//

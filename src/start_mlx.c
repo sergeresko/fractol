@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:49:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 16:34:59 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:53:54 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,7 @@ static void		start_window(t_prog *program, int window_index)
 	mlx_hook(window->win_ptr, 6, 0, &mouse_move, window);
 	mlx_hook(window->win_ptr, 17, 0, &win_close, window);
 }
-/*
-#define MENU_WIDTH		190
-#define MENU_HEIGHT		440
 
-#define COLOR_BACKGROUND	0x40808080
-#define COLOR_BORDER		0x00ffffff
-
-// would be better if this were done in `menu`
-static void		create_menu_background(t_prog *program)
-{
-	int			*data;
-	int			tmp;
-	int			i;
-
-	program->menu = mlx_new_image(program->mlx_ptr, MENU_WIDTH, MENU_HEIGHT);
-	data = mlx_get_data_addr(program->menu, &tmp, &tmp, &tmp);
-	i = MENU_WIDTH * MENU_HEIGHT;
-	while (i--)
-	{
-		data[i] = COLOR_BACKGROUND;
-	}
-	i = MENU_WIDTH;
-	while (i--)
-	{
-		data[i] = COLOR_BORDER;
-	}
-}
-*/
 void			start_mlx(t_prog *program)
 {
 	int			window_index;

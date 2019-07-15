@@ -6,13 +6,13 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:52:59 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 20:04:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:53:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-#define COLOR_TEXT		0xffffff		// TODO: make common with menu
+#define COLOR_TEXT		0xffffff		// TODO: make common with help
 
 #define LINE_HEIGHT		20
 

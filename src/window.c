@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 20:31:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:33:08 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,21 @@ void			window_reset(t_win *window)
 void			window_display(t_win *window)
 {
 	window_display_image(window);
-	if (window->is_menu_shown)
+	if (window->is_help_shown)
 	{
-		menu_display(window, 10, 10);
+		help_display(window, 10, 10);
 	}
-	if (window->is_info_shown)
+	if (window->is_status_shown)
 	{
 		status_display(window, 10, window->param.height - 44);
 	}
 }
 
-void			window_display_with_shifted_menu(t_win *window, int shift_x, int shift_y)
+void			window_display_with_shifted_help(t_win *window, int shift_x, int shift_y)
 {
 	window_display_image(window);
-	menu_display(window, 10 + shift_x, 10 + shift_y);
-	if (window->is_info_shown)
+	help_display(window, 10 + shift_x, 10 + shift_y);
+	if (window->is_status_shown)
 	{
 		status_display(window, 10, window->param.height - 44);
 	}
@@ -88,9 +88,9 @@ void			window_display_with_shifted_menu(t_win *window, int shift_x, int shift_y)
 void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y)
 {
 	window_display_image(window);
-	if (window->is_menu_shown)
+	if (window->is_help_shown)
 	{
-		menu_display(window, 10, 10);
+		help_display(window, 10, 10);
 	}
 	status_display(window, 10 + shift_x, window->param.height - 44 + shift_y);
 }

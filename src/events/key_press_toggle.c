@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:10:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:16:33 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:32:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void		toggle_help(t_win *window)
 {
-	int const	is_help_shown = window->is_menu_shown;
+	int const	is_help_shown = window->is_help_shown;
 	int			frame;
 
 	frame = 0;
@@ -31,7 +31,7 @@ static void		toggle_help(t_win *window)
 
 static void		toggle_status(t_win *window)
 {
-	int const	is_status_shown = window->is_info_shown;
+	int const	is_status_shown = window->is_status_shown;
 	int			frame;
 
 	frame = 0;

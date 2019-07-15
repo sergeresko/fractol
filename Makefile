@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/15 18:21:53 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/15 18:35:29 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ SRC			=	$(addprefix src/,					\
 					fill_palette.c					\
 					window.c						\
 					$(addprefix window/,			\
-						menu.c						\
 						background.c				\
+						help.c						\
 						status.c					\
 					)								\
 					$(addprefix events/,			\

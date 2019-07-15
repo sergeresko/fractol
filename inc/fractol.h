@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 20:32:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:26:03 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ struct			s_win
 	void			*img_data;
 	//
 	int				is_alive;
-	int				is_menu_shown;
-	int				is_info_shown;
+	int				is_help_shown;
+	int				is_status_shown;
 	//
 	int				is_fixed;
 };
@@ -184,13 +184,13 @@ void			start_opencl(t_prog *program);
 
 void			window_reset(t_win *window);	// TODO: incorporate in action_reset
 void			window_display(t_win *window);
-void			window_display_with_shifted_menu(t_win *window, int shift_x, int shift_y);
+void			window_display_with_shifted_help(t_win *window, int shift_x, int shift_y);
 void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
 void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
 
-void		menu_display(t_win *window, int x, int y);		// move elsewhere
+void		help_display(t_win *window, int x, int y);		// move elsewhere
 void			status_display(t_win *window, int x, int y);
 void		*background_create(void *mlx_ptr, int width, int height);
 void		background_display(t_win *window, void *background, int x, int y);
