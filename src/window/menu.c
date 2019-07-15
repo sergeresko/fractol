@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 13:08:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 19:49:57 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:54:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		menu_display_keyboard_controls(t_win *window, int x, int y)
 		"0     ", "       reset",
 		"1   5 ", " ...   palette",
 		"H     ", "       help",
-		"I     ", "       info",
+		"S     ", "       status bar",
 		"ESC   ", "       close",
 		NULL,
 	};

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:11:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 19:36:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:42:58 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define KEY_FOUR_NUMPAD		86
 
 # define KEY_H				4
-# define KEY_I				34
+# define KEY_S				1
 
 /*
 **	mouse

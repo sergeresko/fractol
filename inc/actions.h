@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:19:42 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 20:38:49 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:53:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void	action_reset(t_win *window, int unused_1, int unused_2);
 void	action_update_julia(t_win *window, int unused_1, int unused_2);
 void	action_toggle_fix(t_win *window, int is_fixed, int unused);
 void	action_change_iterations(t_win *window, int direction, int unused);
-void	action_toggle_menu(t_win *window, int is_menu_shown, int unused);
-void	action_toggle_info(t_win *window, int is_info_shown, int unused);
-void	action_show_menu(t_win *window, int shift_x, int shift_y);
-void	action_hide_menu(t_win *window, int shift_x, int shift_y);
+
+void	action_shift_help(t_win *window, int is_help_shown, int frame);
+void	action_toggle_help(t_win *window, int is_menu_shown, int unused);
+void	action_shift_status(t_win *window, int is_status_shown, int frame);
+void	action_toggle_status(t_win *window, int is_info_shown, int unused);
 
 #endif

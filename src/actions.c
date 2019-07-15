@@ -145,34 +145,44 @@ void	action_change_iterations(t_win *window, int direction, int unused)
 	}
 }
 
-void	action_toggle_menu(t_win *window, int is_menu_shown, int unused)
+//
+
+void	action_shift_help(t_win *window, int is_help_shown, int frame)
+{
+	if (is_help_shown && window->is_menu_shown)
+	{
+		window_display_with_shifted_menu(window, -25 * frame, 0);
+	}
+	else if (!is_help_shown && !(window->is_menu_shown))
+	{
+		window_display_with_shifted_menu(window, 25 * frame - 200, 0);
+	}
+}
+
+void	action_toggle_help(t_win *window, int is_menu_shown, int unused)
 {
 	(void)unused;
 	window->is_menu_shown = !is_menu_shown;
 	window_display(window);
 }
 
-void	action_toggle_info(t_win *window, int is_info_shown, int unused)
+void	action_shift_status(t_win *window, int is_status_shown, int frame)
+{
+	if (is_status_shown && window->is_info_shown)
+	{
+		window_display_with_shifted_status(window, 0, 8 * frame);
+	}
+	else if (!is_status_shown && !(window->is_info_shown))
+	{
+		window_display_with_shifted_status(window, 0, 40 - 8 * frame);
+	}
+}
+
+void	action_toggle_status(t_win *window, int is_status_shown, int unused)
 {
 	(void)unused;
-	window->is_info_shown = !is_info_shown;
+	window->is_info_shown = !is_status_shown;
 	window_display(window);
-}
-
-void	action_show_menu(t_win *window, int shift_x, int shift_y)
-{
-	if (!(window->is_menu_shown))
-	{
-		window_display_with_shifted_menu(window, shift_x, shift_y);
-	}
-}
-
-void	action_hide_menu(t_win *window, int shift_x, int shift_y)
-{
-	if (window->is_menu_shown)
-	{
-		window_display_with_shifted_menu(window, shift_x, shift_y);
-	}
 }
 
 //	key_press

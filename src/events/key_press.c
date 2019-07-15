@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 20:50:59 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:52:08 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,32 +133,32 @@ int		key_press_reset(int key, t_win *window)
 	return (1);			// success
 }
 
-void	hide_menu(t_win *window)
+void	toggle_help(t_win *window)
 {
-	int		shift_x;
+	int const	is_help_shown = window->is_menu_shown;
+	int			frame;
 
-	shift_x = 0;
-	while (shift_x >= -200)
+	frame = 0;
+	while (++frame < 8)
 	{
-//		usleep(100);
 		mlx_do_sync(window->program->mlx_ptr);
-		apply(action_hide_menu, window, shift_x, 0);
-		shift_x -= 20;
+		apply(action_shift_help, window, is_help_shown, frame);
 	}
+	apply(action_toggle_help, window, is_help_shown, UNUSED);
 }
 
-void	show_menu(t_win *window)
+void	toggle_status(t_win *window)
 {
-	int		shift_x;
+	int const	is_status_shown = window->is_info_shown;
+	int			frame;
 
-	shift_x = -200;
-	while (shift_x <= 0)
+	frame = 0;
+	while (++frame < 5)
 	{
-//		usleep(100);
 		mlx_do_sync(window->program->mlx_ptr);
-		apply(action_show_menu, window, shift_x, 0);
-		shift_x += 20;
+		apply(action_shift_status, window, is_status_shown, frame);
 	}
+	apply(action_toggle_status, window, is_status_shown, UNUSED);
 }
 
 int		key_press_toggle(int key, t_win *window)
@@ -169,19 +169,11 @@ int		key_press_toggle(int key, t_win *window)
 	}
 	else if (key == KEY_H)
 	{
-		if (window->is_menu_shown)
-		{
-			hide_menu(window);
-		}
-		else
-		{
-			show_menu(window);
-		}
-		apply(action_toggle_menu, window, window->is_menu_shown, UNUSED);
+		toggle_help(window);
 	}
-	else if (key == KEY_I)
+	else if (key == KEY_S)
 	{
-		apply(action_toggle_info, window, window->is_info_shown, UNUSED);
+		toggle_status(window);
 	}
 	else
 	{
