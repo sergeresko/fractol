@@ -71,32 +71,38 @@ void	action_close(t_win *window, int unused_1, int unused_2)
 
 void	action_zoom_out(t_win *window, int x, int y)
 {
-	t_param *const	param = &(window->param);		// maybe unneeded
+	t_param *const	param = &(window->param);
 
-	if (x < 0 || y < 0)
+	if (param->zoom > 1.0)		// ZOOM_MIN
 	{
-		x = param->width / 2;
-		y = param->height / 2;
+		if (x < 0 || y < 0)
+		{
+			x = param->width / 2;
+			y = param->height / 2;
+		}
+		param->origin_re += x / param->zoom * STEP_ZOOM;
+		param->origin_im += (param->height - y) / param->zoom * STEP_ZOOM;
+		param->zoom /= 1.0 + STEP_ZOOM;
+		window_redraw(window);
 	}
-	param->origin_re += x / param->zoom * STEP_ZOOM;
-	param->origin_im += (param->height - y) / param->zoom * STEP_ZOOM;
-	param->zoom /= 1.0 + STEP_ZOOM;
-	window_redraw(window);
 }
 
 void	action_zoom_in(t_win *window, int x, int y)
 {
-	t_param *const	param = &(window->param);		// maybe unneeded
+	t_param *const	param = &(window->param);
 
-	if (x < 0 || y < 0)
+	if (param->zoom < 1.0e16)	// ZOOM_MAX
 	{
-		x = param->width / 2;
-		y = param->height / 2;
+		if (x < 0 || y < 0)
+		{
+			x = param->width / 2;
+			y = param->height / 2;
+		}
+		param->zoom *= 1.0 + STEP_ZOOM;
+		param->origin_re -= x / param->zoom * STEP_ZOOM;
+		param->origin_im -= (param->height - y) / param->zoom * STEP_ZOOM;
+		window_redraw(window);
 	}
-	param->zoom *= 1.0 + STEP_ZOOM;
-	param->origin_re -= x / param->zoom * STEP_ZOOM;
-	param->origin_im -= (param->height - y) / param->zoom * STEP_ZOOM;
-	window_redraw(window);
 }
 
 void	action_reset(t_win *window, int unused_1, int unused_2)
