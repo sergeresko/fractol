@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:17:27 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:06:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static t_todo const	*get_action_by_key(int key)		// TODO: rename
 		{KEY_ZERO, action_reset, UNUSED, UNUSED},
 		{KEY_ONE, action_set_palette, 1, UNUSED},
 		{KEY_TWO, action_set_palette, 2, UNUSED},
+		{KEY_THREE, action_set_palette, 3, UNUSED},
+		{KEY_FOUR, action_set_palette, 4, UNUSED},
 		// ...
 	};
 
@@ -55,6 +57,8 @@ static t_todo const *get_action_by_key_numpad(int key)
 		{KEY_ZERO_NUMPAD, action_reset, UNUSED, UNUSED},
 		{KEY_ONE_NUMPAD, action_set_palette, 1, UNUSED},
 		{KEY_TWO_NUMPAD, action_set_palette, 2, UNUSED},
+		{KEY_THREE_NUMPAD, action_set_palette, 3, UNUSED},
+		{KEY_FOUR_NUMPAD, action_set_palette, 4, UNUSED},
 		// ...
 	};
 
