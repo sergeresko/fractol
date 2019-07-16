@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keycodes.h                                         :+:      :+:    :+:   */
+/*   events_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:11:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 15:42:58 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 15:33:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODES_H
-# define KEYCODES_H
+#ifndef EVENTS_PRIVATE_H
+# define EVENTS_PRIVATE_H
+
+# include "actions.h"
 
 /*
 **	keyboard
@@ -56,5 +58,19 @@
 # define MOUSE_SCROLL_DOWN	5
 # define MOUSE_SCROLL_LEFT	6
 # define MOUSE_SCROLL_RIGHT	7
+
+/*
+**
+*/
+
+typedef struct	s_bind
+{
+	int			key;
+	t_act		action;
+	int			a;
+	int			b;
+}				t_bind;
+
+void			key_press_toggle(int key, t_win *window);
 
 #endif

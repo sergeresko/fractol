@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.h                                           :+:      :+:    :+:   */
+/*   window_private.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 12:33:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:14:53 by syeresko         ###   ########.fr       */
+/*   Created: 2019/07/16 15:36:11 by syeresko          #+#    #+#             */
+/*   Updated: 2019/07/16 15:51:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_H
-# define EVENTS_H
+#ifndef WINDOW_PRIVATE_H
+# define WINDOW_PRIVATE_H
 
-// TODO: indentation
+# include "fractol.h"		// t_win
+# include <mlx.h>		// or "mlx.h" ?
 
-int				key_press(int key, void *window);
-int				key_release(int key, void *window);
-int				mouse_press(int button, int x, int y, void *window);
-int				mouse_release(int button, int x, int y, void *window);
-int				mouse_move(int x, int y, void *window);
-int				win_close(void *window);
+void		*background_create(void *mlx_ptr, int width, int height);
+void		background_display(t_win *window, void *background, int x, int y);
+
+void		help_display(t_win *window, int x, int y);			// window_display_help
+void			status_display(t_win *window, int x, int y);	// window_display_status
 
 #endif

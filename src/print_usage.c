@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/19 12:50:06 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:35:54 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h"	// TODO:
+#include "libft.h"		// ft_putstr_fd, ft_strcpy
 
 static void		print_usage_options(void)
 {

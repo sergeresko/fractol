@@ -6,12 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:49:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:53:54 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:36:50 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>			// or "mlx.h" ?
 #include "fractol.h"
+#include "events.h"		// included only here
+#include "libft.h"		// ft_itoa, ft_strcat
 
 #define MULTIPLICATION_SIGN	"\xd7"
 

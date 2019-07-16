@@ -6,13 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:18 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:30:52 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:05:29 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "keycodes.h"
-#include "actions.h"		// LEFT_SHIFT_PRESSED, RIGHT_SHIFT_PRESSED
+// #include "fractol.h"
+// #include "keycodes.h"
+// #include "actions.h"		// LEFT_SHIFT_PRESSED, RIGHT_SHIFT_PRESSED
+#include "events_private.h"
 
 int		key_release(int key, void *window)
 {

@@ -6,12 +6,13 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:44 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:14:14 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:09:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "keycodes.h"
+// #include "fractol.h"
+// #include "keycodes.h"
+#include "events_private.h"
 
 int		mouse_release(int button, int x, int y, void *window)
 {

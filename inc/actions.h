@@ -6,17 +6,17 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:19:42 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:26:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 15:35:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ACTIONS_H
 # define ACTIONS_H
 
-# include "fractol.h"
+# include "fractol.h"		// t_win
 
-# define STEP_ARROW_MOVE		32
-# define STEP_ZOOM				0.1
+# define STEP_ARROW_MOVE		32		// where?
+# define STEP_ZOOM				0.1		// where?
 
 # define UNUSED				0
 
@@ -24,9 +24,9 @@
 # define LEFT_SHIFT_PRESSED		(1 << 0)
 # define RIGHT_SHIFT_PRESSED	(1 << 1)
 
-typedef void	(*t_act)(t_win *, int, int);
+typedef void	(*t_act)(t_win *, int, int);		// or in events_private.h
 
-void		apply(t_act action, t_win *window, int a, int b);
+void		apply(t_act action, t_win *window, int a, int b);	// or in events_private.h
 
 void	action_move(t_win *window, int shift_x, int shift_y);
 void	action_set_palette(t_win *window, int color_scheme, int unused);

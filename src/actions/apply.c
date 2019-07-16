@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.h                                           :+:      :+:    :+:   */
+/*   apply.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 12:33:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:14:53 by syeresko         ###   ########.fr       */
+/*   Created: 2019/07/16 16:20:52 by syeresko          #+#    #+#             */
+/*   Updated: 2019/07/16 16:21:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_H
-# define EVENTS_H
+#include "actions.h"
 
-// TODO: indentation
+void		apply(t_act action, t_win *window, int a, int b)
+{
+	t_prog *const	program = window->program;
+	int				window_index;
 
-int				key_press(int key, void *window);
-int				key_release(int key, void *window);
-int				mouse_press(int button, int x, int y, void *window);
-int				mouse_release(int button, int x, int y, void *window);
-int				mouse_move(int x, int y, void *window);
-int				win_close(void *window);
-
-#endif
+	if (program->global_mode)
+	{
+		window_index = program->window_count;
+		while (window_index--)
+		{
+			window = &(program->windows[window_index]);
+			if (window->is_alive)
+			{
+				action(window, a, b);
+			}
+		}
+	}
+	else
+	{
+		action(window, a, b);
+	}
+}

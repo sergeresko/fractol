@@ -6,11 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:33:08 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:41:42 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "window_private.h"
+//#include "fractol.h"
 #include <math.h>			// fmin
 
 // OpenCL
@@ -95,23 +96,8 @@ void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_
 	status_display(window, 10 + shift_x, window->param.height - 44 + shift_y);
 }
 
-//
-
-void			window_redraw(t_win *window)
+void			window_redraw(t_win *window)		// window_update
 {
 	window_recompute_image(window);
 	window_display(window);
-}
-
-void			redraw_all(t_prog *program)		// TODO: remove
-{
-	int			window_index;
-	t_win		*window;
-
-	window_index = program->window_count;
-	while (window_index--)
-	{
-		window = &(program->windows[window_index]);
-		window_redraw(window);
-	}
 }

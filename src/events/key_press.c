@@ -6,30 +6,31 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 20:06:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:04:24 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "fractol.h"
 //#include "keycodes.h"
 //#include "actions.h"
-#include "events.h"
+#include "events_private.h"
+#include "events.h"		// win_close
 
-static t_todo const	*find(int key, t_todo const *todos, int size)
+static t_bind const	*find(int key, t_bind const *bindings, int size)
 {
 	while (size--)
 	{
-		if (todos[size].key == key)
+		if (bindings[size].key == key)
 		{
-			return (&(todos[size]));
+			return (&(bindings[size]));
 		}
 	}
 	return (NULL);
 }
 
-static t_todo const	*get_action_by_key(int key)		// TODO: rename
+static t_bind const	*get_binding_by_key(int key)		// TODO: rename
 {
-	static t_todo const	todos[] = {
+	static t_bind const	bindings[] = {
 		{KEY_ARROW_UP, action_move, 0, +STEP_ARROW_MOVE},
 		{KEY_ARROW_DOWN, action_move, 0, -STEP_ARROW_MOVE},
 		{KEY_ARROW_LEFT, action_move, +STEP_ARROW_MOVE, 0},
@@ -46,12 +47,12 @@ static t_todo const	*get_action_by_key(int key)		// TODO: rename
 		// ...
 	};
 
-	return (find(key, todos, sizeof(todos) / sizeof(*todos)));
+	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));
 }
 
-static t_todo const *get_action_by_key_numpad(int key)
+static t_bind const *get_binding_by_key_numpad(int key)
 {
-	static t_todo const	todos[] = {
+	static t_bind const	bindings[] = {
 		{KEY_MINUS_NUMPAD, action_zoom_out, -1, -1},	// TODO: define
 		{KEY_PLUS_NUMPAD, action_zoom_in, -1, -1},		// TODO: define
 		{KEY_ZERO_NUMPAD, action_reset, UNUSED, UNUSED},
@@ -62,17 +63,17 @@ static t_todo const *get_action_by_key_numpad(int key)
 		// ...
 	};
 
-	return (find(key, todos, sizeof(todos) / sizeof(*todos)));
+	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));
 }
 
 int		key_press(int key, void *window)
 {
-	t_todo const	*todo;
+	t_bind const	*binding;
 
-	if ((todo = get_action_by_key(key))
-			|| (todo = get_action_by_key_numpad(key)))
+	if ((binding = get_binding_by_key(key))
+			|| (binding = get_binding_by_key_numpad(key)))
 	{
-		apply(todo->action, window, todo->a, todo->b);
+		apply(binding->action, window, binding->a, binding->b);
 	}
 	else if (key == KEY_ESCAPE)
 	{

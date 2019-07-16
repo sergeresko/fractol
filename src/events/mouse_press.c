@@ -6,13 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:30 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 18:26:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:09:00 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "keycodes.h"
-#include "actions.h"
+// #include "fractol.h"
+// #include "keycodes.h"
+// #include "actions.h"
+#include "events_private.h"
 
 int		mouse_press(int button, int x, int y, void *window)
 {

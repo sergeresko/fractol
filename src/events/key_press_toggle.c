@@ -6,14 +6,16 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:10:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:32:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:12:31 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "fractol.h"
 //#include "keycodes.h"
 //#include "actions.h"
-#include "events.h"
+//#include "events.h"
+#include "events_private.h"
+#include <mlx.h>		// mlx_do_sync TODO: or "mlx.h" ?
 
 static void		toggle_help(t_win *window)
 {

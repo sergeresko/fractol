@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   status.c                                           :+:      :+:    :+:   */
+/*   status_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:52:59 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:53:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:40:44 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "window_private.h"
+#include "libft.h"		// ft_strcpy
 
 #define COLOR_TEXT		0xffffff		// TODO: make common with help
 

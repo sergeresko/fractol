@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:26:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 15:47:57 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <mlx.h>
+//# include <mlx.h>
 
 # ifdef __APPLE__
 #  include <OpenCL/opencl.h>
@@ -21,8 +21,8 @@
 #  include <CL/cl.h>
 # endif
 
-# include <unistd.h>
-# include "libft.h"
+//# include <unistd.h>
+//# include "libft.h"
 
 # define WIDTH_CHAR			'w'
 # define WIDTH_MIN			480
@@ -183,25 +183,7 @@ void			start_mlx(t_prog *program);
 void			start_opencl(t_prog *program);
 
 void			window_reset(t_win *window);	// TODO: incorporate in action_reset
-void			window_display(t_win *window);
-void			window_display_with_shifted_help(t_win *window, int shift_x, int shift_y);
-void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
-void			window_redraw(t_win *window);
 
 void			redraw_all(t_prog *program);
-
-void		help_display(t_win *window, int x, int y);		// move elsewhere
-void			status_display(t_win *window, int x, int y);
-void		*background_create(void *mlx_ptr, int width, int height);
-void		background_display(t_win *window, void *background, int x, int y);
-
-// events
-
-int				key_press(int key, void *window);
-int				key_release(int key, void *window);
-int				mouse_press(int button, int x, int y, void *window);
-int				mouse_release(int button, int x, int y, void *window);
-int				mouse_move(int x, int y, void *window);
-int				win_close(void *window);
 
 #endif

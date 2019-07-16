@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/22 19:32:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:33:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "libft.h"		// ft_tolower, ft_strsplit, ft_strsplit_clear
 
 /*
 **	tell whether string `sub` is a subsequence of string `full`

@@ -6,12 +6,13 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:44:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/15 18:29:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:32:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+//#include <stdlib.h>
 #include "fractol.h"
+#include "libft.h"		// ft_memalloc
 
 /*
 **	TODO: describe

@@ -1,8 +1,12 @@
 #include <stdlib.h>
-#include <mlx.h>
-#include "fractol.h"
+#include <mlx.h>		// only for action_close
+//#include "fractol.h"
 
-#include "actions.h"
+//#include "actions.h"
+
+#include "window.h"
+
+#include "actions.h"		// only STEP_ZOOM
 
 /*
 #define LEFT_SHIFT_PRESSED	(1 << 0)
@@ -15,29 +19,6 @@
 
 typedef void	(*t_func)(t_win *, int, int);
 */
-
-void		apply(t_act action, t_win *window, int a, int b)
-{
-	t_prog *const	program = window->program;
-	int				window_index;
-
-	if (program->global_mode)
-	{
-		window_index = program->window_count;
-		while (window_index--)
-		{
-			window = &(program->windows[window_index]);
-			if (window->is_alive)
-			{
-				action(window, a, b);
-			}
-		}
-	}
-	else
-	{
-		action(window, a, b);
-	}
-}
 
 void	action_move(t_win *window, int shift_x, int shift_y)
 {
@@ -131,14 +112,12 @@ void	action_change_iterations(t_win *window, int direction, int unused)
 	if (window->param.iteration_max > 1 && direction < 0)
 	{
 		window->param.iteration_max -= 1;
-		ft_printf("iteration_max: %d\n", window->param.iteration_max);	// TODO: remove
 		fill_palette(window);
 		window_redraw(window);
 	}
 	else if (window->param.iteration_max < ITER_MAX - 1 && direction > 0)
 	{
 		window->param.iteration_max += 1;
-		ft_printf("iteration_max: %d\n", window->param.iteration_max);	// TODO: remove
 		fill_palette(window);
 		window_redraw(window);
 	}

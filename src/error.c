@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 11:31:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/23 15:45:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:34:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+//#include <stdlib.h>
 #include "fractol.h"
+#include "libft.h"		// ft_putstr_fd
 
 static void		die(void)
 {

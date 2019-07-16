@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.h                                           :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 12:33:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:14:53 by syeresko         ###   ########.fr       */
+/*   Created: 2019/07/16 15:36:00 by syeresko          #+#    #+#             */
+/*   Updated: 2019/07/16 15:41:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_H
-# define EVENTS_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
-// TODO: indentation
+# include "fractol.h"		// t_win
 
-int				key_press(int key, void *window);
-int				key_release(int key, void *window);
-int				mouse_press(int button, int x, int y, void *window);
-int				mouse_release(int button, int x, int y, void *window);
-int				mouse_move(int x, int y, void *window);
-int				win_close(void *window);
+// const?
+void			window_display(t_win *window);
+void			window_display_with_shifted_help(t_win *window, int shift_x, int shift_y);
+void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
+void			window_redraw(t_win *window);		// window_update
 
 #endif

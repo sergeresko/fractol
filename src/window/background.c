@@ -6,11 +6,11 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:17:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/14 17:38:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 15:51:13 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "window_private.h"
 
 #define COLOR_BACKGROUND	0x40808080
 #define COLOR_BORDER		0x00ffffff

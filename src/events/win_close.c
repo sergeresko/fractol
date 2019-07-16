@@ -6,12 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:31:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/13 13:26:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 16:10:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "actions.h"
+// #include "fractol.h"
+#include "actions.h"		// TODO: or "events_private.h"
 
 int		win_close(void *window)
 {
