@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 12:37:12 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:41:42 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 18:11:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void			window_reset(t_win *window)
 	p->iteration_max = window->options[OPT_INDEX_ITER];
 	p->zoom = fmin(p->width / (t->re_max - t->re_min),
 			p->height / (t->im_max - t->im_min));
-	p->origin_re = ((p->width / p->zoom) - (t->re_min + t->re_max)) / 2.0;
-	p->origin_im = ((p->height / p->zoom) - (t->im_min + t->im_max)) / 2.0;
+	p->origin_re = 0.5 * ((p->width / p->zoom) - (t->re_min + t->re_max));
+	p->origin_im = 0.5 * (-(p->height / p->zoom) - (t->im_min + t->im_max));	//
 	p->julia_re0 = 0.356;		// for example
 	p->julia_im0 = 0.356;		// for example
 	window->color_scheme = window->options[OPT_INDEX_COLOR];

@@ -61,7 +61,8 @@ __kernel void		mandelbrot_set(
 	int				iter;
 
 	val[RE_0] = (index % p->width) / p->zoom - p->origin_re;
-	val[IM_0] = (p->height - index / p->width) / p->zoom - p->origin_im;
+	val[IM_0] = -(index / p->width) / p->zoom - p->origin_im;
+	/*val[IM_0] = (p->height - index / p->width) / p->zoom - p->origin_im;*/
 	val[RE] = 0.0;
 	val[IM] = 0.0;
 	val[RE_SQUARED] = 0.0;
@@ -90,7 +91,8 @@ __kernel void		julia_set(
 	double const	re0 = p->julia_re0;
 	double const	im0 = p->julia_im0;
 	double			re = (id % p->width) / p->zoom - p->origin_re;
-	double			im = (p->height - id / p->width) / p->zoom - p->origin_im;
+	double			im = -(id / p->width) / p->zoom - p->origin_im;
+	/*double			im = (p->height - id / p->width) / p->zoom - p->origin_im;*/
 	double			re_squared = re * re;
 	double			im_squared = im * im;
 	int				iter = p->iteration_max;

@@ -25,7 +25,7 @@ void	action_move(t_win *window, int shift_x, int shift_y)
 	t_param *const	param = &(window->param);		// maybe unneeded
 
 	param->origin_re += shift_x / param->zoom;
-	param->origin_im -= shift_y / param->zoom;
+	param->origin_im -= shift_y / param->zoom;		// ?
 	window_redraw(window);
 }
 
@@ -62,7 +62,7 @@ void	action_zoom_out(t_win *window, int x, int y)
 			y = param->height / 2;
 		}
 		param->origin_re += x / param->zoom * STEP_ZOOM;
-		param->origin_im += (param->height - y) / param->zoom * STEP_ZOOM;
+		param->origin_im -= y / param->zoom * STEP_ZOOM;	//
 		param->zoom /= 1.0 + STEP_ZOOM;
 		window_redraw(window);
 	}
@@ -81,7 +81,7 @@ void	action_zoom_in(t_win *window, int x, int y)
 		}
 		param->zoom *= 1.0 + STEP_ZOOM;
 		param->origin_re -= x / param->zoom * STEP_ZOOM;
-		param->origin_im -= (param->height - y) / param->zoom * STEP_ZOOM;
+		param->origin_im += y / param->zoom * STEP_ZOOM;	//
 		window_redraw(window);
 	}
 }
