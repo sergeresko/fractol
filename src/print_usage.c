@@ -13,7 +13,7 @@
 #include "fractol.h"	// TODO:
 #include "libft.h"		// ft_putstr_fd, ft_strcpy
 
-static void		print_usage_options(void)
+static void	print_usage_options(void)
 {
 	char		str[80];
 	int			opt_index;
@@ -40,7 +40,7 @@ static void		print_usage_options(void)
 	}
 }
 
-void			print_usage(void)
+void		print_usage(void)
 {
 	ft_putstr_fd("usage: ./fractol [<global options>] "
 			"<type>[<local options>] ...\n\n", STDERR_FILENO);

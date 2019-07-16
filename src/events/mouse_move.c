@@ -10,21 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fractol.h"
 #include "actions.h"	// TODO: or "events_private.h"
-#include <math.h>			// fmin
 
-static void	set_julia_parameter(int x, int y, t_win *window)	// TODO:
-{
-	t_param *const	param = &(window->param);
-
-	window->program->julia_re = param->origin_re + x / param->zoom;
-	window->program->julia_im = param->origin_im - y / param->zoom;
-}
-
-int			mouse_move(int x, int y, void *window)
+int		mouse_move(int x, int y, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;
+	t_param *const	param = &(((t_win *)window)->param);	// can do better ?
 
 	/*
 	if (x < 0 || x >= window->param.width
@@ -44,9 +35,10 @@ int			mouse_move(int x, int y, void *window)
 		program->drag_x = x;
 		program->drag_y = y;
 	}
-	else	// TODO:
+	else
 	{
-		set_julia_parameter(x, y, window);
+		program->julia_re = param->origin_re + x / param->zoom;
+		program->julia_im = param->origin_im - y / param->zoom;
 		apply(action_update_julia, window, UNUSED, UNUSED);
 	}
 	return (0);

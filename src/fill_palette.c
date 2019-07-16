@@ -13,7 +13,7 @@
 #include "fractol.h"
 #include <math.h>		// cos
 
-static void		palette_monochrome(t_win *window)
+static void	palette_monochrome(t_win *window)
 {
 	int *const	palette = window->palette;
 	int			index;
@@ -26,7 +26,7 @@ static void		palette_monochrome(t_win *window)
 	}
 }
 
-static void		palette_2(t_win *window)
+static void	palette_2(t_win *window)
 {
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
@@ -43,7 +43,7 @@ static void		palette_2(t_win *window)
 	}
 }
 
-static void		palette_my(t_win *window)	// TODO:
+static void	palette_my(t_win *window)	// TODO:
 {
 	int		color;
 	int		index;
@@ -59,7 +59,7 @@ static void		palette_my(t_win *window)	// TODO:
 	window->palette[index - 1] = 0x000000;		// possible because index increments
 }
 
-static void		palette_cos(t_win *window)
+static void	palette_cos(t_win *window)
 {
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;

@@ -19,10 +19,10 @@
 
 static char	*make_window_title(int id, t_win const *window)
 {
-	char *const		id_str = ft_itoa(id);
-	char *const		width_str = ft_itoa(window->param.width);
-	char *const		height_str = ft_itoa(window->param.height);
-	static char		title[80];
+	char *const	id_str = ft_itoa(id);
+	char *const	width_str = ft_itoa(window->param.width);
+	char *const	height_str = ft_itoa(window->param.height);
+	static char	title[80];
 
 	*title = '\0';
 	ft_strcat(title, "[");

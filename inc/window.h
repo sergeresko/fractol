@@ -16,9 +16,9 @@
 # include "fractol.h"		// t_win
 
 // const?
-void			window_display(t_win *window);
-void			window_display_with_shifted_help(t_win *window, int shift_x, int shift_y);
-void			window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
-void			window_redraw(t_win *window);		// window_update
+void	window_display(t_win *window);
+void	window_display_with_shifted_help(t_win *window, int shift_x, int shift_y);
+void	window_display_with_shifted_status(t_win *window, int shift_x, int shift_y);
+void	window_redraw(t_win *window);		// window_update
 
 #endif

@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fractol.h"
-// #include "keycodes.h"
 #include "events_private.h"
 
 int		mouse_release(int button, int x, int y, void *window)

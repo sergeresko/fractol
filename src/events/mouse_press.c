@@ -12,7 +12,7 @@
 
 #include "events_private.h"
 
-int			mouse_press(int button, int x, int y, void *window)
+int		mouse_press(int button, int x, int y, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;
 

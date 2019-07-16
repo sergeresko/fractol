@@ -18,9 +18,9 @@
 **	TODO: describe
 */
 
-static void		allocate_windows(t_prog *program, char **av)
+static void	allocate_windows(t_prog *program, char **av)
 {
-	int			count;
+	int		count;
 
 	count = 0;
 	while (*(++av))
@@ -44,7 +44,7 @@ static void		allocate_windows(t_prog *program, char **av)
 **	set it to the value of the respective global option
 */
 
-static void		finalize_local_options(t_win *window)
+static void	finalize_local_options(t_win *window)
 {
 	int *const	global_options = window->program->options;
 	int			opt_index;
@@ -63,7 +63,7 @@ static void		finalize_local_options(t_win *window)
 **	TODO: describe
 */
 
-void			process_arguments(t_prog *program, char **av)
+void		process_arguments(t_prog *program, char **av)
 {
 	char const	*arg;
 	int			window_index;

@@ -14,9 +14,9 @@
 #include "libft.h"		// ft_strcpy
 
 // TODO: maybe use `t_opt const *opt` and `opt->character`
-static void		error_opt(char const *message, char opt_prefix, char opt_char)
+static void	error_opt(char const *message, char opt_prefix, char opt_char)
 {
-	char		str[5];
+	char	str[5];
 
 	ft_strcpy(str, "\"##\"");
 	str[1] = opt_prefix;
@@ -29,10 +29,10 @@ static void		error_opt(char const *message, char opt_prefix, char opt_char)
 **	return this number; otherwise return zero
 */
 
-static int		atoi_positive(char const *str)
+static int	atoi_positive(char const *str)
 {
-	int			value;
-	char		c;
+	int		value;
+	char	c;
 
 	value = 0;
 	while ((c = *(str++)))
@@ -49,7 +49,7 @@ static int		atoi_positive(char const *str)
 **	TODO: describe
 */
 
-void			set_option(int *options, char opt_prefix,
+void		set_option(int *options, char opt_prefix,
 											int opt_index, char const *arg)
 {
 	int			value;

@@ -15,7 +15,7 @@
 
 // TODO: define frame constants
 
-static void		toggle_help(t_win *window)
+static void	toggle_help(t_win *window)
 {
 	int const	is_help_shown = window->is_help_shown;
 	int			frame;
@@ -29,7 +29,7 @@ static void		toggle_help(t_win *window)
 	apply(action_toggle_help, window, is_help_shown, UNUSED);
 }
 
-static void		toggle_status(t_win *window)
+static void	toggle_status(t_win *window)
 {
 	int const	is_status_shown = window->is_status_shown;
 	int			frame;
@@ -43,7 +43,7 @@ static void		toggle_status(t_win *window)
 	apply(action_toggle_status, window, is_status_shown, UNUSED);
 }
 
-void			key_press_toggle(int key, t_win *window)
+void		key_press_toggle(int key, t_win *window)
 {
 	if (key == KEY_SHIFT_LEFT)
 	{

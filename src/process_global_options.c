@@ -13,9 +13,9 @@
 #include "fractol.h"
 
 // might take `program->options`
-static void		initialize_global_options(t_prog *program)
+static void	initialize_global_options(t_prog *program)
 {
-	int			opt_index;
+	int		opt_index;
 
 	opt_index = OPT_COUNT;
 	while (opt_index--)
@@ -25,7 +25,7 @@ static void		initialize_global_options(t_prog *program)
 }
 
 // might take `program->options`
-static void		finalize_global_options(t_prog *program)
+static void	finalize_global_options(t_prog *program)
 {
 	int			opt_index;
 	t_opt const	*opt;
@@ -41,7 +41,7 @@ static void		finalize_global_options(t_prog *program)
 	}
 }
 
-char			**process_global_options(t_prog *program, char **av)
+char		**process_global_options(t_prog *program, char **av)
 {
 	char const	*arg;
 	int			opt_index;

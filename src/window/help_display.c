@@ -26,7 +26,7 @@
 #define HELP_WIDTH		190
 #define HELP_HEIGHT		(OFFSET_Y_SHIFT + 3 * LINE_HEIGHT + 8)
 
-static void		help_display_lines(t_win *window, int x, int y, char **lines)
+static void	help_display_lines(t_win *window, int x, int y, char **lines)
 {
 	void *const	mlx_ptr = window->program->mlx_ptr;
 	void *const	win_ptr = window->win_ptr;
@@ -41,14 +41,14 @@ static void		help_display_lines(t_win *window, int x, int y, char **lines)
 	}
 }
 
-static void		help_display_mouse_controls(t_win *window, int x, int y)
+static void	help_display_mouse_controls(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"", "Mouse controls",
 		"drag        ", "       move image",
 		"scroll      ", "      :",
-		"  vertical  ", "             zoom",
-		"  horizontal", "             iter",
+		"  up down   ", "    /        zoom",
+		"  left right", "      /      iter",
 		"move        ", "       vary param",
 		NULL,
 	};
@@ -56,7 +56,7 @@ static void		help_display_mouse_controls(t_win *window, int x, int y)
 	help_display_lines(window, x + OFFSET_X, y + OFFSET_Y_MOUSE, lines);
 }
 
-static void		help_display_keyboard_controls(t_win *window, int x, int y)
+static void	help_display_keyboard_controls(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"", "Keyboard controls",
@@ -75,7 +75,7 @@ static void		help_display_keyboard_controls(t_win *window, int x, int y)
 	help_display_lines(window, x + OFFSET_X, y + OFFSET_Y_KEYBOARD, lines);
 }
 
-static void		help_display_shift_control(t_win *window, int x, int y)
+static void	help_display_shift_control(t_win *window, int x, int y)
 {
 	static char	*lines[] = {
 		"SHIFT", "      + anything",
@@ -87,7 +87,7 @@ static void		help_display_shift_control(t_win *window, int x, int y)
 	help_display_lines(window, x + OFFSET_X, y + OFFSET_Y_SHIFT, lines);
 }
 
-void			help_display(t_win *window, int x, int y)
+void		help_display(t_win *window, int x, int y)
 {
 	static void	*background = NULL;
 

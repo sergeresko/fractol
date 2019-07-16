@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fractol.h"
 #include "actions.h"		// TODO: or "events_private.h"
 
 int		win_close(void *window)

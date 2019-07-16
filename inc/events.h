@@ -13,13 +13,11 @@
 #ifndef EVENTS_H
 # define EVENTS_H
 
-// TODO: indentation
-
-int				key_press(int key, void *window);
-int				key_release(int key, void *window);
-int				mouse_press(int button, int x, int y, void *window);
-int				mouse_release(int button, int x, int y, void *window);
-int				mouse_move(int x, int y, void *window);
-int				win_close(void *window);
+int		key_press(int key, void *window);
+int		key_release(int key, void *window);
+int		mouse_press(int button, int x, int y, void *window);
+int		mouse_release(int button, int x, int y, void *window);
+int		mouse_move(int x, int y, void *window);
+int		win_close(void *window);
 
 #endif

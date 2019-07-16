@@ -26,7 +26,7 @@
 
 typedef void	(*t_act)(t_win *, int, int);		// or in events_private.h
 
-void		apply(t_act action, t_win *window, int a, int b);	// or in events_private.h
+void	apply(t_act action, t_win *window, int a, int b);	// or in events_private.h
 
 void	action_move(t_win *window, int shift_x, int shift_y);
 void	action_set_palette(t_win *window, int color_scheme, int unused);

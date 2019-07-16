@@ -16,10 +16,10 @@
 # include "fractol.h"		// t_win
 # include <mlx.h>		// or "mlx.h" ?
 
-void		*background_create(void *mlx_ptr, int width, int height);
-void		background_display(t_win *window, void *background, int x, int y);
+void	*background_create(void *mlx_ptr, int width, int height);
+void	background_display(t_win *window, void *background, int x, int y);
 
-void		help_display(t_win *window, int x, int y);			// window_display_help
-void			status_display(t_win *window, int x, int y);	// window_display_status
+void	help_display(t_win *window, int x, int y);			// window_display_help
+void	status_display(t_win *window, int x, int y);	// window_display_status
 
 #endif
