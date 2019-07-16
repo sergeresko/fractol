@@ -115,7 +115,7 @@ void	action_change_iterations(t_win *window, int direction, int unused)
 		fill_palette(window);
 		window_redraw(window);
 	}
-	else if (window->param.iteration_max < ITER_MAX - 1 && direction > 0)
+	else if (window->param.iteration_max < ITER_MAX && direction > 0)
 	{
 		window->param.iteration_max += 1;
 		fill_palette(window);
