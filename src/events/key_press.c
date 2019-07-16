@@ -6,13 +6,10 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:04:24 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:08:11 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fractol.h"
-//#include "keycodes.h"
-//#include "actions.h"
 #include "events_private.h"
 #include "events.h"		// win_close
 
@@ -28,7 +25,7 @@ static t_bind const	*find(int key, t_bind const *bindings, int size)
 	return (NULL);
 }
 
-static t_bind const	*get_binding_by_key(int key)		// TODO: rename
+static t_bind const	*get_binding_by_key(int key)
 {
 	static t_bind const	bindings[] = {
 		{KEY_ARROW_UP, action_move, 0, +STEP_ARROW_MOVE},
@@ -66,7 +63,7 @@ static t_bind const *get_binding_by_key_numpad(int key)
 	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));
 }
 
-int		key_press(int key, void *window)
+int					key_press(int key, void *window)
 {
 	t_bind const	*binding;
 

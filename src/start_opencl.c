@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_opencl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <syeresko@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:37:52 by syeresko          #+#    #+#             */
-/*   Updated: 2019/06/22 17:40:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:17:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #define SOURCE_FILENAME		"kernels/fractol.cl"
 #define SOURCE_SIZE_MAX		(8 * 1024)
 
-static char		*get_program_source(char const *filename)
+static char	*get_program_source(char const *filename)
 {
-	int			fd;
-	char		*source_str;
-	int			source_size;
+	int		fd;
+	char	*source_str;
+	int		source_size;
 
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{
@@ -40,7 +40,7 @@ static char		*get_program_source(char const *filename)
 	return (source_str);
 }
 
-static void		create_program(t_prog *program, cl_device_id device_id)
+static void	create_program(t_prog *program, cl_device_id device_id)
 {
 	char *const	source_str = get_program_source(SOURCE_FILENAME);
 	cl_int		err;
@@ -59,7 +59,7 @@ static void		create_program(t_prog *program, cl_device_id device_id)
 	}
 }
 
-static void		init_buffers(t_win *window)
+static void	init_buffers(t_win *window)
 {
 	cl_context const	context = window->program->cl_context;
 	cl_int				err;
@@ -73,9 +73,9 @@ static void		init_buffers(t_win *window)
 	// TODO: check `err` ?
 }
 
-static void		init_kernel(t_win *window)
+static void	init_kernel(t_win *window)
 {
-	cl_int		err;
+	cl_int	err;
 
 	window->cl_kernel = clCreateKernel(window->program->cl_program,
 			window->type->cl_kernel_name, &err);
@@ -96,7 +96,7 @@ static void		init_kernel(t_win *window)
 	}
 }
 
-void			start_opencl(t_prog *program)
+void		start_opencl(t_prog *program)
 {
 	cl_device_id	device_id;
 	cl_int			err;

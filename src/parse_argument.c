@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:33:12 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:14:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 **	(comparison is case insensitive)
 */
 
-static int		is_subseq(char const *full, char const *sub)
+static int	is_subseq(char const *full, char const *sub)
 {
-	char		s;
-	char		f;
+	char	s;
+	char	f;
 
 	while ((s = ft_tolower(*(sub++))))
 	{
@@ -42,10 +42,10 @@ static int		is_subseq(char const *full, char const *sub)
 **	return -1 if the name is invalid
 */
 
-static int		get_type_index_by_title(char const *title)
+static int	get_type_index_by_title(char const *title)
 {
-	int			index;
-	int			i;
+	int		index;
+	int		i;
 
 	index = -1;
 	i = TYPE_COUNT;
@@ -67,7 +67,7 @@ static int		get_type_index_by_title(char const *title)
 **	TODO: describe
 */
 
-static void		parse_components(t_win *window, char **components)
+static void	parse_components(t_win *window, char **components)
 {
 	int const	type_index = get_type_index_by_title(*components);
 	char		*component;
@@ -95,9 +95,9 @@ static void		parse_components(t_win *window, char **components)
 **	TODO: describe
 */
 
-void			parse_argument(t_win *window, char const *arg)
+void		parse_argument(t_win *window, char const *arg)
 {
-	char		**components;
+	char	**components;
 
 	if (!(arg[0]) || arg[0] == OPT_PREFIX_LOCAL)
 	{

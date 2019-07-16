@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:17:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 15:51:13 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:11:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define COLOR_BACKGROUND	0x40808080
 #define COLOR_BORDER		0x00ffffff
 
-void		*background_create(void *mlx_ptr, int width, int height)
+void	*background_create(void *mlx_ptr, int width, int height)
 {
 	void *const	img_ptr = mlx_new_image(mlx_ptr, width, height);
 	int			i;
@@ -42,7 +42,7 @@ void		*background_create(void *mlx_ptr, int width, int height)
 	return (img_ptr);
 }
 
-void		background_display(t_win *window, void *background, int x, int y)
+void	background_display(t_win *window, void *background, int x, int y)
 {
 	mlx_put_image_to_window(window->program->mlx_ptr, window->win_ptr,
 			background, x, y);

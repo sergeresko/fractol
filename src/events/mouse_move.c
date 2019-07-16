@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:53 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 18:33:20 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:09:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,15 @@
 #include "actions.h"	// TODO: or "events_private.h"
 #include <math.h>			// fmin
 
-static void		set_julia_parameter(int x, int y, t_win *window)	// TODO:
+static void	set_julia_parameter(int x, int y, t_win *window)	// TODO:
 {
-	t_param *const	p = &(window->param);	// param
+	t_param *const	param = &(window->param);
 
-	/*
-	double const	zoom = fmin(p->width / (RE_MAX - RE_MIN),
-			p->height / (IM_MAX - IM_MIN));
-
-	window->program->julia_re = 0.5 * (RE_MIN + RE_MAX + (2 * x - p->width) / zoom);
-	window->program->julia_im = 0.5 * (IM_MIN + IM_MAX + (p->height - 2 * y) / zoom);	// NOTE: direction
-	*/
-	//window->program->julia_re = (double)x / p->zoom - p->origin_re;
-	//window->program->julia_im = -(double)y / p->zoom - p->origin_im;
-	window->program->julia_re = p->origin_re + (double)x / p->zoom;		// no need for (double)
-	window->program->julia_im = p->origin_im - (double)y / p->zoom;
+	window->program->julia_re = param->origin_re + x / param->zoom;
+	window->program->julia_im = param->origin_im - y / param->zoom;
 }
 
-int		mouse_move(int x, int y, void *window)
+int			mouse_move(int x, int y, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;
 

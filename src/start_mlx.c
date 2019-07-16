@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:49:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:36:50 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:16:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #define MULTIPLICATION_SIGN	"\xd7"
 
-static char		*make_window_title(int id, t_win const *window)
+static char	*make_window_title(int id, t_win const *window)
 {
 	char *const		id_str = ft_itoa(id);
 	char *const		width_str = ft_itoa(window->param.width);
@@ -40,10 +40,10 @@ static char		*make_window_title(int id, t_win const *window)
 	return (title);
 }
 
-static void		start_window(t_prog *program, int window_index)
+static void	start_window(t_prog *program, int window_index)
 {
 	t_win *const	window = &(program->windows[window_index]);
-	char *const		window_title  = make_window_title(window_index + 1, window);
+	char *const		window_title = make_window_title(window_index + 1, window);
 	int				tmp;
 
 	window->win_ptr = mlx_new_window(program->mlx_ptr,
@@ -59,9 +59,9 @@ static void		start_window(t_prog *program, int window_index)
 	mlx_hook(window->win_ptr, 17, 0, &win_close, window);
 }
 
-void			start_mlx(t_prog *program)
+void		start_mlx(t_prog *program)
 {
-	int			window_index;
+	int		window_index;
 
 	program->mlx_ptr = mlx_init();
 	// < TODO: should do this elsewhere (?)

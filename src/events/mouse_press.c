@@ -6,27 +6,21 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:30 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:09:00 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 21:10:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fractol.h"
-// #include "keycodes.h"
-// #include "actions.h"
 #include "events_private.h"
 
-int		mouse_press(int button, int x, int y, void *window)
+int			mouse_press(int button, int x, int y, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;
 
-	if (button == MOUSE_BUTTON_LEFT)
+	if (button == MOUSE_BUTTON_LEFT && !(program->drag_mode))
 	{
-		if (!(program->drag_mode))
-		{
-			program->drag_x = x;
-			program->drag_y = y;
-		}
-		program->drag_mode = 1;		// move into the if body above ? then may write `if (button == ... && !(...))`
+		program->drag_mode = 1;
+		program->drag_x = x;
+		program->drag_y = y;
 	}
 	else if (button == MOUSE_SCROLL_DOWN)
 	{
