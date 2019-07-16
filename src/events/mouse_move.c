@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:53 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 18:22:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/16 18:33:20 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void		set_julia_parameter(int x, int y, t_win *window)	// TODO:
 	window->program->julia_re = 0.5 * (RE_MIN + RE_MAX + (2 * x - p->width) / zoom);
 	window->program->julia_im = 0.5 * (IM_MIN + IM_MAX + (p->height - 2 * y) / zoom);	// NOTE: direction
 	*/
-	window->program->julia_re = (double)x / p->zoom - p->origin_re;
-	window->program->julia_im = -(double)y / p->zoom - p->origin_im;
-	//window->program->julia_re = p->origin_re + (double)x / p->zoom;
-	//window->program->julia_im = p->origin_im - (double)y / p->zoom;
+	//window->program->julia_re = (double)x / p->zoom - p->origin_re;
+	//window->program->julia_im = -(double)y / p->zoom - p->origin_im;
+	window->program->julia_re = p->origin_re + (double)x / p->zoom;		// no need for (double)
+	window->program->julia_im = p->origin_im - (double)y / p->zoom;
 }
 
 int		mouse_move(int x, int y, void *window)
