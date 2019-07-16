@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 enum			e_index
 {
 	RE_0, RE, RE_SQUARED,
 	IM_0, IM, IM_SQUARED,
 };
+*/
 
 struct			s_param
 {
@@ -38,24 +40,6 @@ __kernel void		mandelbrot_set(
 							__global struct s_param *p)
 {
 	/*
-	int const		id = get_global_id(0);
-	double const	re0 = (id % p->width) / p->zoom - p->origin_re;
-	double const	im0 = (p->height - id / p->width) / p->zoom - p->origin_im;
-	double			re = 0.0;
-	double			im = 0.0;
-	double			re_squared = 0.0;
-	double			im_squared = 0.0;
-	int				iter = p->iteration_max;
-
-	while (--iter && re_squared + im_squared <= 4.0)
-	{
-		im = 2.0 * re * im + im0;
-		re = re_squared - im_squared + re0;
-		re_squared = re * re;
-		im_squared = im * im;
-	}
-	img[id] = palette[p->iteration_max - 1 - iter];
-	*/
 	int const		index = get_global_id(0);
 	double			val[6];
 	int				iter;
@@ -75,6 +59,25 @@ __kernel void		mandelbrot_set(
 		val[IM_SQUARED] = val[IM] * val[IM];
 	}
 	img[index] = palette[p->iteration_max - 1 - iter];
+	*/
+
+	int const		id = get_global_id(0);
+	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
+	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
+	double			re = 0.0;
+	double			im = 0.0;
+	double			re_squared = re * re;
+	double			im_squared = im * im;
+	int				iter = p->iteration_max;
+
+	while (--iter && re_squared + im_squared <= 4.0)
+	{
+		im = 2.0 * re * im + im0;
+		re = re_squared - im_squared + re0;
+		re_squared = re * re;
+		im_squared = im * im;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
 /*
@@ -101,6 +104,97 @@ __kernel void		julia_set(
 		re = re_squared - im_squared + re0;
 		re_squared = re * re;
 		im_squared = im * im;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+__kernel void		multibrot_3(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
+	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
+	double			re = 0.0;
+	double			im = 0.0;
+	double			re_tmp;
+	int				iter = p->iteration_max;
+
+	while (--iter && re * re + im * im <= 4.0)
+	{
+		re_tmp = re * re * re - 3.0 * re * im * im + re0;
+		im = 3.0 * re * re * im - im * im * im + im0;
+		re = re_tmp;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+__kernel void		multibrot_4(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
+	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
+	double			re = 0.0;
+	double			im = 0.0;
+	double			re_squared = re * re;
+	double			im_squared = im * im;
+	double			re_tmp;
+	int				iter = p->iteration_max;
+
+	while (--iter && re_squared + im_squared <= 4.0)
+	{
+		im = 4.0 * re * im * (re_squared - im_squared) + im0;
+		re = re_squared * re_squared - 6.0 * re_squared * im_squared + im_squared * im_squared + re0;
+		re_squared = re * re;
+		im_squared = im * im;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+__kernel void		negabrot_1(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
+	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
+	double			re = re0;
+	double			im = im0;
+	double			d;
+	int				iter = p->iteration_max;
+
+	while (--iter && (d = re * re + im * im) > 0.001)
+	{
+		re = re / d + re0;
+		im = -im / d + im0;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+__kernel void		negabrot_2(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
+	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
+	double			re = re0;
+	double			im = im0;
+	double			re_squared = re * re;
+	double			im_squared = im * im;
+	double			d;
+	int				iter = p->iteration_max;
+
+	while (--iter && (d = (re_squared + im_squared) * (re_squared + im_squared)) > 0.00001)
+	{
+		im = -2.0 * re * im / d + im0;
+		re = (re_squared - im_squared) / d + re0;
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
