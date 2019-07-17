@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:08:11 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/17 12:28:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static t_bind const	*get_binding_by_key(int key)
 		{KEY_EQUALS, action_zoom_in, -1, -1},			// TODO: define
 		{KEY_BRACKET_LEFT, action_change_iterations, -1, UNUSED},
 		{KEY_BRACKET_RIGHT, action_change_iterations, +1, UNUSED},
-		{KEY_ZERO, action_reset, UNUSED, UNUSED},
-		{KEY_ONE, action_set_palette, 1, UNUSED},
-		{KEY_TWO, action_set_palette, 2, UNUSED},
-		{KEY_THREE, action_set_palette, 3, UNUSED},
-		{KEY_FOUR, action_set_palette, 4, UNUSED},
+		{KEY_0, action_reset, UNUSED, UNUSED},
+		{KEY_1, action_set_palette, 1, UNUSED},
+		{KEY_2, action_set_palette, 2, UNUSED},
+		{KEY_3, action_set_palette, 3, UNUSED},
+		{KEY_4, action_set_palette, 4, UNUSED},
 		// ...
 	};
 
@@ -52,11 +52,11 @@ static t_bind const *get_binding_by_key_numpad(int key)
 	static t_bind const	bindings[] = {
 		{KEY_MINUS_NUMPAD, action_zoom_out, -1, -1},	// TODO: define
 		{KEY_PLUS_NUMPAD, action_zoom_in, -1, -1},		// TODO: define
-		{KEY_ZERO_NUMPAD, action_reset, UNUSED, UNUSED},
-		{KEY_ONE_NUMPAD, action_set_palette, 1, UNUSED},
-		{KEY_TWO_NUMPAD, action_set_palette, 2, UNUSED},
-		{KEY_THREE_NUMPAD, action_set_palette, 3, UNUSED},
-		{KEY_FOUR_NUMPAD, action_set_palette, 4, UNUSED},
+		{KEY_0_NUMPAD, action_reset, UNUSED, UNUSED},
+		{KEY_1_NUMPAD, action_set_palette, 1, UNUSED},
+		{KEY_2_NUMPAD, action_set_palette, 2, UNUSED},
+		{KEY_3_NUMPAD, action_set_palette, 3, UNUSED},
+		{KEY_4_NUMPAD, action_set_palette, 4, UNUSED},
 		// ...
 	};
 

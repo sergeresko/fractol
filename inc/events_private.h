@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:11:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 15:33:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/17 12:27:14 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@
 # define KEY_ARROW_DOWN		125
 # define KEY_ARROW_UP		126
 
-# define KEY_ZERO			29
-# define KEY_ONE				18
-# define KEY_TWO				19
-# define KEY_THREE			20
-# define KEY_FOUR			21
-# define KEY_ZERO_NUMPAD		82
-# define KEY_ONE_NUMPAD		83
-# define KEY_TWO_NUMPAD		84
-# define KEY_THREE_NUMPAD	85
-# define KEY_FOUR_NUMPAD		86
+# define KEY_0			29
+# define KEY_1				18
+# define KEY_2				19
+# define KEY_3			20
+# define KEY_4			21
+# define KEY_0_NUMPAD		82
+# define KEY_1_NUMPAD		83
+# define KEY_2_NUMPAD		84
+# define KEY_3_NUMPAD	85
+# define KEY_4_NUMPAD		86
 
 # define KEY_H				4
 # define KEY_S				1
