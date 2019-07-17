@@ -198,3 +198,42 @@ __kernel void		negabrot_2(
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
+
+__kernel void		newton(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re_squared = re * re;
+	double			im_squared = im * im;
+	double			absolute = re_squared + im_squared;
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+	double			roots_re[3] = {1.0, -0.5, -0.5};
+	double			roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
+	double			re_tmp;
+	int				i;
+
+	while (--iter)
+	{
+		re_tmp = (2.0 * re + (re_squared - im_squared) / (absolute * absolute)) / 3.0;
+		im = (2.0 * im - 2.0 * re * im / (absolute * absolute)) / 3.0;
+		re = re_tmp;
+		i = 3;
+		while (i--)
+		{
+			if (fabs(re - roots_re[i]) < tolerance && fabs(im - roots_im[i]) < tolerance)
+			{
+				img[id] = palette[p->iteration_max - 1 - iter];
+				return ;
+			}
+		}
+		re_squared = re * re;
+		im_squared = im * im;
+		absolute = re_squared + im_squared;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
