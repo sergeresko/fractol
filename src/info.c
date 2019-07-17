@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/17 13:21:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/17 16:08:36 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_type const	*type_info(int index)
 		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Newton", "newton", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Newton 2", "newton_2", -1.0, 1.0, -1.5, 1.5, 1},
 	};
 
 	return (&(info[index]));

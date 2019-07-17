@@ -237,3 +237,46 @@ __kernel void		newton(
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
+
+__kernel void		newton_2(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	a_re = p->julia_re0;
+	double const	a_im = p->julia_im0;
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re_squared = re * re;
+	double			im_squared = im * im;
+	double			absolute = re_squared + im_squared;
+	double			u_re = (re - (re_squared - im_squared) / (absolute * absolute)) / 3.0;
+	double			u_im = (im + 2.0 * re * im / (absolute * absolute)) / 3.0;
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+	double			roots_re[3] = {1.0, -0.5, -0.5};
+	double			roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
+	int				i;
+
+	while (--iter)
+	{
+		re += -a_re * u_re + a_im * u_im;//re += -u_re + u_im;//re += -2.0 * v1;
+		im += -a_re * u_im - a_im * u_re;//im += -u_im - u_re;//im += -2.0 * v2;
+		i = 3;
+		while (i--)
+		{
+			if (fabs(re - roots_re[i]) < tolerance && fabs(im - roots_im[i]) < tolerance)
+			{
+				img[id] = palette[p->iteration_max - 1 - iter];
+				return ;
+			}
+		}
+		re_squared = re * re;
+		im_squared = im * im;
+		absolute = re_squared + im_squared;
+		u_re = (re - (re_squared - im_squared) / (absolute * absolute)) / 3.0;
+		u_im = (im + 2.0 * re * im / (absolute * absolute)) / 3.0;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}

@@ -54,8 +54,8 @@ void	action_zoom_out(t_win *window, int x, int y)
 {
 	t_param *const	param = &(window->param);
 
-	if (param->zoom > 1.0)		// ZOOM_MIN
-	{
+//	if (param->zoom > 1.0)		// ZOOM_MIN
+//	{
 		if (x < 0 || y < 0)
 		{
 			x = param->width / 2;
@@ -65,7 +65,7 @@ void	action_zoom_out(t_win *window, int x, int y)
 		param->origin_im += y / param->zoom * STEP_ZOOM;	//
 		param->zoom /= 1.0 + STEP_ZOOM;
 		window_redraw(window);
-	}
+//	}
 }
 
 void	action_zoom_in(t_win *window, int x, int y)
