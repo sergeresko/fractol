@@ -360,19 +360,19 @@ __kernel void		newton(
 	int const		id = get_global_id(0);
 	double			re = p->origin_re + (id % p->width) / p->zoom;
 	double			im = p->origin_im - (id / p->width) / p->zoom;
-	double			re2 = re * re;
-	double			im2 = im * im;
-	double			absolute = re2 + im2;		// TODO: rename
+	double			re2 = re * re;		// const in cycle
+	double			im2 = im * im;		// -"-
+	double			abs2 = re2 + im2;	// -"-
 	int				iter = p->iteration_max;
 	double const	tolerance = 1.0e-6;
-	double			roots_re[3] = {1.0, -0.5, -0.5};
-	double			roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
+	double const	roots_re[3] = {1.0, -0.5, -0.5};
+	double const	roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
 	int				i;
 
 	while (--iter)
 	{
-		im = (2.0 * im - 2.0 * re * im / (absolute * absolute)) / 3.0;
-		re = (2.0 * re + (re2 - im2) / (absolute * absolute)) / 3.0;
+		im = (2.0 * im - 2.0 * re * im / (abs2 * abs2)) / 3.0;
+		re = (2.0 * re + (re2 - im2) / (abs2 * abs2)) / 3.0;
 		i = 3;
 		while (i--)
 		{
@@ -384,7 +384,7 @@ __kernel void		newton(
 		}
 		re2 = re * re;
 		im2 = im * im;
-		absolute = re2 + im2;
+		abs2 = re2 + im2;
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
@@ -393,7 +393,7 @@ __kernel void		newton(
 **
 */
 
-__kernel void		newton_var(
+__kernel void		newton3_var(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -405,19 +405,19 @@ __kernel void		newton_var(
 	double			im = p->origin_im - (id / p->width) / p->zoom;
 	double			re2 = re * re;
 	double			im2 = im * im;
-	double			absolute = re2 + im2;
-	double			u_re = (re - (re2 - im2) / (absolute * absolute)) / 3.0;
-	double			u_im = (im + 2.0 * re * im / (absolute * absolute)) / 3.0;
+	double			abs2 = re2 + im2;
+	double			u_re = (re - (re2 - im2) / (abs2 * abs2)) / 3.0;
+	double			u_im = (im + 2.0 * re * im / (abs2 * abs2)) / 3.0;
 	int				iter = p->iteration_max;
 	double const	tolerance = 1.0e-6;
-	double			roots_re[3] = {1.0, -0.5, -0.5};
-	double			roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
+	double const	roots_re[3] = {1.0, -0.5, -0.5};
+	double const	roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
 	int				i;
 
 	while (--iter)
 	{
-		re += -a_re * u_re + a_im * u_im;//re += -u_re + u_im;//re += -2.0 * v1;
-		im += -a_re * u_im - a_im * u_re;//im += -u_im - u_re;//im += -2.0 * v2;
+		re += -a_re * u_re + a_im * u_im;
+		im += -a_re * u_im - a_im * u_re;
 		i = 3;
 		while (i--)
 		{
@@ -429,9 +429,96 @@ __kernel void		newton_var(
 		}
 		re2 = re * re;
 		im2 = im * im;
-		absolute = re2 + im2;
-		u_re = (re - (re2 - im2) / (absolute * absolute)) / 3.0;
-		u_im = (im + 2.0 * re * im / (absolute * absolute)) / 3.0;
+		abs2 = re2 + im2;
+		u_re = (re - (re2 - im2) / (abs2 * abs2)) / 3.0;
+		u_im = (im + 2.0 * re * im / (abs2 * abs2)) / 3.0;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
+**	TODO: does not match the image
+*/
+
+__kernel void		newton3_nova(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	a_re = 1.0;
+	double const	a_im = 0.0;
+	double const	c_re = p->var_re;
+	double const	c_im = p->var_im;
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	double			abs2 = re2 + im2;
+	double			u_re = (re - (re2 - im2) / (abs2 * abs2)) / 3.0;
+	double			u_im = (im + 2.0 * re * im / (abs2 * abs2)) / 3.0;
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+
+	while (--iter)
+	{
+		double const	d_re = -a_re * u_re + a_im * u_im + c_re;
+		double const	d_im = -a_re * u_im - a_im * u_re + c_im;
+
+		if (fabs(d_re) < tolerance && fabs(d_im) < tolerance)
+		{
+			img[id] = palette[p->iteration_max - 1 - iter];
+			return ;
+		}
+		re += d_re;
+		im += d_im;
+		re2 = re * re;
+		im2 = im * im;
+		abs2 = re2 + im2;
+		u_re = (re - (re2 - im2) / (abs2 * abs2)) / 3.0;
+		u_im = (im + 2.0 * re * im / (abs2 * abs2)) / 3.0;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
+**
+*/
+
+// TODO: bad, remove
+__kernel void		newton2_var(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	a_re = p->var_re;
+	double const	a_im = p->var_im;
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	double			abs2 = re2 + im2;
+	double			u_re = 0.5 * re * (1.0 - 1.0 / abs2);
+	double			u_im = 0.5 * im * (1.0 + 1.0 / abs2);
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+
+	while (--iter)
+	{
+		re = re - a_re * u_re + a_im * u_im;
+		im = im - a_re * u_im + a_im * u_re;
+		if ((fabs(re - 1.0) < tolerance || fabs(re + 1.0) < tolerance)
+				&& fabs(im) < tolerance)
+		{
+			img[id] = palette[p->iteration_max - 1 - iter];
+			return ;
+		}
+		re2 = re * re;
+		im2 = im * im;
+		abs2 = re2 + im2;
+		u_re = 0.5 * re * (1.0 - 1.0 / abs2);
+		u_im = 0.5 * im * (1.0 + 1.0 / abs2);
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
@@ -456,7 +543,7 @@ __kernel void		newton_sin(
 
 	while (--iter)
 	{
-		double t = im - (sinh(2.0 * im) - 2.0 * sin(re) * sinh(im)) / denominator;
+		double const	t = im - (sinh(2.0 * im) - 2.0 * sin(re) * sinh(im)) / denominator;
 		re = re - (sin(2.0 * re) - 2.0 * cos(re) * cosh(im)) / denominator;
 		im = t;
 		if (fabs(sin(re) * cosh(im) - 1.0) < tolerance && fabs(cos(re) * sinh(im)) < tolerance)
@@ -487,7 +574,6 @@ __kernel void		newton_custom(
 	double			im2 = im * im;
 	double			qu_re = (re2 * re2) - (6.0 * re2 * im2) + (im2 * im2);
 	double			qu_im = 4.0 * re * im * (re2 - im2);
-
 	int				iter = p->iteration_max;
 	double const	tolerance = 1.0e-6;
 
@@ -495,7 +581,7 @@ __kernel void		newton_custom(
 	{
 		double const	t = 2.0 * qu_re + 3.0;
 		double const	fraction = 25.0 / (t * t + 4.0 * qu_im * qu_im);
-		double const	w_re = (1.0 - fraction) * t;
+		double const	w_re = (1.0 - fraction) * (2.0  * qu_re + 3.0);
 		double const	w_im = (1.0 + fraction) * 2.0 * qu_im;
 		double const	c_re = re * (re2 - 3.0 * im2);
 		double const	c_im = (im2 - 3.0 * re2) * im;

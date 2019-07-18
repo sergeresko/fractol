@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/18 17:12:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 19:53:20 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ t_type const	*type_info(int index)
 //		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton variable", "newton_var", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton Nova", "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton 2 variable", "newton2_var", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton 3 variable", "newton3_var", -1.0, 1.0, -1.5, 1.5, 1},
 		{"Newton p(z) = sin(z) - 1", "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Newton p(z) = z^8 + 3 * z^4 - 4", "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
 	};

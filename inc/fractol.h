@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/18 17:11:20 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 19:52:30 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			process_arguments(t_prog *program, char **av);
 
 //
 
-# define TYPE_COUNT			14
+# define TYPE_COUNT			16
 
 struct			s_type			// t_type_info
 {
