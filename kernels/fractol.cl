@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	This structure must be identical to the one deifned in inc/fractol.h.
+*/
+
 struct			s_param
 {
 	double		zoom;
@@ -23,7 +27,13 @@ struct			s_param
 };
 
 /*
-**	z => z^2 + c
+**	===========================================================================
+**		Mandelbrot set and its variations
+**	===========================================================================
+*/
+
+/*
+**		(1)		z => z^2 + c
 */
 
 __kernel void		mandelbrot_set(
@@ -50,10 +60,6 @@ __kernel void		mandelbrot_set(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-/*
-**	z => z^2 + c
-*/
-
 __kernel void		julia_set(
 							__global int *img,
 							__global int *palette,
@@ -79,7 +85,7 @@ __kernel void		julia_set(
 }
 
 /*
-**	z => z^3 + c
+**		(2)		z => z^3 + c
 */
 
 __kernel void		multibrot_3(
@@ -106,10 +112,6 @@ __kernel void		multibrot_3(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-/*
-**	z => z^3 + c
-*/
-
 __kernel void		julia_3(
 							__global int *img,
 							__global int *palette,
@@ -135,7 +137,7 @@ __kernel void		julia_3(
 }
 
 /*
-**	z => z^4 + c
+**		(3)		z => z^4 + c
 */
 
 __kernel void		multibrot_4(
@@ -162,10 +164,6 @@ __kernel void		multibrot_4(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-/*
-**	z => z^4 + c
-*/
-
 __kernel void		julia_4(
 							__global int *img,
 							__global int *palette,
@@ -191,7 +189,7 @@ __kernel void		julia_4(
 }
 
 /*
-**	z => (conj(z))^2 + c
+**		(4)		z => (conj(z))^2 + c
 */
 
 __kernel void		tricorn(
@@ -218,10 +216,6 @@ __kernel void		tricorn(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-/*
-**	z => (conj(z))^2 + c
-*/
-
 __kernel void		tricorn_julia(
 							__global int *img,
 							__global int *palette,
@@ -247,7 +241,7 @@ __kernel void		tricorn_julia(
 }
 
 /*
-**	z => (|Re z| - i|Im z|)^2 + c
+**		(5)		z => (|Re z| - i|Im z|)^2 + c
 */
 
 __kernel void		burning_ship(
@@ -273,10 +267,6 @@ __kernel void		burning_ship(
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
-
-/*
-**	z => (|Re z| - i|Im z|)^2 + c
-*/
 
 __kernel void		burning_ship_julia(
 							__global int *img,
@@ -349,7 +339,13 @@ __kernel void		negabrot_2(
 */
 
 /*
-**	p(z) = z^3 - 1
+**	===========================================================================
+**		Newton fractals
+**	===========================================================================
+*/
+
+/*
+**		(1)		p(z) = z^3 - 1
 */
 
 __kernel void		newton(
@@ -437,7 +433,7 @@ __kernel void		newton3_var(
 }
 
 /*
-**	TODO: does not match the image
+**
 */
 
 __kernel void		newton3_nova(
@@ -448,10 +444,10 @@ __kernel void		newton3_nova(
 	int const		id = get_global_id(0);
 	double const	a_re = 1.0;
 	double const	a_im = 0.0;
-	double const	c_re = p->var_re;
-	double const	c_im = p->var_im;
-	double			re = p->origin_re + (id % p->width) / p->zoom;
-	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double const	c_re = p->origin_re + (id % p->width) / p->zoom;
+	double const	c_im = p->origin_im - (id / p->width) / p->zoom;
+	double			re = 1.0;//p->var_re;
+	double			im = 0.0;//p->var_im;
 	double			re2 = re * re;
 	double			im2 = im * im;
 	double			abs2 = re2 + im2;
@@ -544,6 +540,7 @@ __kernel void		newton_sin(
 	while (--iter)
 	{
 		double const	t = im - (sinh(2.0 * im) - 2.0 * sin(re) * sinh(im)) / denominator;
+
 		re = re - (sin(2.0 * re) - 2.0 * cos(re) * cosh(im)) / denominator;
 		im = t;
 		if (fabs(sin(re) * cosh(im) - 1.0) < tolerance && fabs(cos(re) * sinh(im)) < tolerance)
