@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/17 15:36:16 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:48:20 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			process_arguments(t_prog *program, char **av);
 
 //
 
-# define TYPE_COUNT			8
+# define TYPE_COUNT			10
 
 struct			s_type			// t_type_info
 {
@@ -102,8 +102,8 @@ struct			s_param
 	double		zoom;
 	double		origin_re;
 	double		origin_im;
-	double		julia_re0;
-	double		julia_im0;
+	double		var_re;
+	double		var_im;
 	int			width;
 	int			height;
 	int			iteration_max;
@@ -155,8 +155,8 @@ struct			s_prog
 	int					drag_x;
 	int					drag_y;
 	//
-	double				julia_re;
-	double				julia_im;
+	double				var_re;
+	double				var_im;
 };
 
 # define ERROR_START	"error: "

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:53 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:09:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:05:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int		mouse_move(int x, int y, void *window)
 	}
 	else
 	{
-		program->julia_re = param->origin_re + x / param->zoom;
-		program->julia_im = param->origin_im - y / param->zoom;
+		program->var_re = param->origin_re + x / param->zoom;
+		program->var_im = param->origin_im - y / param->zoom;
 		apply(action_update_julia, window, UNUSED, UNUSED);
 	}
 	return (0);

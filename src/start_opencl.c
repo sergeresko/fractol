@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 14:37:52 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:17:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:22:42 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 #define SOURCE_FILENAME		"kernels/fractol.cl"
-#define SOURCE_SIZE_MAX		(8 * 1024)
+#define SOURCE_SIZE_MAX		(10 * 1024)
 
 static char	*get_program_source(char const *filename)
 {

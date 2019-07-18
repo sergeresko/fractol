@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/17 16:08:36 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:58:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ t_type const	*type_info(int index)
 		{"Julia set", "julia_set", -2.0, 2.0, -2.0, 2.0, 1},
 		{"Mandelbrot set", "mandelbrot_set", -2.5, 1.5, -1.5, 1.5, 0},
 		{"Multibrot 3", "multibrot_3", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Julia 3", "julia_3", -1.5, 1.5, -1.5, 1.5, 1},				// OK
 		{"Multibrot 4", "multibrot_4", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton", "newton", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton 2", "newton_2", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Julia 4", "julia_4", -1.5, 1.5, -1.5, 1.5, 1},
+		{"Tricorn fractal", "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
+		{"Tricorn Julia", "tricorn_julia", -2.0, 2.0, -2.0, 2.0, 1},	// OK
+//		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
+//		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Newton variable", "newton_var", -1.0, 1.0, -1.5, 1.5, 1},
 	};
 
 	return (&(info[index]));
