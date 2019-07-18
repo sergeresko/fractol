@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:52:59 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:40:44 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 21:38:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_private.h"
 #include "libft.h"		// ft_strcpy
 
-#define COLOR_TEXT		0xffffff		// TODO: make common with help
+#define COLOR_TEXT		0xeeeeee		// TODO: make common with help
 
 #define LINE_HEIGHT		20
 

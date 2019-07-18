@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:17:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:11:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 21:38:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_private.h"
 
 #define COLOR_BACKGROUND	0x40808080
-#define COLOR_BORDER		0x00ffffff
+#define COLOR_BORDER		0x00eeeeee
 
 void	*background_create(void *mlx_ptr, int width, int height)
 {

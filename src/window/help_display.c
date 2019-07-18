@@ -6,15 +6,15 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 13:08:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 15:49:07 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 21:38:02 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_private.h"
 
-#define COLOR_TITLE		0x000000
-#define COLOR_CONTROL	0xee5555
-#define COLOR_TEXT		0xffffff
+#define COLOR_TITLE		0xee9900
+#define COLOR_CONTROL	0xeedd00//0xee5555
+#define COLOR_TEXT		0xeeeeee
 
 #define LINE_HEIGHT		20
 
