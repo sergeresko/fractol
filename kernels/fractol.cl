@@ -453,25 +453,68 @@ __kernel void		newton_sin(
 	double			denominator = cos(2.0 * re) + cosh(2.0 * im);
 	int				iter = p->iteration_max;
 	double const	tolerance = 1.0e-6;
-	int				i;
 
 	while (--iter)
 	{
 		double t = im - (sinh(2.0 * im) - 2.0 * sin(re) * sinh(im)) / denominator;
 		re = re - (sin(2.0 * re) - 2.0 * cos(re) * cosh(im)) / denominator;
 		im = t;
-		i = 3;
-		while (i--)
+		if (fabs(sin(re) * cosh(im) - 1.0) < tolerance && fabs(cos(re) * sinh(im)) < tolerance)
 		{
-			if (fabs(sin(re) * cosh(im) - 1.0) < tolerance && fabs(cos(re) * sinh(im)) < tolerance)
-			{
-				img[id] = palette[p->iteration_max - 1 - iter];
-				return ;
-			}
+			img[id] = palette[p->iteration_max - 1 - iter];
+			return ;
 		}
 		re2 = re * re;
 		im2 = im * im;
 		denominator = cos(2.0 * re) + cosh(2.0 * im);
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
+**	p(z) = z^8 + 3 * z^4 - 4
+*/
+
+__kernel void		newton_custom(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	double			qu_re = (re2 * re2) - (6.0 * re2 * im2) + (im2 * im2);
+	double			qu_im = 4.0 * re * im * (re2 - im2);
+
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+
+	while (--iter)
+	{
+		double const	t = 2.0 * qu_re + 3.0;
+		double const	fraction = 25.0 / (t * t + 4.0 * qu_im * qu_im);
+		double const	w_re = (1.0 - fraction) * t;
+		double const	w_im = (1.0 + fraction) * 2.0 * qu_im;
+		double const	c_re = re * (re2 - 3.0 * im2);
+		double const	c_im = (im2 - 3.0 * re2) * im;
+		double const	k = 0.0625 / ((re2 + im2) * (re2 + im2) * (re2 + im2));
+		double const	p_re = k * (c_re * w_re - c_im * w_im);
+		double const	p_im = k * (c_re * w_im + c_im * w_re);
+
+		re = re - p_re;
+		im = im - p_im;
+		re2 = re * re;
+		im2 = im * im;
+		qu_re = (re2 * re2) - (6.0 * re2 * im2) + (im2 * im2);
+		qu_im = 4.0 * re * im * (re2 - im2);
+		if (fabs(qu_re * qu_re - qu_im * qu_im + 3.0 * qu_re - 4.0) < tolerance
+				&& fabs(2.0 * qu_re * qu_im + 3.0 * qu_im) < tolerance)
+		{
+			img[id] = palette[p->iteration_max - 1 - iter];
+			return ;
+		}
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
