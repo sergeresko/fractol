@@ -247,6 +247,62 @@ __kernel void		tricorn_julia(
 }
 
 /*
+**	z => (|Re z| - i|Im z|)^2 + c
+*/
+
+__kernel void		burning_ship(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	c_re = p->origin_re + (id % p->width) / p->zoom;
+	double const	c_im = p->origin_im - (id / p->width) / p->zoom;
+	double			re = 0.0;
+	double			im = 0.0;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	int				iter = p->iteration_max;
+
+	while (--iter && re2 + im2 <= 4.0)
+	{
+		im = c_im - 2.0 * fabs(re * im);
+		re = c_re + re2 - im2;
+		re2 = re * re;
+		im2 = im * im;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
+**	z => (|Re z| - i|Im z|)^2 + c
+*/
+
+__kernel void		burning_ship_julia(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double const	c_re = p->var_re;
+	double const	c_im = p->var_im;
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	int				iter = p->iteration_max;
+
+	while (--iter && re2 + im2 <= 4.0)
+	{
+		im = c_im - 2.0 * fabs(re * im);
+		re = c_re + re2 - im2;
+		re2 = re * re;
+		im2 = im * im;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
 __kernel void		negabrot_1(
 							__global int *img,
 							__global int *palette,
@@ -333,6 +389,10 @@ __kernel void		newton(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
+/*
+**
+*/
+
 __kernel void		newton_var(
 							__global int *img,
 							__global int *palette,
@@ -372,6 +432,46 @@ __kernel void		newton_var(
 		absolute = re2 + im2;
 		u_re = (re - (re2 - im2) / (absolute * absolute)) / 3.0;
 		u_im = (im + 2.0 * re * im / (absolute * absolute)) / 3.0;
+	}
+	img[id] = palette[p->iteration_max - 1 - iter];
+}
+
+/*
+**	p(z) = sin(z) - 1
+*/
+
+__kernel void		newton_sin(
+							__global int *img,
+							__global int *palette,
+							__global struct s_param *p)
+{
+	int const		id = get_global_id(0);
+	double			re = p->origin_re + (id % p->width) / p->zoom;
+	double			im = p->origin_im - (id / p->width) / p->zoom;
+	double			re2 = re * re;
+	double			im2 = im * im;
+	double			denominator = cos(2.0 * re) + cosh(2.0 * im);
+	int				iter = p->iteration_max;
+	double const	tolerance = 1.0e-6;
+	int				i;
+
+	while (--iter)
+	{
+		double t = im - (sinh(2.0 * im) - 2.0 * sin(re) * sinh(im)) / denominator;
+		re = re - (sin(2.0 * re) - 2.0 * cos(re) * cosh(im)) / denominator;
+		im = t;
+		i = 3;
+		while (i--)
+		{
+			if (fabs(sin(re) * cosh(im) - 1.0) < tolerance && fabs(cos(re) * sinh(im)) < tolerance)
+			{
+				img[id] = palette[p->iteration_max - 1 - iter];
+				return ;
+			}
+		}
+		re2 = re * re;
+		im2 = im * im;
+		denominator = cos(2.0 * re) + cosh(2.0 * im);
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }

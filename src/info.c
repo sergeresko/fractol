@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/18 13:58:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/18 15:40:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ t_type const	*type_info(int index)
 		{"Julia 4", "julia_4", -1.5, 1.5, -1.5, 1.5, 1},
 		{"Tricorn fractal", "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
 		{"Tricorn Julia", "tricorn_julia", -2.0, 2.0, -2.0, 2.0, 1},	// OK
+		{"Burning Ship fractal", "burning_ship", -2.0, 2.0, -2.0, 2.0, 0},
+		{"Burning Ship Julia", "burning_ship_julia", -2.0, 2.0, -2.0, 2.0, 1},
 //		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
 		{"Newton variable", "newton_var", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton p(z) = sin(z) - 1", "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
 	};
 
 	return (&(info[index]));
