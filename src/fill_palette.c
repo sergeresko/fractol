@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:10:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 19:06:12 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 21:10:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	palette_monochrome(t_win *window)
 	}
 }
 
-static void	palette_grey(t_win *window)
+static void	palette_greyscale(t_win *window)
 {
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
@@ -37,9 +37,7 @@ static void	palette_grey(t_win *window)
 	while (index--)
 	{
 		t = (double)index / iteration_max;
-		palette[index] = (int)(t * 255) << 16
-				| (int)(t * 255) << 8
-				| (int)(t * 255);
+		palette[index] = (int)(t * 255) * (1 << 16 | 1 << 8 | 1 << 0);
 	}
 }
 
@@ -62,7 +60,7 @@ static void	palette_bernstein(t_win *window)
 	}
 }
 
-static void	palette_my(t_win *window)	// TODO:
+static void	palette_kaleidoscope(t_win *window)	// TODO:
 {
 	int		color;
 	int		index;
@@ -78,8 +76,27 @@ static void	palette_my(t_win *window)	// TODO:
 	window->palette[index - 1] = 0x000000;		// possible because index increments
 }
 
+static void	palette_periodic(t_win *window, double r, double g, double b)
+{
+	int *const	palette = window->palette;
+	int const	iteration_max = window->param.iteration_max;
+	int			index;
+	double		t;
+
+	index = iteration_max;
+	palette[--index] = 0xffffff;
+	while (index--)
+	{
+		t = (double)index / iteration_max;
+		palette[index] = (int)((1.0 + cos(5.0 * M_PI * (t + r))) * 127.5) << 16
+				| (int)((1.0 + cos(5.0 * M_PI * (t + g))) * 127.5) << 8
+				| (int)((1.0 + cos(5.0 * M_PI * (t + b))) * 127.5);
+	}
+}
+
 static void	palette_cos_012(t_win *window)
 {
+	/*
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
 	int			index;
@@ -93,10 +110,13 @@ static void	palette_cos_012(t_win *window)
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 1.0 / 3.0))) * 255) << 8
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 2.0 / 3.0))) * 255);
 	}
+	*/
+	palette_periodic(window, 0.0, 1.0 / 3.0, 2.0 / 3.0);
 }
 
 static void	palette_cos_102(t_win *window)
 {
+	/*
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
 	int			index;
@@ -111,10 +131,13 @@ static void	palette_cos_102(t_win *window)
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * t)) * 255) << 8
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 2.0 / 3.0))) * 255);
 	}
+	*/
+	palette_periodic(window, 1.0 / 3.0, 0.0, 2.0 / 3.0);
 }
 
 static void	palette_cos_201(t_win *window)
 {
+	/*
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
 	int			index;
@@ -129,44 +152,8 @@ static void	palette_cos_201(t_win *window)
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * t)) * 255) << 8
 				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 1.0 / 3.0))) * 255);
 	}
-}
-
-// TODO: bad
-static void	palette_cos_021(t_win *window)
-{
-	int *const	palette = window->palette;
-	int const	iteration_max = window->param.iteration_max;
-	int			index;
-	double		t;
-
-	index = iteration_max;
-	palette[--index] = 0xffffff;
-	while (index--)
-	{
-		t = (double)index / iteration_max;
-		palette[index] = (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * t)) * 255) << 16
-				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 2.0 / 3.0))) * 255) << 8
-				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 1.0 / 3.0))) * 255);
-	}
-}
-
-// TODO: so-so
-static void	palette_cos_120(t_win *window)
-{
-	int *const	palette = window->palette;
-	int const	iteration_max = window->param.iteration_max;
-	int			index;
-	double		t;
-
-	index = iteration_max;
-	palette[--index] = 0xffffff;
-	while (index--)
-	{
-		t = (double)index / iteration_max;
-		palette[index] = (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 1.0 / 3.0))) * 255) << 16
-				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * (t + 2.0 / 3.0))) * 255) << 8
-				| (int)(0.5 * (1.0 + cos(2.5 * 2.0 * M_PI * t)) * 255);
-	}
+	*/
+	palette_periodic(window, 2.0 / 3.0, 0.0, 1.0 / 3.0);
 }
 
 static void	palette_cos_210(t_win *window)
@@ -187,7 +174,7 @@ static void	palette_cos_210(t_win *window)
 	}
 }
 
-static void	palette_cos_test(t_win *window)
+static void	palette_blue_brown(t_win *window)
 {
 	int *const	palette = window->palette;
 	int const	iteration_max = window->param.iteration_max;
@@ -203,65 +190,46 @@ static void	palette_cos_test(t_win *window)
 				| (int)(0.5 * (1.0 + cos(2.0 * M_PI * (3.0 * t + 0.2))) * 255);
 	}
 }
-/*
-static void	palette_cos_test(t_win *window)
-{
-	int *const	palette = window->palette;
-	int const	iteration_max = window->param.iteration_max;
-	int			index;
-	double		t;
 
-	index = iteration_max;
-	while (index--)
-	{
-		t = (double)index / iteration_max;
-		palette[index] = (int)(0.5 * (1.0 + cos(2.0 * M_PI * (3.0 * t + 0.5))) * 255) << 16
-				| (int)(0.5 * (1.0 + cos(2.0 * M_PI * (3.0 * t + 0.4))) * 255) << 8
-				| (int)(0.5 * (1.0 + cos(2.0 * M_PI * (3.0 * t + 0.2))) * 255);
-	}
-}
-*/
 void		fill_palette(t_win *window)
 {
 	if (window->color_scheme == 1)
 	{
-		palette_monochrome(window);
+		palette_bernstein(window);
 	}
 	else if (window->color_scheme == 2)
 	{
-		palette_bernstein(window);
+		palette_cos_012(window);
 	}
 	else if (window->color_scheme == 3)
 	{
-		palette_my(window);
+		palette_cos_102(window);
 	}
 	else if (window->color_scheme == 4)
 	{
-		palette_cos_012(window);
+		palette_cos_201(window);
 	}
 	else if (window->color_scheme == 5)
 	{
-		palette_cos_102(window);
+		palette_cos_210(window);
 	}
 	else if (window->color_scheme == 6)
 	{
-		palette_cos_201(window);
+		palette_blue_brown(window);
 	}
 	else if (window->color_scheme == 7)
 	{
-		palette_cos_021(window);
+		palette_kaleidoscope(window);
 	}
 	else if (window->color_scheme == 8)
 	{
-		palette_cos_120(window);
+		palette_greyscale(window);
 	}
 	else if (window->color_scheme == 9)
 	{
-		palette_cos_210(window);
+		palette_monochrome(window);
 	}
 	else if (window->color_scheme == 10)
 	{
-		palette_cos_test(window);
-		palette_grey(window);
 	}
 }

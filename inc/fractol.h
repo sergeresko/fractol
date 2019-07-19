@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/18 19:52:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 21:11:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define ITER_DESCR			"number of iterations"
 
 # define COLOR_CHAR			'c'
-# define COLOR_MAX			5
-# define COLOR_DEFAULT		2
+# define COLOR_MAX			9
+# define COLOR_DEFAULT		1
 # define COLOR_DESCR		"color palette"
 
 typedef struct s_opt		t_opt;
