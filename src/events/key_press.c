@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/17 12:28:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 15:28:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static t_bind const	*find(int key, t_bind const *bindings, int size)
 	return (NULL);
 }
 
+#define KEY_T	17		// TODO: remove
+
 static t_bind const	*get_binding_by_key(int key)
 {
 	static t_bind const	bindings[] = {
@@ -41,7 +43,12 @@ static t_bind const	*get_binding_by_key(int key)
 		{KEY_2, action_set_palette, 2, UNUSED},
 		{KEY_3, action_set_palette, 3, UNUSED},
 		{KEY_4, action_set_palette, 4, UNUSED},
-		// ...
+		{KEY_5, action_set_palette, 5, UNUSED},
+		{KEY_6, action_set_palette, 6, UNUSED},
+		{KEY_7, action_set_palette, 7, UNUSED},
+		{KEY_8, action_set_palette, 8, UNUSED},
+		{KEY_9, action_set_palette, 9, UNUSED},
+		{KEY_T, action_set_palette, 10, UNUSED},	// test
 	};
 
 	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));
@@ -57,7 +64,11 @@ static t_bind const *get_binding_by_key_numpad(int key)
 		{KEY_2_NUMPAD, action_set_palette, 2, UNUSED},
 		{KEY_3_NUMPAD, action_set_palette, 3, UNUSED},
 		{KEY_4_NUMPAD, action_set_palette, 4, UNUSED},
-		// ...
+		{KEY_5_NUMPAD, action_set_palette, 5, UNUSED},
+		{KEY_6_NUMPAD, action_set_palette, 6, UNUSED},
+		{KEY_7_NUMPAD, action_set_palette, 7, UNUSED},
+		{KEY_8_NUMPAD, action_set_palette, 8, UNUSED},
+		{KEY_9_NUMPAD, action_set_palette, 9, UNUSED},
 	};
 
 	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));

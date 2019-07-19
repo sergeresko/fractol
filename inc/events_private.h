@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:11:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/17 12:27:14 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 15:17:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,21 @@
 # define KEY_2				19
 # define KEY_3			20
 # define KEY_4			21
+# define KEY_5			23
+# define KEY_6			22
+# define KEY_7			26
+# define KEY_8			28
+# define KEY_9			25
 # define KEY_0_NUMPAD		82
 # define KEY_1_NUMPAD		83
 # define KEY_2_NUMPAD		84
 # define KEY_3_NUMPAD	85
 # define KEY_4_NUMPAD		86
+# define KEY_5_NUMPAD		87
+# define KEY_6_NUMPAD		88
+# define KEY_7_NUMPAD		89
+# define KEY_8_NUMPAD		91
+# define KEY_9_NUMPAD		92
 
 # define KEY_H				4
 # define KEY_S				1
