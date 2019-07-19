@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/16 16:31:18 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/19 13:31:36 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	fractol
 LIBFT		=	libft/libft.a
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -Wpedantic
+CFLAGS		=	-Wall -Wextra -Wpedantic -Werror -DCL_SILENCE_DEPRECATION
 
 # --------- Header files ------------------------------------------------------
 
