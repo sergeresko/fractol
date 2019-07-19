@@ -65,7 +65,7 @@ static void	help_display_keyboard_controls(t_win *window, int x, int y)
 		"[ ]   ", "       iterations",
 		"SPACE ", "       fix param",
 		"0     ", "       reset",
-		"1   5 ", " ...   palette",
+		"1   9 ", " ...   palette",
 		"H     ", "       help",
 		"S     ", "       status bar",
 		"ESC   ", "       close",

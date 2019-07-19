@@ -15,18 +15,15 @@
 
 # include "fractol.h"		// t_win
 
-# define STEP_ARROW_MOVE		32		// where?
-# define STEP_ZOOM				0.1		// where?
-
-# define UNUSED				0
-
-// maybe the following two constants should be defined elsewhere
-# define LEFT_SHIFT_PRESSED		(1 << 0)
-# define RIGHT_SHIFT_PRESSED	(1 << 1)
+# define UNUSED		0
 
 typedef void	(*t_act)(t_win *, int, int);		// or in events_private.h
 
 void	apply(t_act action, t_win *window, int a, int b);	// or in events_private.h
+
+/*
+**
+*/
 
 void	action_move(t_win *window, int shift_x, int shift_y);
 

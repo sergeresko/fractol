@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "actions.h"		// LEFT_SHIFT_PRESSED, RIGHT_SHIFT_PRESSED
 #include "events_private.h"
 
 int		key_release(int key, void *window)

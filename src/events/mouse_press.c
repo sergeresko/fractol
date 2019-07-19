@@ -32,11 +32,11 @@ int		mouse_press(int button, int x, int y, void *window)
 	}
 	else if (button == MOUSE_SCROLL_LEFT)
 	{
-		apply(action_change_iterations, window, +1, UNUSED);
+		apply(action_change_iterations, window, ITER_INCREASE, UNUSED);
 	}
 	else if (button == MOUSE_SCROLL_RIGHT)
 	{
-		apply(action_change_iterations, window, -1, UNUSED);
+		apply(action_change_iterations, window, ITER_DECREASE, UNUSED);
 	}
 	return (0);
 }
