@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:10:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 16:54:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 19:06:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ static void	palette_monochrome(t_win *window)
 	while (index)
 	{
 		palette[--index] = 0xffffff;	// white
+	}
+}
+
+static void	palette_grey(t_win *window)
+{
+	int *const	palette = window->palette;
+	int const	iteration_max = window->param.iteration_max;
+	int			index;
+	double		t;
+
+	index = window->param.iteration_max;
+	while (index--)
+	{
+		t = (double)index / iteration_max;
+		palette[index] = (int)(t * 255) << 16
+				| (int)(t * 255) << 8
+				| (int)(t * 255);
 	}
 }
 
@@ -245,5 +262,6 @@ void		fill_palette(t_win *window)
 	else if (window->color_scheme == 10)
 	{
 		palette_cos_test(window);
+		palette_grey(window);
 	}
 }

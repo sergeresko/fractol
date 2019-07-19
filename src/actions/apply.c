@@ -6,11 +6,15 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:20:52 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:11:22 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 19:33:41 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
+
+/*
+**	apply the action to the window or, if in global mode, to all windows
+*/
 
 void	apply(t_act action, t_win *window, int a, int b)
 {
