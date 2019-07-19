@@ -6,7 +6,7 @@
 #    By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/16 18:37:27 by syeresko          #+#    #+#              #
-#    Updated: 2019/07/19 13:31:36 by syeresko         ###   ########.fr        #
+#    Updated: 2019/07/19 18:10:40 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,15 @@ SRC			=	$(addprefix src/,					\
 					start_opencl.c					\
 					fill_palette.c					\
 					$(addprefix actions/,			\
-						actions.c					\
+						action_move.c				\
+						action_zoom.c				\
+						action_change_iterations.c	\
+						action_update_variable.c	\
+						action_reset.c				\
+						action_set_palette.c		\
+						action_animate.c			\
+						action_toggle.c				\
+						action_close.c				\
 						apply.c						\
 					)								\
 					$(addprefix window/,			\

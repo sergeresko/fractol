@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:10:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:08:31 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/19 17:32:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	toggle_help(t_win *window)
 	while (++frame < 8)
 	{
 		mlx_do_sync(window->program->mlx_ptr);
-		apply(action_shift_help, window, is_help_shown, frame);
+		apply(action_animate_help, window, is_help_shown, frame);
 	}
 	apply(action_toggle_help, window, is_help_shown, UNUSED);
 }
@@ -38,7 +38,7 @@ static void	toggle_status(t_win *window)
 	while (++frame < 5)
 	{
 		mlx_do_sync(window->program->mlx_ptr);
-		apply(action_shift_status, window, is_status_shown, frame);
+		apply(action_animate_status, window, is_status_shown, frame);
 	}
 	apply(action_toggle_status, window, is_status_shown, UNUSED);
 }
