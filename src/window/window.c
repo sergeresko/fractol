@@ -63,6 +63,8 @@ void	window_reset(t_win *window)
 
 // public
 
+// TODO: define 10, 44
+
 void	window_display(t_win *window)
 {
 	window_display_image(window);
@@ -76,7 +78,7 @@ void	window_display(t_win *window)
 	}
 }
 
-void	window_display_with_shifted_help(t_win *window, int shift_x, int shift_y)
+void	window_display_shift_help(t_win *window, int shift_x, int shift_y)
 {
 	window_display_image(window);
 	help_display(window, 10 + shift_x, 10 + shift_y);
@@ -86,7 +88,7 @@ void	window_display_with_shifted_help(t_win *window, int shift_x, int shift_y)
 	}
 }
 
-void	window_display_with_shifted_status(t_win *window, int shift_x, int shift_y)
+void	window_display_shift_status(t_win *window, int shift_x, int shift_y)
 {
 	window_display_image(window);
 	if (window->is_help_shown)
