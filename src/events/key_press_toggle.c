@@ -12,17 +12,21 @@
 
 #include "events_private.h"
 #include "window.h"
-#include <mlx.h>		// mlx_do_sync TODO: or "mlx.h" ?
+#include <time.h>
+
+#define FRAME_DURATION		32		// TODO: choose a reasonable value
 
 static void	toggle_help(t_win *window)
 {
-	int const	is_help_shown = window->is_help_shown;
-	int			frame;
+	int const		is_help_shown = window->is_help_shown;
+	clock_t const	start = clock();
+	int				frame;
 
 	frame = 0;
 	while (++frame < HELP_FRAME_COUNT)
 	{
-		mlx_do_sync(window->program->mlx_ptr);
+		while (clock() - start < FRAME_DURATION * frame)
+			;
 		apply(action_animate_help, window, is_help_shown, frame);
 	}
 	apply(action_toggle_help, window, is_help_shown, UNUSED);
@@ -30,13 +34,15 @@ static void	toggle_help(t_win *window)
 
 static void	toggle_status(t_win *window)
 {
-	int const	is_status_shown = window->is_status_shown;
-	int			frame;
+	int const		is_status_shown = window->is_status_shown;
+	clock_t const	start = clock();
+	int				frame;
 
 	frame = 0;
 	while (++frame < STATUS_FRAME_COUNT)
 	{
-		mlx_do_sync(window->program->mlx_ptr);
+		while (clock() - start < FRAME_DURATION * frame)
+			;
 		apply(action_animate_status, window, is_status_shown, frame);
 	}
 	apply(action_toggle_status, window, is_status_shown, UNUSED);
