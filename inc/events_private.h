@@ -70,24 +70,40 @@
 # define MOUSE_SCROLL_RIGHT		7
 
 /*
-**
+**	global mode
 */
 
 # define LEFT_SHIFT_PRESSED		(1 << 0)
 # define RIGHT_SHIFT_PRESSED	(1 << 1)
 
+/*
+**	action arguments
+*/
+
 # define ZOOM_CENTER			(-1)
 # define ITER_DECREASE			(-1)
 # define ITER_INCREASE			(+1)
 
-typedef struct	s_bind
-{
-	int			key;
-	t_act		action;
-	int			a;
-	int			b;
-}				t_bind;
+# define UNUSED					0
 
-void			key_press_toggle(int key, t_win *window);
+/*
+**	key binding
+*/
+
+typedef struct s_bind	t_bind;
+
+struct	s_bind
+{
+	int		key;
+	t_act	action;
+	int		a;
+	int		b;
+};
+
+/*
+** a helper function for key press event
+*/
+
+void	key_press_toggle(int key, t_win *window);
 
 #endif

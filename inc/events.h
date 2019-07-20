@@ -13,6 +13,10 @@
 #ifndef EVENTS_H
 # define EVENTS_H
 
+/*
+**	functions called for MiniLibX events
+*/
+
 int		key_press(int key, void *window);
 int		key_release(int key, void *window);
 int		mouse_press(int button, int x, int y, void *window);

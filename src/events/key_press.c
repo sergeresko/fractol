@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "events_private.h"
-#include "events.h"		// win_close
+#include "events.h"
 
 #define MOVE_STEP	32
 

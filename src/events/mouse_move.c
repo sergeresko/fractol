@@ -10,25 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"	// TODO: or "events_private.h"
+#include "events_private.h"
 
 int		mouse_move(int x, int y, void *window)
 {
 	t_prog *const	program = ((t_win *)window)->program;
-	t_param *const	param = &(((t_win *)window)->param);	// can do better ?
+	t_param *const	param = &(((t_win *)window)->param);
 
-	/*
-	if (x < 0 || x >= window->param.width
-			|| y < 0 || y >= window->param.height)
-	{
-		return (0);
-	}*/
-	/*
-	int		id;
-	id = window->program->window_count;
-	while (window != &(window->program->windows[--id]))
-		;
-	ft_printf("mouse_move (window %d)    x: %4d    y: %4d\n", id + 1, x, y);*/
 	if (program->drag_mode)
 	{
 		apply(action_move, window, x - program->drag_x, y - program->drag_y);

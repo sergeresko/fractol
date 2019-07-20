@@ -13,16 +13,10 @@
 #ifndef ACTIONS_H
 # define ACTIONS_H
 
-# include "fractol.h"		// t_win
-
-# define UNUSED		0
-
-typedef void	(*t_act)(t_win *, int, int);		// or in events_private.h
-
-void	apply(t_act action, t_win *window, int a, int b);	// or in events_private.h
+# include "fractol.h"
 
 /*
-**
+**	actions
 */
 
 void	action_move(t_win *window, int shift_x, int shift_y);
@@ -46,5 +40,13 @@ void	action_toggle_help(t_win *window, int is_help_shown, int unused);
 void	action_toggle_status(t_win *window, int is_status_shown, int unused);
 
 void	action_close(t_win *window, int unused_1, int unused_2);
+
+/*
+**	generic action application
+*/
+
+typedef void	(*t_act)(t_win *, int, int);
+
+void	apply(t_act action, t_win *window, int a, int b);
 
 #endif

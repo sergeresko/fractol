@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"		// TODO: or "events_private.h"
+#include "events_private.h"
 
 int		win_close(void *window)
 {
