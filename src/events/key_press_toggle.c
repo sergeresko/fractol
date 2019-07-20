@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "events_private.h"
+#include "window.h"
 #include <mlx.h>		// mlx_do_sync TODO: or "mlx.h" ?
-
-// TODO: define frame constants
 
 static void	toggle_help(t_win *window)
 {
@@ -21,7 +20,7 @@ static void	toggle_help(t_win *window)
 	int			frame;
 
 	frame = 0;
-	while (++frame < 8)
+	while (++frame < HELP_FRAME_COUNT)
 	{
 		mlx_do_sync(window->program->mlx_ptr);
 		apply(action_animate_help, window, is_help_shown, frame);
@@ -35,7 +34,7 @@ static void	toggle_status(t_win *window)
 	int			frame;
 
 	frame = 0;
-	while (++frame < 5)
+	while (++frame < STATUS_FRAME_COUNT)
 	{
 		mlx_do_sync(window->program->mlx_ptr);
 		apply(action_animate_status, window, is_status_shown, frame);
