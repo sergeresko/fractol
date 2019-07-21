@@ -20,6 +20,7 @@ CFLAGS		=	-Wall -Wextra -Wpedantic -Werror -DCL_SILENCE_DEPRECATION
 
 INC			=	$(addprefix inc/,					\
 					fractol.h						\
+					palettes.h						\
 					actions.h						\
 					events.h						\
 					events_private.h				\
@@ -41,7 +42,11 @@ SRC			=	$(addprefix src/,					\
 					print_usage.c					\
 					start_mlx.c						\
 					start_opencl.c					\
-					fill_palette.c					\
+					$(addprefix palettes/,			\
+						palette_periodic.c			\
+						palette_other.c				\
+						fill_palette.c				\
+					)								\
 					$(addprefix actions/,			\
 						action_move.c				\
 						action_zoom.c				\
