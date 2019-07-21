@@ -24,27 +24,42 @@ t_opt const		*opt_info(int index)
 	return (&(info[index]));
 }
 
+#define TITLE_MANDELBROT	"Mandelbrot fractal:   z => z^2 + c"
+#define TITLE_MANDELBROT_J	"Mandelbrot Julia set"
+#define TITLE_MULTIBROT3	"Multibrot-3 fractal:  z => z^3 + c"
+#define TITLE_MULTIBROT3_J	"Multibrot-3 Julia set"
+#define TITLE_MULTIBROT4	"Multibrot-4 fractal:  z => z^4 + c"
+#define TITLE_MULTIBROT4_J	"Multibrot-4 Julia set"
+#define TITLE_TRICORN		"Tricorn fractal:      z => (x - iy)^2 + c"
+#define TITLE_TRICORN_J		"Tricorn Julia set"
+#define TITLE_BURNINGSHIP	"Burning Ship fractal: z => (|x| - i|y|)^2 + c"
+#define TITLE_BURNINGSHIP_J	"Burning Ship Julia set"
+#define TITLE_NEWTON3		"Newton-3 fractal:     f(z) = z^3 - 1"
+#define TITLE_NEWTON_SIN	"Newton-sin fractal:   f(z) = sin(z) - 1"
+#define TITLE_NEWTON8		"Newton-8 fractal:     f(z) = z^8 + 3*z^4 - 4"
+#define TITLE_NOVA			"Nova fractal:         f(z) = z^3 - 1"
+
 t_type const	*type_info(int index)
 {
 	static t_type const	info[TYPE_COUNT] = {	// TODO:
-		{"Mandelbrot fractal", "mandelbrot", -2.5, 1.5, -1.5, 1.5, 0},
-		{"Mandelbrot Julia set", "mandelbrot_j", -2.0, 2.0, -2.0, 2.0, 1},
-		{"Multibrot-3 fractal", "multibrot3", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Multibrot-3 Julia set 3", "multibrot3_j", -1.5, 1.5, -1.5, 1.5, 1},				// OK
-		{"Multibrot-4 fractal", "multibrot4", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Multibrot-4 Julia set", "multibrot4_j", -1.5, 1.5, -1.5, 1.5, 1},
-		{"Tricorn fractal", "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
-		{"Tricorn Julia set", "tricorn_j", -2.0, 2.0, -2.0, 2.0, 1},	// OK
-		{"Burning Ship fractal", "burningship", -2.0, 2.0, -2.0, 2.0, 0},
-		{"Burning Ship Julia set", "burningship_j", -2.0, 2.0, -2.0, 2.0, 1},
+		{TITLE_MANDELBROT, "mandelbrot", -2.5, 1.5, -1.5, 1.5, 0},
+		{TITLE_MANDELBROT_J, "mandelbrot_j", -2.0, 2.0, -2.0, 2.0, 1},
+		{TITLE_MULTIBROT3, "multibrot3", -1.0, 1.0, -1.5, 1.5, 0},
+		{TITLE_MULTIBROT3_J, "multibrot3_j", -1.5, 1.5, -1.5, 1.5, 1},				// OK
+		{TITLE_MULTIBROT4, "multibrot4", -1.0, 1.0, -1.5, 1.5, 0},
+		{TITLE_MULTIBROT4_J, "multibrot4_j", -1.5, 1.5, -1.5, 1.5, 1},
+		{TITLE_TRICORN, "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
+		{TITLE_TRICORN_J, "tricorn_j", -2.0, 2.0, -2.0, 2.0, 1},	// OK
+		{TITLE_BURNINGSHIP, "burningship", -2.0, 2.0, -2.0, 2.0, 0},
+		{TITLE_BURNINGSHIP_J, "burningship_j", -2.0, 2.0, -2.0, 2.0, 1},
 //		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Newton 2 variable", "newton2_var", -1.0, 1.0, -1.5, 1.5, 1},
-		{"Newton-3 fractal", "newton3", -1.0, 1.0, -1.5, 1.5, 1},
-		{"Newton-sin fractal [p(z) = sin(z) - 1]", "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton-8 fractal [p(z) = z^8 + 3 * z^4 - 4]", "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Nova fractal", "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},		// TODO: not variable
+		{TITLE_NEWTON3, "newton3", -1.0, 1.0, -1.5, 1.5, 1},
+		{TITLE_NEWTON_SIN, "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
+		{TITLE_NEWTON8, "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
+		{TITLE_NOVA, "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},		// TODO: not variable
 	};
 
 	return (&(info[index]));
