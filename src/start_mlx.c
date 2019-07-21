@@ -20,8 +20,8 @@
 static char	*make_window_title(int id, t_win const *window)
 {
 	char *const	id_str = ft_itoa(id);
-	char *const	width_str = ft_itoa(window->param.width);
-	char *const	height_str = ft_itoa(window->param.height);
+	char *const	width_str = ft_itoa(window->options[OPT_INDEX_WIDTH]);
+	char *const	height_str = ft_itoa(window->options[OPT_INDEX_HEIGHT]);
 	static char	title[80];
 
 	*title = '\0';
@@ -43,13 +43,13 @@ static char	*make_window_title(int id, t_win const *window)
 static void	start_window(t_prog *program, int window_index)
 {
 	t_win *const	window = &(program->windows[window_index]);
-	char *const		window_title = make_window_title(window_index + 1, window);
+	char *const		title = make_window_title(window_index + 1, window);
+	int const		width = window->options[OPT_INDEX_WIDTH];
+	int const		height = window->options[OPT_INDEX_HEIGHT];
 	int				tmp;
 
-	window->win_ptr = mlx_new_window(program->mlx_ptr,
-			window->param.width, window->param.height, window_title);
-	window->img_ptr = mlx_new_image(program->mlx_ptr,
-			window->param.width, window->param.height);
+	window->win_ptr = mlx_new_window(program->mlx_ptr, width, height, title);
+	window->img_ptr = mlx_new_image(program->mlx_ptr, width, height);
 	window->img_data = mlx_get_data_addr(window->img_ptr, &tmp, &tmp, &tmp);
 	mlx_hook(window->win_ptr, 2, 0, &key_press, window);
 	mlx_hook(window->win_ptr, 3, 0, &key_release, window);
@@ -64,10 +64,6 @@ void		start_mlx(t_prog *program)
 	int		window_index;
 
 	program->mlx_ptr = mlx_init();
-	// < TODO: should do this elsewhere (?)
-	program->global_mode = 0;
-	program->drag_mode = 0;
-	// >
 	window_index = program->window_count;
 	while (window_index--)
 	{

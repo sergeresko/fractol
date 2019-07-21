@@ -112,7 +112,8 @@ void		start_opencl(t_prog *program)
 	while (window_index--)
 	{
 		window = &(program->windows[window_index]);
-		window->cl_global_size = window->param.width * window->param.height;
+		window->cl_global_size = window->options[OPT_INDEX_WIDTH]
+				* window->options[OPT_INDEX_HEIGHT];
 		init_buffers(window);
 		init_kernel(window);
 	}

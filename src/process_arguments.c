@@ -14,11 +14,7 @@
 #include "fractol.h"
 #include "libft.h"		// ft_memalloc
 
-/*
-**	TODO: describe
-*/
-
-static void	allocate_windows(t_prog *program, char **av)
+static int	count_arguments(char **av)
 {
 	int		count;
 
@@ -27,16 +23,25 @@ static void	allocate_windows(t_prog *program, char **av)
 	{
 		++count;
 	}
-	if (count == 0)
+	return (count);
+}
+
+/*
+**	TODO: describe
+*/
+
+static void	allocate_windows(t_prog *program, int window_count)
+{
+	if (window_count == 0)
 	{
 		error1("no titles");
 	}
-	program->windows = ft_memalloc(count * sizeof(t_win));		// zeroed
+	program->windows = ft_memalloc(window_count * sizeof(t_win));		// zeroed
 	if (!(program->windows))
 	{
 		error1("malloc failed");		// ?
 	}
-	program->window_count = count;
+	program->window_count = window_count;
 }
 
 /*
@@ -69,7 +74,7 @@ void		process_arguments(t_prog *program, char **av)
 	int			window_index;
 	t_win		*window;
 
-	allocate_windows(program, av);
+	allocate_windows(program, count_arguments(av));
 	window_index = 0;
 	while ((arg = *(++av)))
 	{
@@ -77,10 +82,11 @@ void		process_arguments(t_prog *program, char **av)
 		window->program = program;		// `window->program` initialization
 		parse_argument(window, arg);
 		finalize_local_options(window);
-		window_reset(window);
 		window->is_alive = 1;
 		window->is_help_shown = 0;
 		window->is_status_shown = 0;
 		window->is_fixed = 0;
 	}
+	program->global_mode = 0;
+	program->drag_mode = 0;
 }

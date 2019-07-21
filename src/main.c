@@ -61,6 +61,7 @@ void			redraw_all(t_prog *program)		// TODO: remove
 	while (window_index--)
 	{
 		window = &(program->windows[window_index]);
+		window_reset(window);
 		window_redraw(window);
 	}
 }
