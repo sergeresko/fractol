@@ -38,6 +38,7 @@ SRC			=	$(addprefix src/,					\
 					set_option.c					\
 					info.c							\
 					error.c							\
+					fill_palette.c					\
 					sprintf_int.c					\
 					print_usage.c					\
 					start_mlx.c						\
@@ -45,7 +46,6 @@ SRC			=	$(addprefix src/,					\
 					$(addprefix palettes/,			\
 						palette_periodic.c			\
 						palette_other.c				\
-						fill_palette.c				\
 					)								\
 					$(addprefix actions/,			\
 						action_move.c				\

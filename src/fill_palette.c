@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "palettes.h"
+#include "palettes.h"		// included only here
 
 /*
 static void	palette_cos_012(t_win *window)
@@ -52,10 +52,10 @@ void	fill_palette(t_win *window)
 	static void	(*palette[10])(t_win *) = {
 		NULL,
 		palette_bernstein,
-		palette_cos,
-		palette_cos,
-		palette_cos,
-		palette_cos,
+		palette_periodic,
+		palette_periodic,
+		palette_periodic,
+		palette_periodic,
 		palette_blue_brown,
 		palette_kaleidoscope,
 		palette_greyscale,
