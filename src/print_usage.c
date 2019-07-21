@@ -11,7 +11,21 @@
 /* ************************************************************************** */
 
 #include "fractol.h"	// TODO:
-#include "libft.h"		// ft_putstr_fd, ft_strcpy
+#include "libft.h"		// ft_putstr_fd, ft_putchar_fd, ft_strcpy
+
+static void print_usage_titles(void)
+{
+	int		type_index;
+
+	type_index = 0;
+	while (type_index < TYPE_COUNT)
+	{
+		ft_putstr_fd("    ", STDERR_FILENO);
+		ft_putstr_fd(type_info(type_index)->title, STDERR_FILENO);
+		ft_putchar_fd('\n', STDERR_FILENO);
+		++type_index;
+	}
+}
 
 static void	print_usage_options(void)
 {
@@ -19,8 +33,9 @@ static void	print_usage_options(void)
 	int			opt_index;
 	t_opt const	*opt;
 
-	ft_putstr_fd("    global    local      range      default", STDERR_FILENO);
-	ft_putstr_fd("      description\n\n", STDERR_FILENO);
+	ft_putstr_fd(
+			"    global    local      range      default      description\n\n",
+			STDERR_FILENO);
 	ft_strcpy(str, "    ## <N>    ##<N>    ###...####     ###     ");
 	str[4] = OPT_PREFIX_GLOBAL;
 	str[14] = OPT_PREFIX_LOCAL;
@@ -40,11 +55,25 @@ static void	print_usage_options(void)
 	}
 }
 
+static void	print_usage_examples(void)
+{
+	// TODO: examples	
+}
+
 void		print_usage(void)
 {
-	ft_putstr_fd("usage: ./fractol [<global options>] "
-			"<type>[<local options>] ...\n\n", STDERR_FILENO);
-	// TODO:
+	ft_putstr_fd(
+			"usage: ./fractol [<global options>] <title>[<local options>] ...\n"
+			"\nTitles:\n\n", STDERR_FILENO);
+	print_usage_titles();
+	ft_putstr_fd("\nA title may be shortened to any unambiguous subsequence.\n"
+			"Several titles result in several windows.\n"
+			"\nOptions:\n\n", STDERR_FILENO);
 	print_usage_options();
-	// TODO:
+	ft_putstr_fd("\nGlobal options apply to all windows "
+			"unless overriden by local options.\n"
+			"\nExamples:\n\n", STDERR_FILENO);
+	print_usage_examples();
+	ft_putstr_fd("\nPress H when running the program "
+			"to see the list of controls.\n", STDERR_FILENO);
 }
