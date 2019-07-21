@@ -27,24 +27,24 @@ t_opt const		*opt_info(int index)
 t_type const	*type_info(int index)
 {
 	static t_type const	info[TYPE_COUNT] = {	// TODO:
-		{"Julia set", "julia_set", -2.0, 2.0, -2.0, 2.0, 1},
-		{"Mandelbrot set", "mandelbrot_set", -2.5, 1.5, -1.5, 1.5, 0},
-		{"Multibrot 3", "multibrot_3", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Julia 3", "julia_3", -1.5, 1.5, -1.5, 1.5, 1},				// OK
-		{"Multibrot 4", "multibrot_4", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Julia 4", "julia_4", -1.5, 1.5, -1.5, 1.5, 1},
+		{"Mandelbrot fractal", "mandelbrot", -2.5, 1.5, -1.5, 1.5, 0},
+		{"Mandelbrot Julia set", "mandelbrot_j", -2.0, 2.0, -2.0, 2.0, 1},
+		{"Multibrot-3 fractal", "multibrot3", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Multibrot-3 Julia set 3", "multibrot3_j", -1.5, 1.5, -1.5, 1.5, 1},				// OK
+		{"Multibrot-4 fractal", "multibrot4", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Multibrot-4 Julia set", "multibrot4_j", -1.5, 1.5, -1.5, 1.5, 1},
 		{"Tricorn fractal", "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
-		{"Tricorn Julia", "tricorn_julia", -2.0, 2.0, -2.0, 2.0, 1},	// OK
-		{"Burning Ship fractal", "burning_ship", -2.0, 2.0, -2.0, 2.0, 0},
-		{"Burning Ship Julia", "burning_ship_julia", -2.0, 2.0, -2.0, 2.0, 1},
+		{"Tricorn Julia set", "tricorn_j", -2.0, 2.0, -2.0, 2.0, 1},	// OK
+		{"Burning Ship fractal", "burningship", -2.0, 2.0, -2.0, 2.0, 0},
+		{"Burning Ship Julia set", "burningship_j", -2.0, 2.0, -2.0, 2.0, 1},
 //		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
 //		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton Nova", "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},
-		{"Newton 2 variable", "newton2_var", -1.0, 1.0, -1.5, 1.5, 1},
-		{"Newton 3 variable", "newton3_var", -1.0, 1.0, -1.5, 1.5, 1},
-		{"Newton p(z) = sin(z) - 1", "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
-		{"Newton p(z) = z^8 + 3 * z^4 - 4", "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
+//		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
+//		{"Newton 2 variable", "newton2_var", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton-3 fractal", "newton3", -1.0, 1.0, -1.5, 1.5, 1},
+		{"Newton-sin fractal [p(z) = sin(z) - 1]", "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Newton-8 fractal [p(z) = z^8 + 3 * z^4 - 4]", "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
+		{"Nova fractal", "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},		// TODO: not variable
 	};
 
 	return (&(info[index]));

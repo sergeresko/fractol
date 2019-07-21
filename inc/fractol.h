@@ -83,7 +83,7 @@ void			process_arguments(t_prog *program, char **av);
 
 //
 
-# define TYPE_COUNT			16
+# define TYPE_COUNT			14
 
 struct			s_type			// t_type_info
 {

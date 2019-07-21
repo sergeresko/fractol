@@ -36,7 +36,7 @@ struct			s_param
 **		(1)		z => z^2 + c
 */
 
-__kernel void		mandelbrot_set(
+__kernel void		mandelbrot(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -60,7 +60,7 @@ __kernel void		mandelbrot_set(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-__kernel void		julia_set(
+__kernel void		mandelbrot_j(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -88,7 +88,7 @@ __kernel void		julia_set(
 **		(2)		z => z^3 + c
 */
 
-__kernel void		multibrot_3(
+__kernel void		multibrot3(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -112,7 +112,7 @@ __kernel void		multibrot_3(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-__kernel void		julia_3(
+__kernel void		multibrot3_j(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -140,7 +140,7 @@ __kernel void		julia_3(
 **		(3)		z => z^4 + c
 */
 
-__kernel void		multibrot_4(
+__kernel void		multibrot4(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -164,7 +164,7 @@ __kernel void		multibrot_4(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-__kernel void		julia_4(
+__kernel void		multibrot4_j(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -216,7 +216,7 @@ __kernel void		tricorn(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-__kernel void		tricorn_julia(
+__kernel void		tricorn_j(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -244,7 +244,7 @@ __kernel void		tricorn_julia(
 **		(5)		z => (|Re z| - i|Im z|)^2 + c
 */
 
-__kernel void		burning_ship(
+__kernel void		burningship(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -268,7 +268,7 @@ __kernel void		burning_ship(
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
 
-__kernel void		burning_ship_julia(
+__kernel void		burningship_j(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -352,6 +352,7 @@ __kernel void		negabrot_2(
 **		z => z - f(z) / f'(z)
 */
 
+/*
 __kernel void		newton(
 							__global int *img,
 							__global int *palette,
@@ -386,12 +387,13 @@ __kernel void		newton(
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
+*/
 
 /*
 **		z => z - a * f(z) / f'(z) with variable complex `a`
 */
 
-__kernel void		newton3_var(
+__kernel void		newton3(
 							__global int *img,
 							__global int *palette,
 							__global struct s_param *p)
@@ -434,6 +436,7 @@ __kernel void		newton3_var(
 */
 
 // TODO: bad, remove
+/*
 __kernel void		newton2_var(
 							__global int *img,
 							__global int *palette,
@@ -469,6 +472,7 @@ __kernel void		newton2_var(
 	}
 	img[id] = palette[p->iteration_max - 1 - iter];
 }
+*/
 
 /*
 **	p(z) = sin(z) - 1
