@@ -63,28 +63,32 @@ void	window_reset(t_win *window)
 
 // public
 
-// TODO: define 10, 44
+#define HELP_X		10
+#define HELP_Y		10
+
+#define STATUS_X	10
+#define STATUS_Y	(-44)
 
 void	window_display(t_win *window)
 {
 	window_display_image(window);
 	if (window->is_help_shown)
 	{
-		help_display(window, 10, 10);
+		help_display(window, HELP_X, HELP_Y);
 	}
 	if (window->is_status_shown)
 	{
-		status_display(window, 10, window->param.height - 44);
+		status_display(window, STATUS_X, window->param.height + STATUS_Y);
 	}
 }
 
 void	window_display_shift_help(t_win *window, int shift_x, int shift_y)
 {
 	window_display_image(window);
-	help_display(window, 10 + shift_x, 10 + shift_y);
+	help_display(window, HELP_X + shift_x, HELP_Y + shift_y);
 	if (window->is_status_shown)
 	{
-		status_display(window, 10, window->param.height - 44);
+		status_display(window, STATUS_X, window->param.height + STATUS_Y);
 	}
 }
 
@@ -93,9 +97,10 @@ void	window_display_shift_status(t_win *window, int shift_x, int shift_y)
 	window_display_image(window);
 	if (window->is_help_shown)
 	{
-		help_display(window, 10, 10);
+		help_display(window, HELP_X, HELP_Y);
 	}
-	status_display(window, 10 + shift_x, window->param.height - 44 + shift_y);
+	status_display(window,
+			STATUS_X + shift_x, window->param.height + STATUS_Y + shift_y);
 }
 
 void	window_redraw(t_win *window)		// window_update
