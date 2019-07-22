@@ -12,9 +12,6 @@
 
 #include "window_private.h"
 
-#define COLOR_BACKGROUND	0x40808080
-#define COLOR_BORDER		0x00eeeeee
-
 void	*background_create(void *mlx_ptr, int width, int height)
 {
 	void *const	img_ptr = mlx_new_image(mlx_ptr, width, height);

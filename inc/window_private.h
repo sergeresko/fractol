@@ -16,6 +16,19 @@
 # include "fractol.h"		// t_win
 # include <mlx.h>		// or "mlx.h" ?
 
+#define COLOR_TITLE			0xee9900
+#define COLOR_CONTROL		0xeedd00//0xee5555 // TODO:
+#define COLOR_TEXT			0xeeeeee
+#define COLOR_BACKGROUND	0x40808080
+#define COLOR_BORDER		COLOR_TEXT
+
+#define OFFSET_X			10
+#define OFFSET_Y			5
+
+#define LINE_HEIGHT			20
+
+#define BOX_WIDTH			190
+
 void	*background_create(void *mlx_ptr, int width, int height);
 void	background_display(t_win *window, void *background, int x, int y);
 

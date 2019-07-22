@@ -12,19 +12,12 @@
 
 #include "window_private.h"
 
-#define COLOR_TITLE		0xee9900
-#define COLOR_CONTROL	0xeedd00//0xee5555
-#define COLOR_TEXT		0xeeeeee
-
-#define LINE_HEIGHT		20
-
-#define OFFSET_X			10
-#define OFFSET_Y_MOUSE		5
+#define OFFSET_Y_MOUSE		OFFSET_Y
 #define OFFSET_Y_KEYBOARD	(OFFSET_Y_MOUSE + 7 * LINE_HEIGHT)
 #define OFFSET_Y_SHIFT		(OFFSET_Y_KEYBOARD + 11 * LINE_HEIGHT)
 
-#define HELP_WIDTH		190
-#define HELP_HEIGHT		(OFFSET_Y_SHIFT + 3 * LINE_HEIGHT + 8)
+#define HELP_WIDTH			BOX_WIDTH
+#define HELP_HEIGHT			(OFFSET_Y_SHIFT + 3 * LINE_HEIGHT + 8)
 
 static void	help_display_lines(t_win *window, int x, int y, char **lines)
 {
