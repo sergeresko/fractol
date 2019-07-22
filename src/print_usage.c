@@ -6,11 +6,11 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:35:54 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:22:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"	// TODO:
+#include "fractol.h"
 #include "libft.h"		// ft_putstr_fd, ft_putchar_fd, ft_strcpy
 
 static void print_usage_titles(void)
@@ -34,7 +34,7 @@ static void	print_usage_options(void)
 	t_opt const	*opt;
 
 	ft_putstr_fd(
-			"    global    local      range      default      description\n\n",
+			"    global    local      range      default      description\n",
 			STDERR_FILENO);
 	ft_strcpy(str, "    ## <N>    ##<N>    ###...####     ###     ");
 	str[4] = OPT_PREFIX_GLOBAL;
@@ -57,22 +57,24 @@ static void	print_usage_options(void)
 
 static void	print_usage_examples(void)
 {
-	// TODO: examples	
+	ft_putstr_fd("    ./fractol 'Tricorn fractal'\n" 
+			"    ./fractol -w 1000 -h 1000 m3f.c2 m3j.c4\n"
+			"    ./fractol sin.i50.c6\n", STDERR_FILENO);
 }
 
 void		print_usage(void)
 {
 	ft_putstr_fd(
 			"usage: ./fractol [<global options>] <title>[<local options>] ...\n"
-			"\nTitles:\n\n", STDERR_FILENO);
+			"\nTitles:\n", STDERR_FILENO);
 	print_usage_titles();
-	ft_putstr_fd("\nA title may be shortened to any unambiguous subsequence.\n"
-			"Several titles result in several windows.\n"
-			"\nOptions:\n\n", STDERR_FILENO);
+	ft_putstr_fd("A title may be shortened to any unambiguous subsequence.\n"
+			"Multiple titles result in multiple windows.\n"
+			"\nOptions:\n", STDERR_FILENO);
 	print_usage_options();
-	ft_putstr_fd("\nGlobal options apply to all windows "
+	ft_putstr_fd("Global options apply to all windows "
 			"unless overriden by local options.\n"
-			"\nExamples:\n\n", STDERR_FILENO);
+			"\nExamples:\n", STDERR_FILENO);
 	print_usage_examples();
 	ft_putstr_fd("\nPress H when running the program "
 			"to see the list of controls.\n", STDERR_FILENO);

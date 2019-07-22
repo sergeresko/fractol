@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/18 19:53:20 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:25:49 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ t_opt const		*opt_info(int index)
 	return (&(info[index]));
 }
 
-#define TITLE_MANDELBROT	"Mandelbrot fractal:   z => z^2 + c"
+#define TITLE_MANDELBROT	"Mandelbrot fractal: z^2 + c"
 #define TITLE_MANDELBROT_J	"Mandelbrot Julia set"
-#define TITLE_MULTIBROT3	"Multibrot-3 fractal:  z => z^3 + c"
+#define TITLE_MULTIBROT3	"Multibrot-3 fractal: z^3 + c"
 #define TITLE_MULTIBROT3_J	"Multibrot-3 Julia set"
-#define TITLE_MULTIBROT4	"Multibrot-4 fractal:  z => z^4 + c"
+#define TITLE_MULTIBROT4	"Multibrot-4 fractal: z^4 + c"
 #define TITLE_MULTIBROT4_J	"Multibrot-4 Julia set"
-#define TITLE_TRICORN		"Tricorn fractal:      z => (x - iy)^2 + c"
+#define TITLE_TRICORN		"Tricorn fractal: (x - iy)^2 + c"
 #define TITLE_TRICORN_J		"Tricorn Julia set"
-#define TITLE_BURNINGSHIP	"Burning Ship fractal: z => (|x| - i|y|)^2 + c"
+#define TITLE_BURNINGSHIP	"Burning Ship fractal: (|x| - i|y|)^2 + c"
 #define TITLE_BURNINGSHIP_J	"Burning Ship Julia set"
-#define TITLE_NEWTON3		"Newton-3 fractal:     f(z) = z^3 - 1"
-#define TITLE_NEWTON_SIN	"Newton-sin fractal:   f(z) = sin(z) - 1"
-#define TITLE_NEWTON8		"Newton-8 fractal:     f(z) = z^8 + 3*z^4 - 4"
-#define TITLE_NOVA			"Nova fractal:         f(z) = z^3 - 1"
+#define TITLE_NEWTON3		"Newton-3 fractal: z^3 - 1"
+#define TITLE_NEWTON_SIN	"Newton-sin fractal: sin(z) - 1"
+#define TITLE_NEWTON8		"Newton-8 fractal: z^8 + 3*z^4 - 4"
+#define TITLE_NOVA			"Nova fractal: z^3 - 1"
 
 t_type const	*type_info(int index)
 {
