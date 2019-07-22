@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 17:54:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/22 13:25:49 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 14:53:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,21 @@ t_opt const		*opt_info(int index)
 
 t_type const	*type_info(int index)
 {
-	static t_type const	info[TYPE_COUNT] = {	// TODO:
-		{TITLE_MANDELBROT, "mandelbrot", -2.5, 1.5, -1.5, 1.5, 0},
+	static t_type const	info[TYPE_COUNT] = {
+		{TITLE_MANDELBROT, "mandelbrot", -2.25, 1.25, -1.5, 1.5, 0},
 		{TITLE_MANDELBROT_J, "mandelbrot_j", -2.0, 2.0, -2.0, 2.0, 1},
 		{TITLE_MULTIBROT3, "multibrot3", -1.0, 1.0, -1.5, 1.5, 0},
-		{TITLE_MULTIBROT3_J, "multibrot3_j", -1.5, 1.5, -1.5, 1.5, 1},				// OK
-		{TITLE_MULTIBROT4, "multibrot4", -1.0, 1.0, -1.5, 1.5, 0},
+		{TITLE_MULTIBROT3_J, "multibrot3_j", -1.5, 1.5, -1.5, 1.5, 1},
+		{TITLE_MULTIBROT4, "multibrot4", -1.5, 1.25, -1.5, 1.5, 0},
 		{TITLE_MULTIBROT4_J, "multibrot4_j", -1.5, 1.5, -1.5, 1.5, 1},
-		{TITLE_TRICORN, "tricorn", -2.0, 2.0, -2.0, 2.0, 0},		// OK
-		{TITLE_TRICORN_J, "tricorn_j", -2.0, 2.0, -2.0, 2.0, 1},	// OK
-		{TITLE_BURNINGSHIP, "burningship", -2.0, 2.0, -2.0, 2.0, 0},
+		{TITLE_TRICORN, "tricorn", -2.25, 2.0, -2.0, 2.0, 0},
+		{TITLE_TRICORN_J, "tricorn_j", -2.0, 2.0, -2.0, 2.0, 1},
+		{TITLE_BURNINGSHIP, "burningship", -2.25, 1.5, -1.0, 2.0, 0},
 		{TITLE_BURNINGSHIP_J, "burningship_j", -2.0, 2.0, -2.0, 2.0, 1},
-//		{"Negabrot 1", "negabrot_1", -1.0, 1.0, -1.5, 1.5, 0},
-//		{"Negabrot 2", "negabrot_2", -1.0, 1.0, -1.5, 1.5, 0},
-//		{"Newton p(z) = z^3 - 1", "newton", -1.0, 1.0, -1.5, 1.5, 0},
-//		{"Newton 2 variable", "newton2_var", -1.0, 1.0, -1.5, 1.5, 1},
-		{TITLE_NEWTON3, "newton3", -1.0, 1.0, -1.5, 1.5, 1},
-		{TITLE_NEWTON_SIN, "newton_sin", -1.0, 1.0, -1.5, 1.5, 0},
-		{TITLE_NEWTON8, "newton_custom", -1.0, 1.0, -1.5, 1.5, 0},
-		{TITLE_NOVA, "newton3_nova", -1.0, 1.0, -1.5, 1.5, 1},		// TODO: not variable
+		{TITLE_NEWTON3, "newton3", -1.0, 1.0, -1.0, 1.0, 1},
+		{TITLE_NEWTON_SIN, "newton_sin", -2.0, -1.15, -0.25, 0.25, 0},
+		{TITLE_NEWTON8, "newton_custom", -1.0, 1.0, -1.0, 1.0, 0},
+		{TITLE_NOVA, "newton3_nova", -1.75, 1.0, -0.75, 0.75, 0},
 	};
 
 	return (&(info[index]));

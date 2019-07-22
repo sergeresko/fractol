@@ -37,3 +37,7 @@ window/
   background.c                  DONE
   status_display.c              ! TODO: comment
   help_display.c                DONE
+
+info.c                          DONE
+
+print_usage.c                   ! TODO: remove comment

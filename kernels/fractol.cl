@@ -293,52 +293,6 @@ __kernel void		burningship_j(
 }
 
 /*
-__kernel void		negabrot_1(
-							__global int *img,
-							__global int *palette,
-							__global struct s_param *p)
-{
-	int const		id = get_global_id(0);
-	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
-	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
-	double			re = re0;
-	double			im = im0;
-	double			d;
-	int				iter = p->iteration_max;
-
-	while (--iter && (d = re * re + im * im) > 0.001)
-	{
-		re = re / d + re0;
-		im = -im / d + im0;
-	}
-	img[id] = palette[p->iteration_max - 1 - iter];
-}
-
-__kernel void		negabrot_2(
-							__global int *img,
-							__global int *palette,
-							__global struct s_param *p)
-{
-	int const		id = get_global_id(0);
-	double const	re0 = p->origin_re + (id % p->width) / p->zoom;
-	double const	im0 = p->origin_im - (id / p->width) / p->zoom;
-	double			re = re0;
-	double			im = im0;
-	double			re_squared = re * re;
-	double			im_squared = im * im;
-	double			d;
-	int				iter = p->iteration_max;
-
-	while (--iter && (d = (re_squared + im_squared) * (re_squared + im_squared)) > 0.00001)
-	{
-		im = -2.0 * re * im / d + im0;
-		re = (re_squared - im_squared) / d + re0;
-	}
-	img[id] = palette[p->iteration_max - 1 - iter];
-}
-*/
-
-/*
 **	===========================================================================
 **		Newton fractals
 **	===========================================================================
@@ -350,43 +304,6 @@ __kernel void		negabrot_2(
 
 /*
 **		z => z - f(z) / f'(z)
-*/
-
-/*
-__kernel void		newton(
-							__global int *img,
-							__global int *palette,
-							__global struct s_param *p)
-{
-	double const	tolerance = 1.0e-6;
-	double const	roots_re[3] = {1.0, -0.5, -0.5};
-	double const	roots_im[3] = {0.0, -0.5 * sqrt(3.0), +0.5 * sqrt(3.0)};
-	int const		id = get_global_id(0);
-	double			re = p->origin_re + (id % p->width) / p->zoom;
-	double			im = p->origin_im - (id / p->width) / p->zoom;
-	int				iter = p->iteration_max;
-
-	while (--iter)
-	{
-		double const	re2 = re * re;
-		double const	im2 = im * im;
-		double const	abs2 = re2 + im2;
-		int				i = 3;
-
-		while (i--)
-		{
-			if (fabs(re - roots_re[i]) < tolerance
-					&& fabs(im - roots_im[i]) < tolerance)
-			{
-				img[id] = palette[p->iteration_max - 1 - iter];
-				return ;
-			}
-		}
-		im = 2.0 * im * (1.0 - re / (abs2 * abs2)) / 3.0;
-		re = (2.0 * re + (re2 - im2) / (abs2 * abs2)) / 3.0;
-	}
-	img[id] = palette[p->iteration_max - 1 - iter];
-}
 */
 
 /*
@@ -432,50 +349,7 @@ __kernel void		newton3(
 }
 
 /*
-**
-*/
-
-// TODO: bad, remove
-/*
-__kernel void		newton2_var(
-							__global int *img,
-							__global int *palette,
-							__global struct s_param *p)
-{
-	double const	tolerance = 1.0e-6;
-	int const		id = get_global_id(0);
-	double const	a_re = p->var_re;
-	double const	a_im = p->var_im;
-	double			re = p->origin_re + (id % p->width) / p->zoom;
-	double			im = p->origin_im - (id / p->width) / p->zoom;
-	double			re2 = re * re;
-	double			im2 = im * im;
-	double			abs2 = re2 + im2;
-	double			u_re = 0.5 * re * (1.0 - 1.0 / abs2);
-	double			u_im = 0.5 * im * (1.0 + 1.0 / abs2);
-	int				iter = p->iteration_max;
-
-	while (--iter)
-	{
-		re = re - a_re * u_re + a_im * u_im;
-		im = im - a_re * u_im + a_im * u_re;
-		if ((fabs(re - 1.0) < tolerance || fabs(re + 1.0) < tolerance)
-				&& fabs(im) < tolerance)
-		{
-			break ;
-		}
-		re2 = re * re;
-		im2 = im * im;
-		abs2 = re2 + im2;
-		u_re = 0.5 * re * (1.0 - 1.0 / abs2);
-		u_im = 0.5 * im * (1.0 + 1.0 / abs2);
-	}
-	img[id] = palette[p->iteration_max - 1 - iter];
-}
-*/
-
-/*
-**	p(z) = sin(z) - 1
+**	f(z) = sin(z) - 1
 */
 
 __kernel void		newton_sin(
@@ -506,7 +380,7 @@ __kernel void		newton_sin(
 }
 
 /*
-**	p(z) = z^8 + 3 * z^4 - 4
+**	f(z) = z^8 + 3 * z^4 - 4
 **	http://usefuljs.net/fractals/docs/newtonian_fractals.html
 */
 
@@ -527,7 +401,6 @@ __kernel void		newton_custom(
 		double const	im2 = im * im;
 		double const	qu_re = (re2 * re2) - (6.0 * re2 * im2) + (im2 * im2);
 		double const	qu_im = 4.0 * re * im * (re2 - im2);
-//
 		double const	t = 2.0 * qu_re + 3.0;
 		double const	fraction = 25.0 / (t * t + 4.0 * qu_im * qu_im);
 		double const	w_re = (1.0 - fraction) * t;
@@ -557,6 +430,7 @@ __kernel void		newton_custom(
 
 /*
 **		z => z - f(z) / f'(z) + c // TODO:
+**	NOTE: (a_re, a_im) or (re, im) could be made variable.
 */
 
 __kernel void		newton3_nova(
@@ -570,8 +444,8 @@ __kernel void		newton3_nova(
 	double const	a_im = 0.0;
 	double const	c_re = p->origin_re + (id % p->width) / p->zoom;
 	double const	c_im = p->origin_im - (id / p->width) / p->zoom;
-	double			re = 1.0;//p->var_re;
-	double			im = 0.0;//p->var_im;
+	double			re = 1.0;
+	double			im = 0.0;
 	int				iter = p->iteration_max;
 
 	while (--iter)
