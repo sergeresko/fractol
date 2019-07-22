@@ -6,15 +6,16 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:10:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 17:32:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 12:44:33 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events_private.h"
 #include "window.h"
+#include <mlx.h>		// or "mlx.h"
 #include <time.h>
 
-#define FRAME_DURATION		32		// TODO: choose a reasonable value
+#define FRAME_DURATION		10000		// TODO: choose a reasonable value
 
 static void	toggle_help(t_win *window)
 {
@@ -25,9 +26,10 @@ static void	toggle_help(t_win *window)
 	frame = 0;
 	while (++frame < HELP_FRAME_COUNT)
 	{
-		while (clock() - start < FRAME_DURATION * frame)
+		while (clock() < start + FRAME_DURATION * frame)
 			;
 		apply(action_animate_help, window, is_help_shown, frame);
+		mlx_do_sync(window->program->mlx_ptr);
 	}
 	apply(action_toggle_help, window, is_help_shown, UNUSED);
 }
@@ -41,9 +43,10 @@ static void	toggle_status(t_win *window)
 	frame = 0;
 	while (++frame < STATUS_FRAME_COUNT)
 	{
-		while (clock() - start < FRAME_DURATION * frame)
+		while (clock() < start + FRAME_DURATION * frame)
 			;
 		apply(action_animate_status, window, is_status_shown, frame);
+		mlx_do_sync(window->program->mlx_ptr);
 	}
 	apply(action_toggle_status, window, is_status_shown, UNUSED);
 }
