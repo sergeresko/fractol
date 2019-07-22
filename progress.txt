@@ -1,0 +1,39 @@
+actions/
+  action_animate.c              DONE
+  action_change_iterations.c    DONE
+  action_close.c                ! TODO: OpenCL (today)
+  action_move.c                 DONE
+  action_reset.c                ! TODO: window_reset
+  action_set_palette.c          ! TODO: fill_palette
+  action_toggle.c               DONE
+  action_update_variable.c      DONE
+  action_zoom.c                 ! TODO: choose ZOOM_MIN (at UNIT)
+  apply.c                       DONE
+actions.h                       DONE
+
+events/
+  key_press_toggle.c            ! TODO: choose FRAME_DURATION (at UNIT)
+  key_press.c                   DONE
+  key_release.c                 DONE
+  mouse_move.c                  DONE
+  mouse_press.c                 DONE
+  mouse_release.c               DONE
+  win_close.c                   ! TODO: OpenCL (today), remove leaks (finally)
+events_private.h                DONE
+events.h                        DONE
+
+start_opencl.c                  ! TODO: check errors
+start_mlx.c                     ! TODO: remove comments in includes
+
+palettes/
+  palette_periodic.c            DONE
+  palette_other.c               DONE
+  fill_palette.c                ! TODO: remove comment
+palettes.h                      DONE
+
+usage.txt                       ! TODO: delete
+
+window/
+  background.c                  DONE
+  status_display.c              ! TODO: comment
+  help_display.c                DONE

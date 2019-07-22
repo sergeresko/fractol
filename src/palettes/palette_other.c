@@ -1,7 +1,20 @@
-// TODO: 42 header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   palette_other.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/22 13:30:09 by syeresko          #+#    #+#             */
+/*   Updated: 2019/07/22 13:39:50 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 #include <math.h>
+
+#define COLOR_BLACK		0x000000
+#define COLOR_WHITE		0xffffff
 
 void	palette_bernstein(t_win *window)
 {
@@ -12,9 +25,10 @@ void	palette_bernstein(t_win *window)
 	double		s;
 
 	index = iteration_max;
+	palette[--index] = COLOR_BLACK;
 	while (index--)
 	{
-		t = (double)index / iteration_max;		// TODO:
+		t = (double)index / iteration_max;
 		s = 1.0 - t;
 		palette[index] = (int)(9.0 * s * t * t * t * 255) << 16
 				| (int)(15.0 * s * s * t * t * 255) << 8
@@ -39,7 +53,7 @@ void	palette_blue_brown(t_win *window)
 	}
 }
 
-void	palette_kaleidoscope(t_win *window)	// TODO:
+void	palette_kaleidoscope(t_win *window)
 {
 	int		color;
 	int		index;
@@ -49,10 +63,10 @@ void	palette_kaleidoscope(t_win *window)	// TODO:
 	while (index < window->param.iteration_max)
 	{
 		window->palette[index] = color;
-		color += 0x0042f0;//color += 0x000ff0;
+		color += 0x0042f0;
 		++index;
 	}
-	window->palette[index - 1] = 0x000000;		// possible because index increments
+	window->palette[index - 1] = COLOR_BLACK;
 }
 
 void	palette_greyscale(t_win *window)
@@ -76,9 +90,9 @@ void	palette_monochrome(t_win *window)
 	int			index;
 
 	index = window->param.iteration_max;
-	palette[--index] = 0x000000;		// black
+	palette[--index] = COLOR_BLACK;
 	while (index)
 	{
-		palette[--index] = 0xffffff;	// white
+		palette[--index] = COLOR_WHITE;
 	}
 }

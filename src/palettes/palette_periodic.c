@@ -1,7 +1,19 @@
-// TODO: 42 header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   palette_periodic.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/22 13:30:27 by syeresko          #+#    #+#             */
+/*   Updated: 2019/07/22 13:34:25 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 #include <math.h>
+
+#define COLOR_WHITE		0xffffff
 
 static void	palette_cos(t_win *window, double r, double g, double b)
 {
@@ -11,7 +23,7 @@ static void	palette_cos(t_win *window, double r, double g, double b)
 	double		t;
 
 	index = iteration_max;
-	palette[--index] = 0xffffff;
+	palette[--index] = COLOR_WHITE;
 	while (index--)
 	{
 		t = (double)index / iteration_max;
