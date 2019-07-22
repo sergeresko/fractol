@@ -6,12 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:30:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:33:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 15:58:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"		// ft_strcpy
+#include "libft.h"
 
 // TODO: maybe use `t_opt const *opt` and `opt->character`
 static void	error_opt(char const *message, char opt_prefix, char opt_char)

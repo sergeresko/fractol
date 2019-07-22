@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 12:30:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 15:28:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 16:01:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_bind const	*get_binding_by_key(int key)
 	return (find(key, bindings, sizeof(bindings) / sizeof(*bindings)));
 }
 
-static t_bind const *get_binding_by_key_numpad(int key)
+static t_bind const	*get_binding_by_key_numpad(int key)
 {
 	static t_bind const	bindings[] = {
 		{KEY_MINUS_NUMPAD, action_zoom_out, ZOOM_CENTER, ZOOM_CENTER},

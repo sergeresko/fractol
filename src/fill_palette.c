@@ -6,11 +6,11 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 19:10:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/22 13:29:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 16:09:20 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "palettes.h"		// included only here
+#include "palettes.h"
 
 void	fill_palette(t_win *window)
 {

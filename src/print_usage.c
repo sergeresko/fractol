@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:29:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/22 13:22:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 15:56:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"		// ft_putstr_fd, ft_putchar_fd, ft_strcpy
+#include "libft.h"
 
-static void print_usage_titles(void)
+static void	print_usage_titles(void)
 {
 	int		type_index;
 
@@ -57,7 +57,7 @@ static void	print_usage_options(void)
 
 static void	print_usage_examples(void)
 {
-	ft_putstr_fd("    ./fractol 'Tricorn fractal'\n" 
+	ft_putstr_fd("    ./fractol 'Tricorn fractal'\n"
 			"    ./fractol -w 1000 -h 1000 m3f.c2 m3j.c4\n"
 			"    ./fractol sin.i50.c6\n", STDERR_FILENO);
 }

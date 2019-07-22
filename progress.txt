@@ -7,7 +7,7 @@ actions/
   action_set_palette.c          ! TODO: fill_palette
   action_toggle.c               DONE
   action_update_variable.c      DONE
-  action_zoom.c                 ! TODO: choose ZOOM_MIN (at UNIT)
+  action_zoom.c                 DONE
   apply.c                       DONE
 actions.h                       DONE
 
@@ -35,9 +35,12 @@ usage.txt                       ! TODO: delete
 
 window/
   background.c                  DONE
-  status_display.c              ! TODO: comment
+  status_display.c              DONE
   help_display.c                DONE
+  image.c                       DONE
+window_private.h                ! TODO
+window.h                        ! TODO
 
 info.c                          DONE
 
-print_usage.c                   ! TODO: remove comment
+print_usage.c                   DONE

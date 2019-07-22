@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 13:30:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/22 13:34:25 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 16:02:08 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	palette_cos(t_win *window, double r, double g, double b)
 	}
 }
 
-void 		palette_periodic(t_win *window)
+void		palette_periodic(t_win *window)
 {
 	static double	phases[][3] = {
 		{0.0 / 3.0, 1.0 / 3.0, 2.0 / 3.0},

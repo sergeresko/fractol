@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 18:03:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 18:05:00 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 17:04:54 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	action_update_variable(t_win *window, int unused_1, int unused_2)
 	{
 		window->param.var_re = window->program->var_re;
 		window->param.var_im = window->program->var_im;
-		window_redraw(window);
+		window_update(window);
 	}
 }

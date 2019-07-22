@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 16:47:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 17:02:43 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			redraw_all(t_prog *program)		// TODO: remove
 	{
 		window = &(program->windows[window_index]);
 		window_reset(window);
-		window_redraw(window);
+		window_update(window);
 	}
 }
 

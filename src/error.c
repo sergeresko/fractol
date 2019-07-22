@@ -6,13 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 11:31:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:13:12 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 15:57:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdlib.h>
 #include "fractol.h"
-#include "libft.h"		// ft_putstr_fd
+#include "libft.h"
 
 static void	die(void)
 {

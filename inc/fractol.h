@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 11:40:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/19 21:11:07 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 17:22:22 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_param		t_param;
 # define OPT_INDEX_COLOR	3
 # define OPT_COUNT			4
 
-struct			s_opt			// t_opt_info
+struct			s_opt
 {
 	char		character;
 	int			min_value;
@@ -70,8 +70,6 @@ struct			s_opt			// t_opt_info
 t_opt const		*opt_info(int index);
 t_type const	*type_info(int index);
 
-//void			set_global_option(t_everything *everything,
-//											t_opt const *opt, char const *arg);
 void			set_option(int *options, char opt_prefix,
 											int opt_index, char const *arg);
 char			**process_global_options(t_prog *program, char **av);
@@ -81,20 +79,17 @@ void			process_arguments(t_prog *program, char **av);
 # define OPT_PREFIX_GLOBAL	'-'
 # define OPT_PREFIX_LOCAL	'.'
 
-//
-
 # define TYPE_COUNT			14
 
-struct			s_type			// t_type_info
+struct			s_type
 {
 	char const	*title;
-	char const	*cl_kernel_name;
+	char const	*opencl_kernel_name;
 	double		re_min;
 	double		re_max;
 	double		im_min;
 	double		im_max;
 	int			is_variable;
-	// ...
 };
 
 struct			s_param
@@ -121,11 +116,11 @@ struct			s_win
 	int				color_scheme;
 	int				palette[ITER_MAX];
 	// OpenCL:
-	size_t			cl_global_size;		// .param.width * .param.height
-	cl_mem			cl_img;				// CL buffers for:	.img_data
-	cl_mem			cl_palette;			//					.palette
-	cl_mem			cl_param;			//					.param
-	cl_kernel		cl_kernel;
+	size_t			opencl_global_size;		// .param.width * .param.height
+	cl_mem			opencl_img;				// CL buffers for:	.img_data
+	cl_mem			opencl_palette;			//					.palette
+	cl_mem			opencl_param;			//					.param
+	cl_kernel		opencl_kernel;
 	// MiniLibX:
 	void			*win_ptr;
 	void			*img_ptr;
@@ -145,9 +140,9 @@ struct			s_prog
 	int					window_count;
 //	int					active_window_count;	// needed?
 	// OpenCL:
-	cl_context			cl_context;
-	cl_command_queue	cl_commands;
-	cl_program			cl_program;
+	cl_context			opencl_context;
+	cl_command_queue	opencl_commands;
+	cl_program			opencl_program;
 	// MiniLibX:
 	void				*mlx_ptr;
 	int					global_mode;

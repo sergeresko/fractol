@@ -6,13 +6,13 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 18:10:07 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/22 12:44:33 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 17:07:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events_private.h"
 #include "window.h"
-#include <mlx.h>		// or "mlx.h"
+#include <mlx.h>
 #include <time.h>
 
 #define FRAME_DURATION		10000		// TODO: choose a reasonable value

@@ -6,12 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 18:28:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/07/16 21:14:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/07/22 15:57:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"		// ft_tolower, ft_strsplit, ft_strsplit_clear
+#include "libft.h"
 
 /*
 **	tell whether string `sub` is a subsequence of string `full`
